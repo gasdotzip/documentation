@@ -1,0 +1,126 @@
+# Implementing into `deposit()`
+
+::::steps
+
+## Define the `createOptimizedAdapterParams` function
+
+This function prepares parameters for each chain to deposit funds. It takes two arguments: `dstChainId` and `nativeAmount`.
+
+:::code
+
+```ts
+const createOptimizedAdapterParams = (dstChainId: bigint, nativeAmount: bigint) => {
+return (dstChainId << BigInt(240)) | nativeAmount
+}
+```
+
+:::
+
+## Prepare `LayerZero chainIDs` and `depositParameters`
+
+Create an array of LayerZero chain IDs `lzIds` and an array of deposit parameters `depositParams` for each chain you want to deposit funds to.
+
+:::code
+
+```ts
+// Prepare parameters for Arbitrum and Arbitrum Nova
+const arbitrumParamsDeposit = createOptimizedAdapterParams(BigInt(110), parseEther('0.000002'))
+const arbitrumNovaParamsDeposit = createOptimizedAdapterParams(BigInt(175), parseEther('0.000002'))
+
+// Prepare the final object to send to the estimateFees() function
+const adapterParamsDeposit = [arbitrumParamsDeposit, arbitrumNovaParamsDeposit]
+const lzIds = [110, 175] // Arbitrum and Arbitrum Nova LayerZero chain IDs
+```
+
+:::info
+This is just an example of the props to pass into `createOptimizedAdapterParams`, the 0.000002 ETH value prop passed into the function is worth around $0.0051221 at the time of writing.
+:::
+
+
+## Call the `deposit()` function
+
+Use the `adapterParamsDeposit` and target address as arguments for the `deposit()` function. You must use the [aggregated value](/layerzero/step-by-step/estimateFees#call-the-estimatefees-function-and-aggregate-the-fees) `estimateFees()` generates as the `value` prop in the `deposit()` function.
+
+:::code-group
+
+```ts [viem]
+import { parseEther, http, createWalletClient, publicActions, formatEther } from 'viem'
+import { optimism } from 'viem/chains'
+import { privateKeyToAccount } from 'viem/accounts'
+import { lzDepositAbi } from './abis'
+
+const account = privateKeyToAccount('0x...') // Replace with your private key
+
+const client = createWalletClient({
+  account,
+  chain: optimism,
+  transport: http(),
+}).extend(publicActions)
+
+;(async () => {
+  const lzFees: bigint = 0n
+  console.log(`The fees are: ${lzFees}`)
+  console.log(`Parsed Fees`, formatEther(lzFees))
+
+  // Prepare the contract write configuration
+  const { request } = await client.simulateContract({
+    address: '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
+    abi: lzDepositAbi,
+    functionName: 'deposit',
+    value: lzFees,
+    args: [adapterParamsDeposit, account.address],
+  })
+
+  // Call the deposit() function
+  await client.writeContract(request)
+})().catch((error) => console.error(error))
+```
+
+```ts [ethers]
+import { ethers, formatEther, parseEther } from 'ethers'
+import { lzDepositAbi } from './abis'
+
+// Create a wallet from a private key / alternative to your needs
+const privateKey = '0x...'
+const wallet = new ethers.Wallet(privateKey)
+
+// Connect the wallet to a provider
+const optimismChainId = 10
+const provider = new ethers.AlchemyProvider(optimismChainId, 'AlchemyProviderId')
+const signer = wallet.connect(provider)
+
+;(async () => {
+  const lzFees: bigint = 0n
+  console.log(`The fees are: ${lzFees}`)
+  console.log(`Parsed Fees`, formatEther(lzFees))
+
+  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', lzDepositAbi, signer)
+  await contract.deposit(adapterParamsDeposit, signer.address, { value: lzFees })
+})().catch((error) => console.error(error))
+```
+
+```ts [abi.ts]
+// Define the lzDepositAbi
+export const lzDepositAbi = [
+  {
+    inputs: [
+      {
+        internalType: 'uint256[]',
+        name: '_depositParams',
+        type: 'uint256[]',
+      },
+      {
+        internalType: 'address',
+        name: 'to',
+        type: 'address',
+      },
+    ],
+    name: 'deposit',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function',
+  },
+] as const
+```
+
+:::

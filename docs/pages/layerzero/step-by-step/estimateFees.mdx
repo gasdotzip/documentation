@@ -1,0 +1,149 @@
+# Implementing into `estimateFees()`
+
+::::steps
+
+## Define the `createAdapterParams` function
+
+This function prepares parameters for each chain to estimate fees. It takes three arguments: `gasLimit`, `nativeAmount`, and `to` address. To address can remain defaulted to a `null` address
+
+:::code-group
+
+```ts [viem]
+import { encodePacked } from 'viem'
+
+const createAdapterParams = (gasLimit: bigint, nativeAmount: bigint, to: string) => {
+  return encodePacked(['uint16', 'uint256', 'uint256', 'address'], [2, gasLimit, nativeAmount, to as `0x${string}`])
+}
+```
+
+```ts [ethers]
+import { ethers } from 'ethers'
+
+const createAdapterParams = (gasLimit: bigint, nativeAmount: bigint, to: string) => {
+  return ethers.solidityPacked(
+    ['uint16', 'uint256', 'uint256', 'address'],
+    [2, gasLimit, nativeAmount, to],
+  ) as `0x${string}`
+}
+```
+
+:::
+
+## Prepare `LayerZero chainIDs` and `adapterParamsEstimate`
+
+Create an array of LayerZero chain IDs `lzIds` and an array of adapter parameters `adapterParamsEstimate` for each chain you want to estimate fees for.
+
+:::code
+
+```ts [viem]
+// Prepare parameters for Arbitrum and Optimism
+const arbitrumParamsEstimate = createAdapterParams(  // [!code focus]
+  BigInt(30_000),  // [!code focus]
+  parseEther('0.000002'),  // [!code focus]
+  '0x0000000000000000000000000000000000000000',  // [!code focus]
+)
+const arbitrumNovaParamsEstimate = createAdapterParams(  // [!code focus]
+  BigInt(30_000),  // [!code focus]
+  parseEther('0.000002'),  // [!code focus]
+  '0x0000000000000000000000000000000000000000',  // [!code focus]
+)  // [!code focus]
+
+// Prepare the final object to send to the estimateFees() function
+const adapterParamsEstimate = [arbitrumParamsEstimate, arbitrumNovaParamsEstimate]  // [!code focus]
+const lzIds = [110, 175] // Arbitrum and Arbitrum Nova LayerZero chain IDs  // [!code focus]
+```
+
+:::info
+This is just an example of the props to pass into `createAdapterParams`, the 0.000002 ETH value prop passed into the function is worth around $0.0051221 at the time of writing.
+:::
+
+## Call the `estimateFees()` function and aggregate the fees
+
+Use the `lzIds` and the aggregated `adapterParamsEstimate` array as arguments for the `estimateFees()` function. Each fee result from the contract read is then aggregated into one BigInt which is used as a prop in the `deposit()` function.
+
+:::code-group
+
+```ts [viem]
+import { readContract } from 'viem'
+import { estimateFeesAbi } from './abis'
+
+let lzFees: bigint
+
+async function estimateFees(lzIds: number[], adapterParamsEstimate: `0x${string}`[]): Promise<bigint> {
+  const fees = (await client.readContract({
+    address: '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
+    abi: estimateFeesAbi,
+    functionName: 'estimateFees',
+    args: [lzIds, adapterParamsEstimate],
+  })) as bigint[]
+
+  // Aggregate the fees together to use in the `deposit()` function
+  const lzFees = fees.reduce((p, c) => p + c, BigInt(0))
+
+  return lzFees
+}
+
+estimateFees(lzIds, adapterParams)
+  .then((fees) => {
+    lzFees = fees
+    console.log(`The fees are: ${lzFees}`)
+  })
+  .catch((error) => console.error(error))
+
+```
+
+```ts [ethers]
+import { ethers } from 'ethers'
+import { estimateFeesAbi } from './abis'
+
+async function estimateFees(lzIds: number[], adapterParams: `0x${string}`[]): Promise<bigint> {
+  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', estimateFeesAbi, provider)
+  const fees = (await contract.estimateFees(lzIds, adapterParams)) as bigint[]
+
+  // Aggregate the fees together to use as a parameter in the `deposit()` function
+  const lzFees = fees.reduce((p, c) => p + c, BigInt(0))
+
+  return lzFees
+}
+
+let lzFees: bigint = 0n
+
+estimateFees(lzIds, adapterParamsEstimate)
+  .then((fees) => {
+    lzFees = fees
+    console.log(`The fees are: ${lzFees}`)
+  })
+  .catch((error) => console.error(error))
+```
+
+```ts [abi.ts]
+// Define the estimateFeesAbi
+export const estimateFeesAbi = [
+  {
+    inputs: [
+      {
+        internalType: 'uint16[]',
+        name: '_dstChainIds',
+        type: 'uint16[]',
+      },
+      {
+        internalType: 'bytes[]',
+        name: '_adapterParams',
+        type: 'bytes[]',
+      },
+    ],
+    name: 'estimateFees',
+    outputs: [
+      {
+        internalType: 'uint256[]',
+        name: 'nativeFees',
+        type: 'uint256[]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+] as const
+
+```
+:::

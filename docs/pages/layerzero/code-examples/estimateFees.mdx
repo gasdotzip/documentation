@@ -1,0 +1,144 @@
+# Example for `estimateFees()`
+
+Example code for calling the `estimatefees()` function.
+
+:::code-group
+
+```tsx [viem]
+import { encodePacked, parseEther, createPublicClient, http } from 'viem'
+import { mainnet } from 'viem/chains'
+import { estimateFeesAbi } from './abis'
+
+const client = createPublicClient({
+  chain: mainnet,
+  transport: http(),
+})
+
+// Define the createAdapterParams function
+const createAdapterParams = (gasLimit: bigint, nativeAmount: bigint, to: string) => {
+  return encodePacked(['uint16', 'uint256', 'uint256', 'address'], [2, gasLimit, nativeAmount, to as `0x${string}`])
+}
+
+// Prepare parameters for Arbitrum and Optimism
+const arbitrumParams = createAdapterParams(
+  BigInt(30_000),
+  parseEther('0.00002'),
+  '0x0000000000000000000000000000000000000000',
+)
+const optimismParams = createAdapterParams(
+  BigInt(30_000),
+  parseEther('0.00002'),
+  '0x0000000000000000000000000000000000000000',
+)
+
+// Prepare the final object to send to the estimateFees() function
+const adapterParamsEstimate = [arbitrumParams, optimismParams]
+const lzIds = [110, 111] // Arbitrum and Optimism LayerZero chain IDs
+
+let lzFees: bigint
+
+async function estimateFees(lzIds: number[], adapterParamsEstimate: `0x${string}`[]): Promise<bigint> {
+  const fees = (await client.readContract({
+    address: '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
+    abi: estimateFeesAbi,
+    functionName: 'estimateFees',
+    args: [lzIds, adapterParamsEstimate],
+  })) as bigint[]
+
+  // Aggregate the fees together to use in the `deposit()` function
+  const lzFees = fees.reduce((p, c) => p + c, BigInt(0))
+
+  return lzFees
+}
+
+estimateFees(lzIds, adapterParams)
+  .then((fees) => {
+    lzFees = fees
+    console.log(`The fees are: ${lzFees}`)
+  })
+  .catch((error) => console.error(error))
+```
+
+```tsx [ethers]
+import { ethers, parseEther } from 'ethers'
+import { estimateFeesAbi } from './abis'
+
+// Connect the wallet to a provider
+const optimismChainId = 10
+const provider = new ethers.AlchemyProvider(optimismChainId, 'AlchemyProviderId')
+
+// Arbitrum and Arbitrum Nova LayerZero chain IDs
+const lzIds = [110, 175]
+
+// Define the createAdapterParams function
+const createAdapterParams = (gasLimit: bigint, nativeAmount: bigint, to: string) => {
+  return ethers.solidityPacked(
+    ['uint16', 'uint256', 'uint256', 'address'],
+    [2, gasLimit, nativeAmount, to],
+  ) as `0x${string}`
+}
+
+// Prepare parameters for Arbitrum and Optimism
+const arbitrumParamsEstimate = createAdapterParams(
+  BigInt(30_000),
+  parseEther('0.000002'),
+  '0x0000000000000000000000000000000000000000',
+)
+const arbitrumNovaParamsEstimate = createAdapterParams(
+  BigInt(30_000),
+  parseEther('0.000002'),
+  '0x0000000000000000000000000000000000000000',
+)
+
+// Prepare the final object to send to the estimateFees() function
+const adapterParamsEstimate = [arbitrumParamsEstimate, arbitrumNovaParamsEstimate]
+
+async function estimateFees(lzIds: number[], adapterParams: `0x${string}`[]): Promise<bigint> {
+  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', estimateFeesAbi, provider)
+  const fees = (await contract.estimateFees(lzIds, adapterParams)) as bigint[]
+
+  // Aggregate the fees together to use as a parameter in the `deposit()` function
+  const lzFees = fees.reduce((p, c) => p + c, BigInt(0))
+
+  return lzFees
+}
+
+let lzFees: bigint = 0n
+
+estimateFees(lzIds, adapterParamsEstimate)
+  .then((fees) => {
+    lzFees = fees
+    console.log(`The fees are: ${lzFees}`)
+  })
+  .catch((error) => console.error(error))
+```
+
+```ts [abis.ts]
+// Define the estimateFeesAbi
+export const estimateFeesAbi = [
+  {
+    inputs: [
+      {
+        internalType: 'uint16[]',
+        name: '_dstChainIds',
+        type: 'uint16[]',
+      },
+      {
+        internalType: 'bytes[]',
+        name: '_adapterParams',
+        type: 'bytes[]',
+      },
+    ],
+    name: 'estimateFees',
+    outputs: [
+      {
+        internalType: 'uint256[]',
+        name: 'nativeFees',
+        type: 'uint256[]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+] as const
+```

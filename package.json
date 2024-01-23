@@ -1,0 +1,21 @@
+{
+  "name": "gas-interaction-docs",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vocs dev",
+    "build": "vocs build",
+    "preview": "vocs preview",
+    "format": "biome format . --write",
+    "lint": "biome lint . --apply-unsafe"
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "vocs": "latest"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.1",
+    "typescript": "^5.3.3"
+  }
+}

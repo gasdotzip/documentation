@@ -1,0 +1,32 @@
+# Overview
+
+Gas LayerZero is a gas refuel bridge built on the LayerZero v1 protocol. You can instantly bridge to all supported LayerZero destination chains with a single inbound transaction.
+
+
+## Depositing to Gas LayerZero
+
+All ```deposit()``` calls into the Gas LayerZero contract and must be encoded as a `uint256` where the leftmost 16 bits are the destination chain ID and the rightmost 240 bits are the amount (in `wei`) you'd like to recieve on the destination chain.
+
+### Example of Process
+
+1. **Select the Source Chain**: Start by selecting your source chain to deposit from.
+
+2. **Select the Destination Chains**: Select your destination chains to recieve funds. In the [example](/layerzero/step-by-step/estimateFees#prepare-layerzero-chainids-and-adapterparameters), these are Arbitrum (LZ chain ID 110) and Arbitrum Nova (LZ chain ID 175).
+
+3. **Select the Amount**: Decide the amount of native currency you want to send to each chain. In the [example](/layerzero/step-by-step/estimateFees#prepare-layerzero-chainids-and-adapterparameters), 0.000002 ETH is the maximum amount bridged to Arbitrum and Optimism. The Ether input for each chain must be converted to Wei.
+
+4. **Estimate Fees**: Call the `estimateFees()` function with the correct parameters. This function takes two arguments: `lzIds` and `adapterParams`. The aggregated return from `estimateFees()` is used as a parameter in `deposit()`.
+
+5. **Check Wallet Balance**: Ensure your wallet balance exceeds the estimated fees plus the total value in Wei, else the contract will revert due to insufficent funds.
+
+6. **Proceed with the Transaction**: After all the checks, proceed with the transaction by calling the `deposit()` function with the correct parameters.
+
+:::warning
+**IMPORTANT:** `estimateFees()` must be called prior to every time you call `deposit()`.
+:::
+
+:::warning
+**IMPORTANT:** Every route combination has a specifc maximum it can send/recieve on the other side. If you exceed this amount, the contract will revert.
+:::
+
+

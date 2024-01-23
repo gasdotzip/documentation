@@ -24,7 +24,7 @@ const client = createWalletClient({
 const toAddress = account.address
 
 // Each chain will receive an equal portion of the value sent
-const amount: bigint = parseEther('0.0006'.toString())
+const amount: bigint = parseEther('0.0006')
 
 // This example is targeting zkSync (51), Polygon zkEVM (52)
 const gasZipShortChainIDs = [51, 52]
@@ -63,7 +63,7 @@ const signer = wallet.connect(provider)
 const toAddress = wallet.address 
 
 // Each chain will receive an equal portion of the value sent
-const amount: bigint = parseEther('0.0006'.toString())
+const amount: bigint = parseEther('0.0006')
 const amountInWei: string = amount.toString()
 
 // This example is targeting zkSync (51), Polygon zkEVM (52)

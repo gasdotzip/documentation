@@ -28,7 +28,7 @@ export default defineConfig({
     dark: '/favicon.ico',
   },
   rootDir: 'docs',
-  title: 'Gas.zip',
+  title: 'Gas.zip - Technical Documentation',
   theme: {
     accentColor: '#4182eb',
   },

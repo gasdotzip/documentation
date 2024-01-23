@@ -2,6 +2,10 @@
 
 Every route combination has a specifc maximum it can send/recieve on the other side. If you exceed this amount, the contract will revert. Use the following to check what the maximum limit is on your desired destination chain. 
 
+:::warning
+**WARNING:** If a chain returns `0`, that means the inbound to outbound combination is not supported and the transaction will revert. The result must be > `0`. 
+:::
+
 :::code-group
 
 ```tsx [viem]

@@ -1,12 +1,5 @@
 import { defineConfig } from 'vocs'
 
-// Extend the Window interface
-declare global {
-  interface Window {
-    vaq: any[];
-  }
-}
-
 export default defineConfig({
   font: {
     google: 'Inter',

@@ -80,7 +80,6 @@ export default defineConfig({
     },
     {
       text: 'Gas.zip LayerZero',
-      link: '/layerzero',
       items: [
         {
           text: 'Overview',
@@ -122,6 +121,10 @@ export default defineConfig({
             {
               text: 'deposit()',
               link: '/layerzero/code-examples/deposit',
+            },
+            {
+              text: 'Limits',
+              link: '/layerzero/code-examples/limits',
             },
             {
               text: 'Complete Flow',

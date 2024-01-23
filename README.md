@@ -1,2 +1,2 @@
-# gas-docs
+# documentation
 Documentation for Gas.zip

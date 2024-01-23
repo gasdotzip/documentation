@@ -15,6 +15,7 @@
     "vocs": "^1.0.0-alpha.27"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.5.1"
+    "@biomejs/biome": "1.5.1",
+    "typescript": "^5.3.3"
   }
 }

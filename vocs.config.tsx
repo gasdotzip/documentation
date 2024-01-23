@@ -44,13 +44,8 @@ export default defineConfig({
   ],
   sidebar: [
     {
-      text: 'Introduction',
-      items: [
-        {
-          text: 'Overview',
-          link: '/overview',
-        },
-      ],
+      text: 'Overview',
+      link: '/overview',
     },
     {
       text: 'Gas.zip',

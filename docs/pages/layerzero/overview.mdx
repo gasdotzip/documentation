@@ -13,7 +13,7 @@ All ```deposit()``` calls into the Gas LayerZero contract and must be encoded as
 
 2. **Select the Destination Chains**: Select your destination chains to recieve funds. In the [example](/layerzero/step-by-step/estimateFees#prepare-layerzero-chainids-and-adapterparameters), these are Arbitrum (LZ chain ID 110) and Arbitrum Nova (LZ chain ID 175).
 
-3. **Select the Amount**: Decide the amount of native currency you want to send to each chain. In the [example](/layerzero/step-by-step/estimateFees#prepare-layerzero-chainids-and-adapterparameters), 0.000002 ETH is the maximum amount bridged to Arbitrum and Optimism. The Ether input for each chain must be converted to Wei.
+3. **Select the Amount**: Decide the amount of native currency you want to send to each chain. In the [example](/layerzero/step-by-step/estimateFees#prepare-layerzero-chainids-and-adapterparameters), 0.000002 ETH is the amount bridged to both Arbitrum and Arbitrum Nova. The Ether input for each chain must be converted to Wei.
 
 4. **Estimate Fees**: Call the `estimateFees()` function with the correct parameters. This function takes two arguments: `lzIds` and `adapterParams`. The aggregated return from `estimateFees()` is used as a parameter in `deposit()`.
 

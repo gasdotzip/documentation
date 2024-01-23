@@ -1,11 +1,27 @@
 import { defineConfig } from 'vocs'
 
+// Extend the Window interface
+declare global {
+  interface Window {
+    vaq: any[];
+  }
+}
+
 export default defineConfig({
   font: {
     google: 'Inter',
   },
   head: (
     <>
+      {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <TS Doesn't like the offical vercel example> */}
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          window.va = window.va || function (...args) { 
+            (window.vaq = window.vaq || []).push(args); 
+          };
+        `
+      }}/>
+      <script defer src="/_vercel/insights/script.js"/>
       <meta property="og:type" content="website" />
       <meta
         property="og:title"
@@ -17,7 +33,7 @@ export default defineConfig({
         property="og:description"
         content="Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.Zip contracts on-chain, and get detailed information about supported chains and code examples."
       />
-    </>
+  </>
   ),
   logoUrl: {
     light: '/gasBlack.png',

@@ -50,6 +50,10 @@ export default defineConfig({
       icon: 'x',
       link: 'https://twitter.com/gasdotzip',
     },
+    {
+      icon: 'github',
+      link: 'https://github.com/gasdotzip',
+    },
   ],
   sidebar: [
     {

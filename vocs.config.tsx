@@ -67,6 +67,28 @@ export default defineConfig({
           text: 'Overview',
           link: '/gas/overview',
         },
+        {
+          text: 'Chain Support',
+          items: [
+            {
+              text: 'Inbound',
+              link: '/gas/chain-support/inbound',
+            },
+            {
+              text: 'Outbound',
+              link: '/gas/chain-support/outbound',
+            },
+          ],
+        },
+        {
+          text: 'Code Examples',
+          items: [
+            {
+              text: 'deposit()',
+              link: '/gas/code-examples/deposit',
+            },
+          ],
+        },
       ],
     },
     {

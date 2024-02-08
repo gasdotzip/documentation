@@ -67,28 +67,6 @@ export default defineConfig({
           text: 'Overview',
           link: '/gas/overview',
         },
-        {
-          text: 'Chain Support',
-          items: [
-            {
-              text: 'Inbound',
-              link: '/gas/chain-support/inbound',
-            },
-            {
-              text: 'Outbound',
-              link: '/gas/chain-support/outbound',
-            },
-          ],
-        },
-        {
-          text: 'Code Examples',
-          items: [
-            {
-              text: 'deposit()',
-              link: '/gas/code-examples/deposit',
-            },
-          ],
-        },
       ],
     },
     {
@@ -106,42 +84,48 @@ export default defineConfig({
               link: '/layerzero/chain-support/inbound',
             },
             {
-              text: 'Outbound',
-              link: '/layerzero/chain-support/outbound',
+              text: 'Outbound-v1',
+              link: '/layerzero/chain-support/outbound-v1',
             },
           ],
         },
         {
-          text: 'Step by Step',
+          text: 'v1',
+          collapsed: false,
           items: [
             {
-              text: 'estimateFees()',
-              link: '/layerzero/step-by-step/estimateFees',
+              text: 'Step by Step',
+              items: [
+                {
+                  text: 'estimateFees()',
+                  link: '/layerzero/v1/step-by-step/estimateFees',
+                },
+                {
+                  text: 'deposit()',
+                  link: '/layerzero/v1/step-by-step/deposit',
+                },
+              ],
             },
             {
-              text: 'deposit()',
-              link: '/layerzero/step-by-step/deposit',
-            },
-          ],
-        },
-        {
-          text: 'Code Examples',
-          items: [
-            {
-              text: 'estimateFees()',
-              link: '/layerzero/code-examples/estimateFees',
-            },
-            {
-              text: 'deposit()',
-              link: '/layerzero/code-examples/deposit',
-            },
-            {
-              text: 'Limits',
-              link: '/layerzero/code-examples/limits',
-            },
-            {
-              text: 'Complete Flow',
-              link: '/layerzero/code-examples/completeFlow',
+              text: 'Code Examples',
+              items: [
+                {
+                  text: 'estimateFees()',
+                  link: '/layerzero/v1/code-examples/estimateFees',
+                },
+                {
+                  text: 'deposit()',
+                  link: '/layerzero/v1/code-examples/deposit',
+                },
+                {
+                  text: 'Limits',
+                  link: '/layerzero/v1/code-examples/limits',
+                },
+                {
+                  text: 'Complete Flow',
+                  link: '/layerzero/v1/code-examples/completeFlow',
+                },
+              ],
             },
           ],
         },

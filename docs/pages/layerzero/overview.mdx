@@ -2,10 +2,9 @@
 
 Gas LayerZero is a gas refuel bridge built on the LayerZero v1 protocol. You can instantly bridge to all supported LayerZero destination chains with a single inbound transaction.
 
-
 ## Depositing to Gas LayerZero
 
-All ```deposit()``` calls into the Gas LayerZero contract and must be encoded as a `uint256` where the leftmost 16 bits are the destination chain ID and the rightmost 240 bits are the amount (in `wei`) you'd like to recieve on the destination chain.
+All `deposit()` calls into the Gas LayerZero contract and must be encoded as a `uint256` where the leftmost 16 bits are the destination chain ID and the rightmost 240 bits are the amount (in `wei`) you'd like to recieve on the destination chain.
 
 ### Example of Process
 
@@ -28,5 +27,3 @@ All ```deposit()``` calls into the Gas LayerZero contract and must be encoded as
 :::warning
 **IMPORTANT:** Every route combination has a specifc maximum it can send/recieve on the other side. If you exceed this amount, the contract will revert. Please see [Limits](/layerzero/v1/code-examples/limits).
 :::
-
-

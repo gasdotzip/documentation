@@ -19,12 +19,10 @@ To deposit to mutiple destination chains at once, you will need to add the desti
 :::code-group
 
 ```tsx [typescript]
-const chainsBN = [51, 52, 56, 16]
-.reduce((p, c) => (p << BigInt(8)) + BigInt(c), BigInt(0))
+const chainsBN = [51, 52, 56, 16].reduce((p, c) => (p << BigInt(8)) + BigInt(c), BigInt(0))
 
-// The result of this function is `859060240n`, 
-// which you would pass into the `chains` field in the `deposit()` function. 
-
+// The result of this function is `859060240n`,
+// which you would pass into the `chains` field in the `deposit()` function.
 ```
 
 ```python [python]

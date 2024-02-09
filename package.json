@@ -6,16 +6,15 @@
     "dev": "vocs dev",
     "build": "vocs build",
     "preview": "vocs preview",
-    "format": "biome format . --write",
-    "lint": "biome lint . --apply-unsafe"
+    "format": "prettier --write '**/*.mdx'"
   },
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
-    "vocs": "^1.0.0-alpha.27"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vocs": "1.0.0-alpha.35"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.5.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "prettier": "^3.2.5"
   }
 }

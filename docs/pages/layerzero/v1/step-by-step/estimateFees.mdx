@@ -12,7 +12,10 @@ This function prepares parameters for each chain to estimate fees. It takes thre
 import { encodePacked } from 'viem'
 
 const createAdapterParams = (gasLimit: bigint, nativeAmount: bigint, to: string) => {
-  return encodePacked(['uint16', 'uint256', 'uint256', 'address'], [2, gasLimit, nativeAmount, to as `0x${string}`])
+  return encodePacked(
+    ['uint16', 'uint256', 'uint256', 'address'],
+    [2, gasLimit, nativeAmount, to as `0x${string}`],
+  )
 }
 ```
 
@@ -37,19 +40,21 @@ Create an array of LayerZero chain IDs `lzIds` and an array of adapter parameter
 
 ```ts [viem]
 // Prepare parameters for Arbitrum and Optimism
-const arbitrumParamsEstimate = createAdapterParams(  // [!code focus]
-  BigInt(30_000),  // [!code focus]
-  parseEther('0.000002'),  // [!code focus]
-  '0x0000000000000000000000000000000000000000',  // [!code focus]
+const arbitrumParamsEstimate = createAdapterParams(
+  // [!code focus]
+  BigInt(30_000), // [!code focus]
+  parseEther('0.000002'), // [!code focus]
+  '0x0000000000000000000000000000000000000000', // [!code focus]
 )
-const arbitrumNovaParamsEstimate = createAdapterParams(  // [!code focus]
-  BigInt(30_000),  // [!code focus]
-  parseEther('0.000002'),  // [!code focus]
-  '0x0000000000000000000000000000000000000000',  // [!code focus]
-)  // [!code focus]
+const arbitrumNovaParamsEstimate = createAdapterParams(
+  // [!code focus]
+  BigInt(30_000), // [!code focus]
+  parseEther('0.000002'), // [!code focus]
+  '0x0000000000000000000000000000000000000000', // [!code focus]
+) // [!code focus]
 
 // Prepare the final object to send to the estimateFees() function
-const adapterParamsEstimate = [arbitrumParamsEstimate, arbitrumNovaParamsEstimate]  // [!code focus]
+const adapterParamsEstimate = [arbitrumParamsEstimate, arbitrumNovaParamsEstimate] // [!code focus]
 const lzIds = [110, 175] // Arbitrum and Arbitrum Nova LayerZero chain IDs  // [!code focus]
 ```
 
@@ -69,7 +74,10 @@ import { estimateFeesAbi } from './abis'
 
 let lzFees: bigint
 
-async function estimateFees(lzIds: number[], adapterParamsEstimate: `0x${string}`[]): Promise<bigint> {
+async function estimateFees(
+  lzIds: number[],
+  adapterParamsEstimate: `0x${string}`[],
+): Promise<bigint> {
   const fees = (await client.readContract({
     address: '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
     abi: estimateFeesAbi,
@@ -89,7 +97,6 @@ estimateFees(lzIds, adapterParams)
     console.log(`The fees are: ${lzFees}`)
   })
   .catch((error) => console.error(error))
-
 ```
 
 ```ts [ethers]
@@ -97,7 +104,11 @@ import { ethers } from 'ethers'
 import { estimateFeesAbi } from './abis'
 
 async function estimateFees(lzIds: number[], adapterParams: `0x${string}`[]): Promise<bigint> {
-  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', estimateFeesAbi, provider)
+  const contract = new ethers.Contract(
+    '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
+    estimateFeesAbi,
+    provider,
+  )
   const fees = (await contract.estimateFees(lzIds, adapterParams)) as bigint[]
 
   // Aggregate the fees together to use as a parameter in the `deposit()` function
@@ -144,6 +155,6 @@ export const estimateFeesAbi = [
     type: 'function',
   },
 ] as const
-
 ```
+
 :::

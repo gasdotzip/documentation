@@ -1,0 +1,49 @@
+import lzConfigData from '../../../../data/lzConfigData.json'
+
+export const generateTableRows = (config) => {
+const excludedChains = ['ShimmerEVM', 'Canto', 'DOS']
+// 30198 = Beam
+// 30176 = Meter
+const unsupportedV2Ids = [30198, 30176]
+
+const filteredConfig = Object.entries(config).filter(
+([, value]) => !excludedChains.includes(value.name)
+)
+
+return filteredConfig.map(([key, value]) => {
+const displayIdV2 = unsupportedV2Ids.includes(value.idv2) ? 'Not Supported' : value.idv2
+return (
+
+<tr key={key}>
+  <td className="whitespace-nowrap capitalize">{value.name || 'Not Supported'}</td>
+  <td className="whitespace-nowrap capitalize">{value.id || 'Not Supported'}</td>
+  <td className="whitespace-nowrap capitalize">{displayIdV2}</td>
+</tr>
+) }) }
+
+export const generateTableHeader = () => {
+  return (
+    <tr>
+      <th>Chain Name</th>
+      <th>LayerZero ID v1</th>
+      <th>LayerZero ID v2</th>
+    </tr>
+  )
+}
+
+# Outbound Destination Chains
+
+Below are the supported outbound destination chains and their respective chain IDs.
+
+:::warning
+**WARNING:** LayerZero uses their own native chain IDs for transactions on the LayerZero protocol.
+:::
+
+## Mainnet Chains
+
+All current supported mainnet outbound destination chains:
+
+<table>
+  <thead>{generateTableHeader()}</thead>
+  <tbody>{generateTableRows(lzConfigData)}</tbody>
+</table>

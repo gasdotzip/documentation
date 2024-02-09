@@ -5,7 +5,14 @@ Below is a complete logic transaction flow into the LayerZero Gas.zip contract t
 :::code-group
 
 ```tsx [viem]
-import { encodePacked, parseEther, http, createWalletClient, publicActions, formatEther } from 'viem'
+import {
+  encodePacked,
+  parseEther,
+  http,
+  createWalletClient,
+  publicActions,
+  formatEther,
+} from 'viem'
 import { optimism } from 'viem/chains'
 import { privateKeyToAccount } from 'viem/accounts'
 import { estimateFeesAbi, lzDepositAbi } from './abis'
@@ -24,7 +31,10 @@ const lzIds = [110, 175] // Arbitrum and Arbitrum Nova LayerZero chain IDs
 
 // Define the createAdapterParams function
 const createAdapterParams = (gasLimit: bigint, nativeAmount: bigint, to: string) => {
-  return encodePacked(['uint16', 'uint256', 'uint256', 'address'], [2, gasLimit, nativeAmount, to as `0x${string}`])
+  return encodePacked(
+    ['uint16', 'uint256', 'uint256', 'address'],
+    [2, gasLimit, nativeAmount, to as `0x${string}`],
+  )
 }
 
 // Prepare parameters for Arbitrum and Optimism
@@ -42,7 +52,10 @@ const arbitrumNovaParamsEstimate = createAdapterParams(
 // Prepare the final object to send to the estimateFees() function
 const adapterParamsEstimate = [arbitrumParamsEstimate, arbitrumNovaParamsEstimate]
 
-async function estimateFees(lzIds: number[], adapterParamsEstimate: `0x${string}`[]): Promise<bigint> {
+async function estimateFees(
+  lzIds: number[],
+  adapterParamsEstimate: `0x${string}`[],
+): Promise<bigint> {
   const fees = (await client.readContract({
     address: '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
     abi: estimateFeesAbi,
@@ -101,7 +114,6 @@ const optimismChainId = 10
 const provider = new ethers.AlchemyProvider(optimismChainId, 'AlchemyProviderId')
 const signer = wallet.connect(provider)
 
-
 const lzIds = [110, 175] // Arbitrum and Arbitrum Nova LayerZero chain IDs
 
 // Estimate
@@ -130,7 +142,11 @@ const arbitrumNovaParamsEstimate = createAdapterParams(
 const adapterParamsEstimate = [arbitrumParamsEstimate, arbitrumNovaParamsEstimate]
 
 async function estimateFees(lzIds: number[], adapterParams: `0x${string}`[]): Promise<bigint> {
-  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', estimateFeesAbi, provider)
+  const contract = new ethers.Contract(
+    '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
+    estimateFeesAbi,
+    provider,
+  )
   const fees = (await contract.estimateFees(lzIds, adapterParams)) as bigint[]
 
   // Aggregate the fees together to use as a parameter in the `deposit()` function
@@ -157,10 +173,15 @@ const adapterParamsDeposit = [arbitrumParamsDeposit, arbitrumNovaParamsDeposit]
   console.log(`The fees are: ${lzFees}`)
   console.log(`Parsed Fees`, formatEther(lzFees))
 
-  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', lzDepositAbi, signer)
-  await contract.deposit(adapterParamsDeposit, signer.address, { value: lzFees })
+  const contract = new ethers.Contract(
+    '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
+    lzDepositAbi,
+    signer,
+  )
+  await contract.deposit(adapterParamsDeposit, signer.address, {
+    value: lzFees,
+  })
 })().catch((error) => console.error(error))
-
 ```
 
 ```tsx [abis.ts]
@@ -214,4 +235,3 @@ export const estimateFeesAbi = [
   },
 ] as const
 ```
-

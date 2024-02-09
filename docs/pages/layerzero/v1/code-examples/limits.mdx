@@ -1,9 +1,9 @@
 # Example for `limits`
 
-Every route combination has a specifc maximum it can send/recieve on the other side. If you exceed this amount, the contract will revert. Use the following to check what the maximum limit is on your desired destination chain. 
+Every route combination has a specifc maximum it can send/recieve on the other side. If you exceed this amount, the contract will revert. Use the following to check what the maximum limit is on your desired destination chain.
 
 :::warning
-**WARNING:** If a chain returns `0`, that means the inbound to outbound combination is not supported and the transaction will revert. The result must be > `0`. 
+**WARNING:** If a chain returns `0`, that means the inbound to outbound combination is not supported and the transaction will revert. The result must be > `0`.
 :::
 
 :::code-group
@@ -12,14 +12,14 @@ Every route combination has a specifc maximum it can send/recieve on the other s
 import { encodePacked, parseEther, createPublicClient, http } from 'viem'
 import { mainnet } from 'viem/chains'
 import { limitsAbi } from './abis'
- 
+
 const client = createPublicClient({
   chain: mainnet,
   transport: http(),
 })
- 
+
 const lzId = 102
- 
+
 async function getLimit(lzId): Promise<bigint> {
   return (await client.readContract({
     address: '0x902f09715b6303d4173037652fa7377e5b98089e',
@@ -28,7 +28,7 @@ async function getLimit(lzId): Promise<bigint> {
     args: [lzId, 2],
   })) as bigint
 }
- 
+
 getLimit(lzId)
   .then((limit) => {
     console.log(`The limit is: ${limit}`)
@@ -45,7 +45,11 @@ const provider = new ethers.AlchemyProvider(1, 'AlchemyProviderId')
 const lzId = 102
 
 async function getLimit(lzId: number): Promise<bigint> {
-  const contract = new ethers.Contract('0x902f09715b6303d4173037652fa7377e5b98089e', limitsAbi, provider)
+  const contract = new ethers.Contract(
+    '0x902f09715b6303d4173037652fa7377e5b98089e',
+    limitsAbi,
+    provider,
+  )
   return (await contract.dstConfigLookup(lzId, 2)) as bigint
 }
 
@@ -73,39 +77,39 @@ limit = dst_config[0]
 
 ```ts [abi.ts]
 export const limitsAbi = [
-    {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "_key1",
-                "type": "uint16"
-            },
-            {
-                "name": "_key2",
-                "type": "uint16"
-            }
+  {
+    constant: true,
+    inputs: [
+      {
+        name: '_key1',
+        type: 'uint16',
+      },
+      {
+        name: '_key2',
+        type: 'uint16',
+      },
+    ],
+    name: 'dstConfigLookup',
+    outputs: [
+      {
+        components: [
+          {
+            name: 'dstNativeAmtCap',
+            type: 'uint128',
+          },
+          {
+            name: 'baseGas',
+            type: 'uint64',
+          },
+          {
+            name: 'gasPerByte',
+            type: 'uint64',
+          },
         ],
-        "name": "dstConfigLookup",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "name": "dstNativeAmtCap",
-                        "type": "uint128"
-                    },
-                    {
-                        "name": "baseGas",
-                        "type": "uint64"
-                    },
-                    {
-                        "name": "gasPerByte",
-                        "type": "uint64"
-                    }
-                ],
-                "type": "tuple"
-            }
-        ],
-        "type": "function"
-    }
+        type: 'tuple',
+      },
+    ],
+    type: 'function',
+  },
 ]
 ```

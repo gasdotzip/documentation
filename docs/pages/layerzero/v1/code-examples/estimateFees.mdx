@@ -16,7 +16,10 @@ const client = createPublicClient({
 
 // Define the createAdapterParams function
 const createAdapterParams = (gasLimit: bigint, nativeAmount: bigint, to: string) => {
-  return encodePacked(['uint16', 'uint256', 'uint256', 'address'], [2, gasLimit, nativeAmount, to as `0x${string}`])
+  return encodePacked(
+    ['uint16', 'uint256', 'uint256', 'address'],
+    [2, gasLimit, nativeAmount, to as `0x${string}`],
+  )
 }
 
 // Prepare parameters for Arbitrum and Optimism
@@ -37,7 +40,10 @@ const lzIds = [110, 111] // Arbitrum and Optimism LayerZero chain IDs
 
 let lzFees: bigint
 
-async function estimateFees(lzIds: number[], adapterParamsEstimate: `0x${string}`[]): Promise<bigint> {
+async function estimateFees(
+  lzIds: number[],
+  adapterParamsEstimate: `0x${string}`[],
+): Promise<bigint> {
   const fees = (await client.readContract({
     address: '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
     abi: estimateFeesAbi,
@@ -94,7 +100,11 @@ const arbitrumNovaParamsEstimate = createAdapterParams(
 const adapterParamsEstimate = [arbitrumParamsEstimate, arbitrumNovaParamsEstimate]
 
 async function estimateFees(lzIds: number[], adapterParams: `0x${string}`[]): Promise<bigint> {
-  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', estimateFeesAbi, provider)
+  const contract = new ethers.Contract(
+    '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
+    estimateFeesAbi,
+    provider,
+  )
   const fees = (await contract.estimateFees(lzIds, adapterParams)) as bigint[]
 
   // Aggregate the fees together to use as a parameter in the `deposit()` function

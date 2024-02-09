@@ -146,8 +146,23 @@ export default defineConfig({
           ],
         },
         {
-          text: 'v1',
+          text: 'v2',
           collapsed: false,
+          items: [
+            {
+              text: 'Code Examples',
+              items: [
+                {
+                  text: 'Complete Flow',
+                  link: '/layerzero/v2/code-examples/completeFlow',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          text: 'v1',
+          collapsed: true,
           items: [
             {
               text: 'Step by Step',

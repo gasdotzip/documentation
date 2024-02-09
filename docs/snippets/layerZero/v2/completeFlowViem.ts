@@ -32,6 +32,7 @@ const contractParams: ChainParams = {
   },
 }
 
+// Estimate
 const createReceiveOptions = (gasLimit: bigint) => {
   return encodePacked(
     ['bytes', 'uint8', 'uint16', 'uint8', 'bytes'],
@@ -52,18 +53,14 @@ const createNativeOptions = (gasLimit: bigint, amount: bigint, to: string) => {
   )
 }
 
-// Estimate
-
 async function estimateFees(): Promise<bigint> {
   const nullAddress = '0x0000000000000000000000000000000000000000'
-
   const feeChains: { v2LZid: number, chainId: string }[] = []
   const options: `0x${string}`[] = []
   const messages: `0x${string}`[] = []
 
   for (const chain in contractParams) {
     const selection = contractParams[chain]
-
     feeChains.push({ v2LZid: selection.v2LZid, chainId: chain })
     options.push(
       createNativeOptions(
@@ -90,12 +87,10 @@ async function estimateFees(): Promise<bigint> {
   }
 
   const lzFees = fees.reduce((p, c) => p + c, BigInt(0))
-
   return lzFees
 }
 
 // Deposit
-
 const createOptimizedAdapterParams = (dstChainId: bigint, nativeAmount: bigint) => {
   return (dstChainId << BigInt(224)) | nativeAmount
 }
@@ -103,7 +98,6 @@ const createOptimizedAdapterParams = (dstChainId: bigint, nativeAmount: bigint) 
 ;(async () => {
   const lzFee = await estimateFees()
   const adapterParamsDeposit: bigint[] = []
-
   for (const chain in contractParams) {
     const selection = contractParams[chain]
     adapterParamsDeposit.push(createOptimizedAdapterParams(BigInt(selection.v2LZid), parseEther(selection.valueInEther)))

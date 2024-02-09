@@ -1,7 +1,7 @@
 import { parseEther, http, createWalletClient, publicActions } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 import { optimism } from 'viem/chains'
-import { depositABI } from './depositABI.ts'
+import { depositABI } from './depositABI'
 
 // Create a wallet from a private key
 const account = privateKeyToAccount('0x...')

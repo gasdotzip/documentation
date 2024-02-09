@@ -1,5 +1,5 @@
 import { ethers, parseEther } from 'ethers'
-import { depositABI } from './depositABI.ts'
+import { depositABI } from './depositABI'
 
 // Create a wallet from a private key
 const privateKey = '0x...'

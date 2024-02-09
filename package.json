@@ -14,7 +14,8 @@
     "vocs": "1.0.0-alpha.35"
   },
   "devDependencies": {
-    "typescript": "^5.3.3",
-    "prettier": "^3.2.5"
+    "ethers": "^6.11.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
   }
 }

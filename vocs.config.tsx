@@ -33,7 +33,7 @@ export default defineConfig({
       <meta
         property="og:description"
         content={
-          'Fastest one-stop gas refuel bridge for all LayerZero powered chains. Bridge and explore all your favorite alt-chains and L2s.'
+          'Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.Zip contracts on-chain, and get detailed information about supported chains and code examples.'
         }
       />
       <meta property="og:image" content="http://gas.zip/gasMeta.png" />
@@ -53,7 +53,7 @@ export default defineConfig({
       <meta
         property="twitter:description"
         content={
-          'Fastest one-stop gas refuel bridge for all LayerZero powered chains. Bridge and explore all your favorite alt-chains and L2s.'
+          'Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.Zip contracts on-chain, and get detailed information about supported chains and code examples.'
         }
       />
       <meta property="twitter:image" content="https://i.imgur.com/5w0YMW3.png" />

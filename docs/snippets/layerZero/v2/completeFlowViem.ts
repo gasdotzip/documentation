@@ -14,7 +14,7 @@ const client = createWalletClient({
 type ChainParams = {
   [key: string]: {
     v2LZid: number
-    chainId: number
+    chainId: string
     valueInEther: string
   }
 }
@@ -22,12 +22,12 @@ type ChainParams = {
 const contractParams: ChainParams = {
   gnosis: {
     v2LZid: 30145,
-    chainId: 100,
+    chainId: '100',
     valueInEther: '0.000002',
   },
   fuse: {
     v2LZid: 30138,
-    chainId: 122,
+    chainId: '122',
     valueInEther: '0.000002',
   },
 }
@@ -61,7 +61,7 @@ async function estimateFees(): Promise<bigint> {
 
   for (const chain in contractParams) {
     const selection = contractParams[chain]
-    feeChains.push({ v2LZid: selection.v2LZid, chainId: chain })
+    feeChains.push({ v2LZid: selection.v2LZid, chainId: selection.chainId })
     options.push(
       createNativeOptions(
         BigInt(20_000),

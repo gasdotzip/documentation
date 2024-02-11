@@ -8,74 +8,8 @@ Every route combination has a specifc maximum it can send/recieve on the other s
 
 :::code-group
 
-```tsx [viem]
-import { encodePacked, parseEther, createPublicClient, http } from 'viem'
-import { mainnet } from 'viem/chains'
-import { limitsAbi } from './abis'
-
-const client = createPublicClient({
-  chain: mainnet,
-  transport: http(),
-})
-
-const lzId = 102
-
-async function getLimit(lzId): Promise<bigint> {
-  return (await client.readContract({
-    address: '0x902f09715b6303d4173037652fa7377e5b98089e',
-    abi: limitsAbi,
-    functionName: 'dstConfigLookup',
-    args: [lzId, 2],
-  })) as bigint
-}
-
-getLimit(lzId)
-  .then((limit) => {
-    console.log(`The limit is: ${limit}`)
-  })
-  .catch((error) => console.error(error))
-```
-
-```tsx [ethers]
-import { ethers, parseEther } from 'ethers'
-import { limitsAbi } from './abis'
-
-// Connect the wallet to a provider
-const provider = new ethers.AlchemyProvider(1, 'AlchemyProviderId')
-const lzId = 102
-
-async function getLimit(lzId: number): Promise<bigint> {
-  const contract = new ethers.Contract(
-    '0x902f09715b6303d4173037652fa7377e5b98089e',
-    limitsAbi,
-    provider,
-  )
-  return (await contract.dstConfigLookup(lzId, 2)) as bigint
-}
-
-getLimit(lzId)
-  .then((limit) => {
-    console.log(`The limit is: ${limit}`)
-  })
-  .catch((error) => console.error(error))
-```
-
-```python [web3.py]
-from web3 import Web3, HTTPProvider
-
-abi = [{"constant": True, "inputs": [{"name": "_key1", "type": "uint16"}, {"name": "_key2", "type": "uint16"}], "name": "dstConfigLookup", "outputs": [{"components": [{"name": "dstNativeAmtCap", "type": "uint128"}, {"name": "baseGas", "type": "uint64"}, {"name": "gasPerByte", "type": "uint64"}], "type": "tuple"}], "type": "function"}]
-w3 = Web3(HTTPProvider('https://eth.merkle.io'))
-
-# from https://layerzero.gitbook.io/docs/technical-reference/mainnet/layerzero-labs-relayer.sol-addresses
-relayer = w3.eth.contract(address=w3.to_checksum_address('0x902f09715b6303d4173037652fa7377e5b98089e'), abi=abi)
-dst_chain = 102
-
-dst_config = relayer.functions.dstConfigLookup(dst_chain, 2).call()
-
-limit = dst_config[0]
-```
-
-```ts [abi.ts]
+```tsx twoslash [viem]
+// @filename: ./abis.ts
 export const limitsAbi = [
   {
     constant: true,
@@ -112,4 +46,67 @@ export const limitsAbi = [
     type: 'function',
   },
 ]
+// ---cut---
+// [!include ~/snippets/layerZero/v1/limits/limitsViem.ts]
+```
+
+```tsx twoslash [ethers]
+// @filename: ./abis.ts
+export const limitsAbi = [
+  {
+    constant: true,
+    inputs: [
+      {
+        name: '_key1',
+        type: 'uint16',
+      },
+      {
+        name: '_key2',
+        type: 'uint16',
+      },
+    ],
+    name: 'dstConfigLookup',
+    outputs: [
+      {
+        components: [
+          {
+            name: 'dstNativeAmtCap',
+            type: 'uint128',
+          },
+          {
+            name: 'baseGas',
+            type: 'uint64',
+          },
+          {
+            name: 'gasPerByte',
+            type: 'uint64',
+          },
+        ],
+        type: 'tuple',
+      },
+    ],
+    type: 'function',
+  },
+]
+// ---cut---
+// [!include ~/snippets/layerZero/v1/limits/limitsEthers.ts]
+```
+
+```python [web3.py]
+from web3 import Web3, HTTPProvider
+
+abi = [{"constant": True, "inputs": [{"name": "_key1", "type": "uint16"}, {"name": "_key2", "type": "uint16"}], "name": "dstConfigLookup", "outputs": [{"components": [{"name": "dstNativeAmtCap", "type": "uint128"}, {"name": "baseGas", "type": "uint64"}, {"name": "gasPerByte", "type": "uint64"}], "type": "tuple"}], "type": "function"}]
+w3 = Web3(HTTPProvider('https://eth.merkle.io'))
+
+# from https://layerzero.gitbook.io/docs/technical-reference/mainnet/layerzero-labs-relayer.sol-addresses
+relayer = w3.eth.contract(address=w3.to_checksum_address('0x902f09715b6303d4173037652fa7377e5b98089e'), abi=abi)
+dst_chain = 102
+
+dst_config = relayer.functions.dstConfigLookup(dst_chain, 2).call()
+
+limit = dst_config[0]
+```
+
+```ts [abi.ts]
+// [!include ~/snippets/layerZero/v1/limits/abis.ts]
 ```

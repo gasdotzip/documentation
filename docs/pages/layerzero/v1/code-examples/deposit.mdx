@@ -4,115 +4,82 @@ Example code for calling the `deposit()` function.
 
 :::code-group
 
-```tsx [viem]
-import { parseEther, http, createWalletClient, publicActions, formatEther } from 'viem'
-import { optimism } from 'viem/chains'
-import { privateKeyToAccount } from 'viem/accounts'
-import { lzDepositAbi } from './abis'
-
-const account = privateKeyToAccount('0x...') // Replace with your private key
-
-const client = createWalletClient({
-  account,
-  chain: optimism,
-  transport: http(),
-}).extend(publicActions)
-
-const lzIds = [110, 175] // Arbitrum and Arbitrum Nova LayerZero chain IDs
-
-// Define the createOptimizedAdapterParams function
-const createOptimizedAdapterParams = (dstChainId: bigint, nativeAmount: bigint) => {
-  return (dstChainId << BigInt(240)) | nativeAmount
-}
-
-// Prepare parameters for Arbitrum and Optimism
-const arbitrumParamsDeposit = createOptimizedAdapterParams(BigInt(110), parseEther('0.000002'))
-const arbitrumNovaParamsDeposit = createOptimizedAdapterParams(BigInt(175), parseEther('0.000002'))
-
-// Prepare the final object to send to the deposit() function
-const adapterParamsDeposit = [arbitrumParamsDeposit, arbitrumNovaParamsDeposit]
-;(async () => {
-  const lzFees: bigint = 0n
-  console.log(`The fees are: ${lzFees}`)
-  console.log(`Parsed Fees`, formatEther(lzFees))
-
-  // Prepare the contract write configuration
-  const { request } = await client.simulateContract({
-    address: '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
-    abi: lzDepositAbi,
-    functionName: 'deposit',
-    value: lzFees,
-    args: [adapterParamsDeposit, account.address],
-  })
-
-  // Call the deposit() function
-  await client.writeContract(request)
-})().catch((error) => console.error(error))
-```
-
-```tsx [ethers]
-import { ethers, formatEther, parseEther } from 'ethers'
-import { lzDepositAbi } from './abis'
-
-// Create a wallet from a private key / alternative to your needs
-const privateKey = '0x...'
-const wallet = new ethers.Wallet(privateKey)
-
-// Connect the wallet to a provider
-const optimismChainId = 10
-const provider = new ethers.AlchemyProvider(optimismChainId, 'AlchemyProviderId')
-const signer = wallet.connect(provider)
-
-// Arbitrum and Arbitrum Nova LayerZero chain IDs
-const lzIds = [110, 175]
-
-// Define the createOptimizedAdapterParams function
-const createOptimizedAdapterParams = (dstChainId: bigint, nativeAmount: bigint) => {
-  return (dstChainId << BigInt(240)) | nativeAmount
-}
-
-// Prepare parameters for Arbitrum and Optimism
-const arbitrumParamsDeposit = createOptimizedAdapterParams(BigInt(110), parseEther('0.000002'))
-const arbitrumNovaParamsDeposit = createOptimizedAdapterParams(BigInt(175), parseEther('0.000002'))
-
-// Prepare the final object to send to the deposit() function
-const adapterParamsDeposit = [arbitrumParamsDeposit, arbitrumNovaParamsDeposit]
-;(async () => {
-  const lzFees: bigint = 0n
-  console.log(`The fees are: ${lzFees}`)
-  console.log(`Parsed Fees`, formatEther(lzFees))
-
-  const contract = new ethers.Contract(
-    '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
-    lzDepositAbi,
-    signer,
-  )
-  await contract.deposit(adapterParamsDeposit, signer.address, {
-    value: lzFees,
-  })
-})().catch((error) => console.error(error))
-```
-
-```ts [abis.ts]
-// Define the lzDepositAbi
+```tsx twoslash [viem]
+// @filename: ./abis.ts
 export const lzDepositAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256[]',
-        name: '_depositParams',
-        type: 'uint256[]',
-      },
-      {
-        internalType: 'address',
-        name: 'to',
-        type: 'address',
-      },
-    ],
-    name: 'deposit',
-    outputs: [],
-    stateMutability: 'payable',
-    type: 'function',
-  },
-] as const
+    {
+      inputs: [
+        {
+          internalType: 'uint256[]',
+          name: '_depositParams',
+          type: 'uint256[]',
+        },
+        {
+          internalType: 'address',
+          name: 'to',
+          type: 'address',
+        },
+      ],
+      name: 'deposit',
+      outputs: [],
+      stateMutability: 'payable',
+      type: 'function',
+    },
+  ] as const
+// ---cut---
+// [!include ~/snippets/layerZero/v1/completeFlowViem.ts:import]
+// [!include ~/snippets/layerZero/v1/completeFlowViem.ts:wallet]
+// [!include ~/snippets/layerZero/v1/completeFlowViem.ts:deposit]
 ```
+
+```tsx twoslash [ethers]
+// @filename: ./abis.ts
+export const lzDepositAbi = [
+    {
+      inputs: [
+        {
+          internalType: 'uint256[]',
+          name: '_depositParams',
+          type: 'uint256[]',
+        },
+        {
+          internalType: 'address',
+          name: 'to',
+          type: 'address',
+        },
+      ],
+      name: 'deposit',
+      outputs: [],
+      stateMutability: 'payable',
+      type: 'function',
+    },
+  ] as const
+// ---cut---
+// [!include ~/snippets/layerZero/v1/completeFlowEthers.ts:import]
+// [!include ~/snippets/layerZero/v1/completeFlowEthers.ts:wallet]
+// [!include ~/snippets/layerZero/v1/completeFlowEthers.ts:deposit]
+```
+
+```ts twoslash [abis.ts]
+export const lzDepositAbi = [
+    {
+      inputs: [
+        {
+          internalType: 'uint256[]',
+          name: '_depositParams',
+          type: 'uint256[]',
+        },
+        {
+          internalType: 'address',
+          name: 'to',
+          type: 'address',
+        },
+      ],
+      name: 'deposit',
+      outputs: [],
+      stateMutability: 'payable',
+      type: 'function',
+    },
+  ] as const
+```
+:::

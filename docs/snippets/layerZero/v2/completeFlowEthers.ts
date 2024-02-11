@@ -63,10 +63,10 @@ async function estimateFees(): Promise<bigint> {
 
   let fees: bigint[] = []
   try {
-    const lzIds = feeChains.map((feeChain) => feeChain.v2LZid)
+    const v2LZids = feeChains.map((feeChain) => feeChain.v2LZid)
 
     const lzV2contract = new Contract('0x26DA582889f59EaaE9dA1f063bE0140CD93E6a4f', estimateFeesAbi, provider)
-    fees = (await lzV2contract.estimateFees(lzIds, messages, options)) as bigint[]
+    fees = (await lzV2contract.estimateFees(v2LZids, messages, options)) as bigint[]
   } catch (error) {
     console.error('Read Contract Error', error)
   }

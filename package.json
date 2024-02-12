@@ -6,7 +6,7 @@
     "dev": "vocs dev",
     "build": "vocs build",
     "preview": "vocs preview",
-    "format": "prettier --write '**/*.mdx' '**/*.tsx'"
+    "format": "prettier --write '**/*.mdx' '**/*.tsx' '**/*.ts'"
   },
   "dependencies": {
     "react": "^18.2.0",

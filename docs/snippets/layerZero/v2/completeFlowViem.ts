@@ -55,20 +55,20 @@ const createNativeOptions = (gasLimit: bigint, amount: bigint, to: string) => {
 
 async function estimateFees(): Promise<bigint> {
   const nullAddress = '0x0000000000000000000000000000000000000000'
-  const feeChains: { v2LZid: number, chainId: string }[] = []
+  const feeChains: {
+    v2LZid: number
+    chainId: string
+  }[] = []
   const options: `0x${string}`[] = []
   const messages: `0x${string}`[] = []
 
   for (const chain in contractParams) {
     const selection = contractParams[chain]
-    feeChains.push({ v2LZid: selection.v2LZid, chainId: selection.chainId })
-    options.push(
-      createNativeOptions(
-        BigInt(20_000),
-        parseEther(selection.valueInEther),
-        nullAddress,
-      ),
-    )
+    feeChains.push({
+      v2LZid: selection.v2LZid,
+      chainId: selection.chainId,
+    })
+    options.push(createNativeOptions(BigInt(20_000), parseEther(selection.valueInEther), nullAddress))
     messages.push('0x')
   }
 
@@ -100,7 +100,9 @@ const createOptimizedAdapterParams = (dstChainId: bigint, nativeAmount: bigint) 
   const adapterParamsDeposit: bigint[] = []
   for (const chain in contractParams) {
     const selection = contractParams[chain]
-    adapterParamsDeposit.push(createOptimizedAdapterParams(BigInt(selection.v2LZid), parseEther(selection.valueInEther)))
+    adapterParamsDeposit.push(
+      createOptimizedAdapterParams(BigInt(selection.v2LZid), parseEther(selection.valueInEther)),
+    )
   }
 
   const { request } = await client.simulateContract({

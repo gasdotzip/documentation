@@ -50,13 +50,19 @@ const createNativeOptions = (gasLimit: bigint, amount: bigint, to: string) => {
 
 async function estimateFees(): Promise<bigint> {
   const nullAddress = '0x0000000000000000000000000000000000000000'
-  const feeChains: { v2LZid: number; chainId: string }[] = []
+  const feeChains: {
+    v2LZid: number
+    chainId: string
+  }[] = []
   const options: string[] = []
   const messages: string[] = []
 
   for (const chain in contractParams) {
     const selection = contractParams[chain]
-    feeChains.push({ v2LZid: selection.v2LZid, chainId: selection.chainId })
+    feeChains.push({
+      v2LZid: selection.v2LZid,
+      chainId: selection.chainId,
+    })
     options.push(createNativeOptions(BigInt(20_000), parseEther(selection.valueInEther), nullAddress))
     messages.push('0x')
   }
@@ -91,5 +97,7 @@ const createOptimizedAdapterParams = (dstChainId: bigint, nativeAmount: bigint) 
   }
 
   const contract = new Contract('0x26DA582889f59EaaE9dA1f063bE0140CD93E6a4f', lzDepositAbi, signer)
-  await contract.sendDeposits(adapterParamsDeposit, signer.address, { value: lzFee })
+  await contract.sendDeposits(adapterParamsDeposit, signer.address, {
+    value: lzFee,
+  })
 })().catch((error) => console.error(error))

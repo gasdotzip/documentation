@@ -41,11 +41,7 @@ const arbitrumNovaParamsEstimate = createAdapterParams(
 const adapterParamsEstimate = [arbitrumParamsEstimate, arbitrumNovaParamsEstimate]
 
 async function estimateFees(lzIds: number[], adapterParams: `0x${string}`[]): Promise<bigint> {
-  const contract = new ethers.Contract(
-    '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
-    estimateFeesAbi,
-    provider,
-  )
+  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', estimateFeesAbi, provider)
   const fees = (await contract.estimateFees(lzIds, adapterParams)) as bigint[]
 
   // Aggregate the fees together to use as a parameter in the `deposit()` function
@@ -72,11 +68,7 @@ const adapterParamsDeposit = [arbitrumParamsDeposit, arbitrumNovaParamsDeposit]
   console.log(`The fees are: ${lzFees}`)
   console.log(`Parsed Fees`, formatEther(lzFees))
 
-  const contract = new ethers.Contract(
-    '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
-    lzDepositAbi,
-    signer,
-  )
+  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', lzDepositAbi, signer)
   await contract.deposit(adapterParamsDeposit, signer.address, {
     value: lzFees,
   })

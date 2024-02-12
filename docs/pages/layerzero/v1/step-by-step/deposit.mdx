@@ -93,11 +93,7 @@ const signer = wallet.connect(provider)
   console.log(`The fees are: ${lzFees}`)
   console.log(`Parsed Fees`, formatEther(lzFees))
 
-  const contract = new ethers.Contract(
-    '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
-    lzDepositAbi,
-    signer,
-  )
+  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', lzDepositAbi, signer)
   await contract.deposit(adapterParamsDeposit, signer.address, {
     value: lzFees,
   })

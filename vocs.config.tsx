@@ -26,10 +26,7 @@ export default defineConfig({
       <meta name="robots" content="index, follow" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://www.gas.zip/" />
-      <meta
-        property="og:title"
-        content="Gas.zip · Technical Documentation for Onchain Interactions"
-      />
+      <meta property="og:title" content="Gas.zip · Technical Documentation for Onchain Interactions" />
       <meta
         property="og:description"
         content={
@@ -46,10 +43,7 @@ export default defineConfig({
       <meta name="theme-color" content="#ffffff" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:url" content="https://www.lz.gas.zip/" />
-      <meta
-        property="twitter:title"
-        content="Gas.zip · Technical Documentation for Onchain Interactions"
-      />
+      <meta property="twitter:title" content="Gas.zip · Technical Documentation for Onchain Interactions" />
       <meta
         property="twitter:description"
         content={
@@ -181,20 +175,20 @@ export default defineConfig({
               text: 'Code Examples',
               items: [
                 {
-                  text: 'estimateFees()',
-                  link: '/layerzero/v1/code-examples/estimateFees',
-                },
-                {
-                  text: 'deposit()',
-                  link: '/layerzero/v1/code-examples/deposit',
+                  text: 'Complete Flow',
+                  link: '/layerzero/v1/code-examples/completeFlow',
                 },
                 {
                   text: 'Limits',
                   link: '/layerzero/v1/code-examples/limits',
                 },
                 {
-                  text: 'Complete Flow',
-                  link: '/layerzero/v1/code-examples/completeFlow',
+                  text: 'estimateFees()',
+                  link: '/layerzero/v1/code-examples/estimateFees',
+                },
+                {
+                  text: 'deposit()',
+                  link: '/layerzero/v1/code-examples/deposit',
                 },
               ],
             },

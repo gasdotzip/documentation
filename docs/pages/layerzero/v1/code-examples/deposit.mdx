@@ -7,25 +7,25 @@ Example code for calling the `deposit()` function.
 ```tsx twoslash [viem]
 // @filename: ./abis.ts
 export const lzDepositAbi = [
-    {
-      inputs: [
-        {
-          internalType: 'uint256[]',
-          name: '_depositParams',
-          type: 'uint256[]',
-        },
-        {
-          internalType: 'address',
-          name: 'to',
-          type: 'address',
-        },
-      ],
-      name: 'deposit',
-      outputs: [],
-      stateMutability: 'payable',
-      type: 'function',
-    },
-  ] as const
+  {
+    inputs: [
+      {
+        internalType: 'uint256[]',
+        name: '_depositParams',
+        type: 'uint256[]',
+      },
+      {
+        internalType: 'address',
+        name: 'to',
+        type: 'address',
+      },
+    ],
+    name: 'deposit',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function',
+  },
+] as const
 // ---cut---
 // [!include ~/snippets/layerZero/v1/completeFlowViem.ts:import]
 // [!include ~/snippets/layerZero/v1/completeFlowViem.ts:wallet]
@@ -35,25 +35,25 @@ export const lzDepositAbi = [
 ```tsx twoslash [ethers]
 // @filename: ./abis.ts
 export const lzDepositAbi = [
-    {
-      inputs: [
-        {
-          internalType: 'uint256[]',
-          name: '_depositParams',
-          type: 'uint256[]',
-        },
-        {
-          internalType: 'address',
-          name: 'to',
-          type: 'address',
-        },
-      ],
-      name: 'deposit',
-      outputs: [],
-      stateMutability: 'payable',
-      type: 'function',
-    },
-  ] as const
+  {
+    inputs: [
+      {
+        internalType: 'uint256[]',
+        name: '_depositParams',
+        type: 'uint256[]',
+      },
+      {
+        internalType: 'address',
+        name: 'to',
+        type: 'address',
+      },
+    ],
+    name: 'deposit',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function',
+  },
+] as const
 // ---cut---
 // [!include ~/snippets/layerZero/v1/completeFlowEthers.ts:import]
 // [!include ~/snippets/layerZero/v1/completeFlowEthers.ts:wallet]
@@ -62,24 +62,25 @@ export const lzDepositAbi = [
 
 ```ts twoslash [abis.ts]
 export const lzDepositAbi = [
-    {
-      inputs: [
-        {
-          internalType: 'uint256[]',
-          name: '_depositParams',
-          type: 'uint256[]',
-        },
-        {
-          internalType: 'address',
-          name: 'to',
-          type: 'address',
-        },
-      ],
-      name: 'deposit',
-      outputs: [],
-      stateMutability: 'payable',
-      type: 'function',
-    },
-  ] as const
+  {
+    inputs: [
+      {
+        internalType: 'uint256[]',
+        name: '_depositParams',
+        type: 'uint256[]',
+      },
+      {
+        internalType: 'address',
+        name: 'to',
+        type: 'address',
+      },
+    ],
+    name: 'deposit',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function',
+  },
+] as const
 ```
+
 :::

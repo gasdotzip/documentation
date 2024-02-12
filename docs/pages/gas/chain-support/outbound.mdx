@@ -1,3 +1,5 @@
+import { MainnetTable, TestnetTable } from '../../../components/gas/outboundTables'
+
 # Outbound Destination Chains
 
 Below are the supported outbound destination chains and their respective chain IDs.
@@ -10,153 +12,10 @@ Below are the supported outbound destination chains and their respective chain I
 
 All current supported mainnet outbound destination chains:
 
-| <th className="whitespace-nowrap">Chain Name</th> | <th className="whitespace-nowrap">Gas.zip ID</th> | <th className="whitespace-nowrap">Native ID</th> |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------ |
-| Canto                                             | 11                                                | 7700                                             |
-| Pulsechain                                        | 12                                                | 369                                              |
-| Mantle                                            | 13                                                | 5000                                             |
-| BSC                                               | 14                                                | 56                                               |
-| Avalanche                                         | 15                                                | 43114                                            |
-| Gnosis                                            | 16                                                | 100                                              |
-| Polygon                                           | 17                                                | 137                                              |
-| BitTorrent                                        | 18                                                | 199                                              |
-| SX Network                                        | 19                                                | 416                                              |
-| Fantom                                            | 20                                                | 250                                              |
-| Celo                                              | 21                                                | 42220                                            |
-| Kava                                              | 22                                                | 2222                                             |
-| Oasis                                             | 23                                                | 42262                                            |
-| Beam                                              | 24                                                | 4337                                             |
-| Loot                                              | 25                                                | 5151706                                          |
-| Meter                                             | 26                                                | 82                                               |
-| Tenet                                             | 27                                                | 1559                                             |
-| Moonbeam                                          | 28                                                | 1284                                             |
-| Moonriver                                         | 29                                                | 1285                                             |
-| Metis                                             | 30                                                | 1088                                             |
-| Fuse                                              | 31                                                | 122                                              |
-| DFK                                               | 32                                                | 53935                                            |
-| Klayton                                           | 33                                                | 8217                                             |
-| CoreDAO                                           | 34                                                | 1116                                             |
-| OKX                                               | 35                                                | 66                                               |
-| Cronos                                            | 36                                                | 25                                               |
-| Fusion                                            | 37                                                | 32659                                            |
-| Flare                                             | 38                                                | 14                                               |
-| Evmos                                             | 39                                                | 9001                                             |
-| Astar                                             | 40                                                | 592                                              |
-| Scroll                                            | 41                                                | 534352                                           |
-| Shib                                              | 42                                                | 109                                              |
-| Viction                                           | 43                                                | 88                                               |
-| HECO                                              | 44                                                | 128                                              |
-| Vinu                                              | 45                                                | 207                                              |
-| Dogechain                                         | 46                                                | 2000                                             |
-| Telos                                             | 47                                                | 40                                               |
-| XPLA                                              | 48                                                | 37                                               |
-| Horizen EON                                       | 49                                                | 7332                                             |
-| zkFair                                            | 50                                                | 42766                                            |
-| zkSync                                            | 51                                                | 324                                              |
-| Polygon zkEVM                                     | 52                                                | 1101                                             |
-| Arbitrum Nova                                     | 53                                                | 42170                                            |
-| Base                                              | 54                                                | 8453                                             |
-| Optimism                                          | 55                                                | 10                                               |
-| Zora                                              | 56                                                | 7777777                                          |
-| Arbitrum                                          | 57                                                | 42161                                            |
-| opBNB                                             | 58                                                | 204                                              |
-| Linea                                             | 59                                                | 59144                                            |
-| Manta                                             | 60                                                | 169                                              |
-| PGN                                               | 61                                                | 424                                              |
-| Aurora                                            | 62                                                | 1313161554                                       |
-| Dexalot                                           | 63                                                | 432204                                           |
-| Step                                              | 64                                                | 1234                                             |
-| Conflux                                           | 65                                                | 1030                                             |
-| Harmony                                           | 66                                                | 1666600000                                       |
-| Iotex                                             | 67                                                | 4689                                             |
-| Songbird                                          | 68                                                | 19                                               |
-| Oasys                                             | 69                                                | 248                                              |
-| Nahmii                                            | 70                                                | 5551                                             |
-| ETHW                                              | 71                                                | 10001                                            |
-| ETC                                               | 72                                                | 61                                               |
-| Mode                                              | 73                                                | 34443                                            |
-| Orderly                                           | 74                                                | 291                                              |
-| Filecoin                                          | 76                                                | 314                                              |
-| XAI                                               | 77                                                | 660279                                           |
-| LightLink                                         | 79                                                | 1890                                             |
-| Kroma                                             | 80                                                | 255                                              |
-| WEMIX                                             | 81                                                | 1111                                             |
-| Rari                                              | 82                                                | 1380012617                                       |
-| Ultron                                            | 83                                                | 1231                                             |
-| Combo                                             | 84                                                | 9980                                             |
-| Bifrost                                           | 85                                                | 3068                                             |
-| FX                                                | 86                                                | 530                                              |
-| Lukso                                             | 87                                                | 42                                               |
-| Pego                                              | 88                                                | 20201022                                         |
-| Wan                                               | 89                                                | 888                                              |
-| KCC                                               | 90                                                | 321                                              |
-| Bitgert                                           | 91                                                | 32520                                            |
-| ShimmerEVM                                        | 93                                                | 148                                              |
+<MainnetTable />
 
 ## Testnet Chains
 
 All current supported testnet outbound destination chains:
 
-| <th className="whitespace-nowrap">Chain Name</th> | <th className="whitespace-nowrap">Gas.zip ID</th> | <th className="whitespace-nowrap">Native ID</th> |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------ |
-| Ethereum Goerli                                   | 101                                               | 5                                                |
-| Ethereum Sepolia                                  | 102                                               | 11155111                                         |
-| Polygon Mumbai                                    | 103                                               | 80001                                            |
-| BSC Testnet                                       | 104                                               | 97                                               |
-| Avalanche Fuji                                    | 105                                               | 43113                                            |
-| Fantom Testnet                                    | 106                                               | 4002                                             |
-| Ethereum Holesky                                  | 107                                               | 17000                                            |
-| Taiko Jolnir                                      | 109                                               | 167007                                           |
-| Manta Pacific                                     | 110                                               | 3441005                                          |
-| Moonbase Alpha                                    | 111                                               | 1287                                             |
-| Canto Testnet                                     | 112                                               | 7701                                             |
-| WAGMI Testnet                                     | 113                                               | 11111                                            |
-| Amplify Testnet                                   | 114                                               | 78430                                            |
-| Conduit Testnet                                   | 115                                               | 78432                                            |
-| LT0 Testnet                                       | 116                                               | 31330                                            |
-| DFK Testnet                                       | 117                                               | 335                                              |
-| Berachain Artio                                   | 118                                               | 80085                                            |
-| Blast Sepolia                                     | 119                                               | 168587773                                        |
-| Taiko Katla                                       | 120                                               | 167008                                           |
-| Swan Saturn                                       | 121                                               | 2024                                             |
-| Linea Goerli                                      | 151                                               | 59140                                            |
-| Mantle Testnet                                    | 153                                               | 5001                                             |
-| Base Goerli                                       | 154                                               | 84531                                            |
-| Arbitrum Goerli                                   | 155                                               | 421613                                           |
-| Optimism Goerli                                   | 156                                               | 420                                              |
-| opBNB Testnet                                     | 157                                               | 5611                                             |
-| Arbitrum Sepolia                                  | 158                                               | 421614                                           |
-| Arbitrum Stylus                                   | 159                                               | 23011913                                         |
-| Arbitrum Xai                                      | 160                                               | 47279324479                                      |
-| Optimism Sepolia                                  | 161                                               | 11155420                                         |
-| Mode Sepolia                                      | 163                                               | 919                                              |
-| Frame Sepolia                                     | 164                                               | 68840142                                         |
-| Zora Goerli                                       | 165                                               | 999                                              |
-| Zkevm Goerli                                      | 166                                               | 1442                                             |
-| Base Sepolia                                      | 167                                               | 84532                                            |
-| Aurora Goerli                                     | 168                                               | 1313161555                                       |
-| Beam Testnet                                      | 169                                               | 13337                                            |
-| Gnosis Chiado                                     | 170                                               | 10200                                            |
-| Scroll Sepolia                                    | 171                                               | 534351                                           |
-| BitTorrent Donau                                  | 172                                               | 1029                                             |
-| PGN Sepolia                                       | 173                                               | 58008                                            |
-| Caldera Bubs                                      | 174                                               | 1582                                             |
-| Synapse Sepolia                                   | 175                                               | 444                                              |
-| Metis Goerli                                      | 176                                               | 599                                              |
-| LightLink Pegasus                                 | 177                                               | 1891                                             |
-| Kroma Sepolia                                     | 178                                               | 2358                                             |
-| Combo Test                                        | 179                                               | 91715                                            |
-| Redstone Holesky                                  | 180                                               | 17001                                            |
-| Astar Zkatana                                     | 181                                               | 1261120                                          |
-| ZkEVM Sepolia                                     | 182                                               | 2442                                             |
-| Zora Sepolia                                      | 183                                               | 999999999                                        |
-| Orderly Sepolia                                   | 184                                               | 4460                                             |
-| Lyra Sepolia                                      | 185                                               | 901                                              |
-| zkSync Goerli                                     | 186                                               | 280                                              |
-| zkSync Sepolia                                    | 187                                               | 300                                              |
-| W3Gamez Sepolia                                   | 188                                               | 32001                                            |
-| Automata Sepolia                                  | 189                                               | 1398243                                          |
-| Form Sepolia                                      | 191                                               | 132902                                           |
-| Ancient8 Sepolia                                  | 192                                               | 28122024                                         |
-| Sanko Sepolia                                     | 193                                               | 1992                                             |
-| Shardeum Sphinx                                   | 194                                               | 8082                                             |
+<TestnetTable />

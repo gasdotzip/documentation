@@ -24,13 +24,11 @@ const gasZipShortChainIDs = [51, 52]
 const chainsBN = gasZipShortChainIDs.reduce((p, c) => (p << BigInt(8)) + BigInt(c), BigInt(0))
 
 // Create a contract instance
-const contract = new ethers.Contract(
-  '0x9e22ebec84c7e4c4bd6d4ae7ff6f4d436d6d8390',
-  depositABI,
-  signer,
-)
+const contract = new ethers.Contract('0x9e22ebec84c7e4c4bd6d4ae7ff6f4d436d6d8390', depositABI, signer)
 
 ;(async () => {
   // Call the deposit() function
-  await contract.deposit(chainsBN, toAddress, { value: amountInWei })
+  await contract.deposit(chainsBN, toAddress, {
+    value: amountInWei,
+  })
 })()

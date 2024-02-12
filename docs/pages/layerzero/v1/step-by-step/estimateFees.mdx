@@ -12,10 +12,7 @@ This function prepares parameters for each chain to estimate fees. It takes thre
 import { encodePacked } from 'viem'
 
 const createAdapterParams = (gasLimit: bigint, nativeAmount: bigint, to: string) => {
-  return encodePacked(
-    ['uint16', 'uint256', 'uint256', 'address'],
-    [2, gasLimit, nativeAmount, to as `0x${string}`],
-  )
+  return encodePacked(['uint16', 'uint256', 'uint256', 'address'], [2, gasLimit, nativeAmount, to as `0x${string}`])
 }
 ```
 
@@ -74,10 +71,7 @@ import { estimateFeesAbi } from './abis'
 
 let lzFees: bigint
 
-async function estimateFees(
-  lzIds: number[],
-  adapterParamsEstimate: `0x${string}`[],
-): Promise<bigint> {
+async function estimateFees(lzIds: number[], adapterParamsEstimate: `0x${string}`[]): Promise<bigint> {
   const fees = (await client.readContract({
     address: '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
     abi: estimateFeesAbi,
@@ -104,11 +98,7 @@ import { ethers } from 'ethers'
 import { estimateFeesAbi } from './abis'
 
 async function estimateFees(lzIds: number[], adapterParams: `0x${string}`[]): Promise<bigint> {
-  const contract = new ethers.Contract(
-    '0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4',
-    estimateFeesAbi,
-    provider,
-  )
+  const contract = new ethers.Contract('0xbf94ed69281709958c8f60bc15cd1bb6badcd4a4', estimateFeesAbi, provider)
   const fees = (await contract.estimateFees(lzIds, adapterParams)) as bigint[]
 
   // Aggregate the fees together to use as a parameter in the `deposit()` function

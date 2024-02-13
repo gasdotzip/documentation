@@ -19,14 +19,15 @@ const useChainData = () => {
           ...(chainData as Omit<ChainData, 'nativeId'>),
         }))
 
-        const filteredChainsArray = chainsArray.filter((chain) => chain.short <= 256)
+        const manualRemove = [78, 44]
+        const filteredChainsArray = chainsArray.filter(
+          (chain) => chain.short <= 256 && !manualRemove.includes(chain.short),
+        )
 
         const mainnetChains = filteredChainsArray
           .filter((chain) => chain.short <= 100)
           .sort((a, b) => a.short - b.short)
-        const testnetChains = filteredChainsArray
-          .filter((chain) => chain.short > 100 && chain.short <= 256)
-          .sort((a, b) => a.short - b.short)
+        const testnetChains = filteredChainsArray.filter((chain) => chain.short > 100).sort((a, b) => a.short - b.short)
 
         setChains({
           mainnet: mainnetChains,

@@ -1,0 +1,112 @@
+# Example for `limits`
+
+Every route combination has a specifc maximum it can send/recieve on the other side. If you exceed this amount, the contract will revert. Use the following to check what the maximum limit is on your desired destination chain.
+
+:::warning
+**WARNING:** If a chain returns `0`, that means the inbound to outbound combination is not supported and the transaction will revert. The result must be > `0`.
+:::
+
+:::code-group
+
+```tsx twoslash [viem]
+// @filename: ./abis.ts
+export const limitsAbi = [
+  {
+      constant: true,
+      inputs: [
+          {
+              name: "_key1",
+              type: "uint32"
+          }
+      ],
+      name: "dstConfig",
+      outputs: [
+          {
+              components: [
+                  {
+                      name: "baseGas",
+                      type: "uint64"
+                  },
+                  {
+                      name: "multiplier",
+                      type: "uint16"
+                  },
+                  {
+                      name: "floorMarginUSD",
+                      type: "uint128"
+                  },
+                  {
+                      name: "nativeCap",
+                      type: "uint128"
+                  }
+              ],
+              type: "tuple"
+          }
+      ],
+      type: "function"
+  }
+]
+// ---cut---
+// [!include ~/snippets/layerZero/v2/limits/limitsViem.ts]
+```
+
+```tsx twoslash [ethers]
+// @filename: ./abis.ts
+export const limitsAbi = [
+  {
+      constant: true,
+      inputs: [
+          {
+              name: "_key1",
+              type: "uint32"
+          }
+      ],
+      name: "dstConfig",
+      outputs: [
+          {
+              components: [
+                  {
+                      name: "baseGas",
+                      type: "uint64"
+                  },
+                  {
+                      name: "multiplier",
+                      type: "uint16"
+                  },
+                  {
+                      name: "floorMarginUSD",
+                      type: "uint128"
+                  },
+                  {
+                      name: "nativeCap",
+                      type: "uint128"
+                  }
+              ],
+              type: "tuple"
+          }
+      ],
+      type: "function"
+  }
+]
+// ---cut---
+// [!include ~/snippets/layerZero/v2/limits/limitsEthers.ts]
+```
+
+```python [web3.py]
+from web3 import Web3, HTTPProvider
+
+abi = [{"constant": True, "inputs": [{"name": "_key1", "type": "uint32"}], "name": "dstConfig", "outputs": [{"components": [{"name": "baseGas", "type": "uint64"}, {"name": "multiplier", "type": "uint16"}, {"name": "floorMarginUSD", "type": "uint128"}, {"name": "nativeCap", "type": "uint128"}], "type": "tuple"}], "type": "function"}]
+w3 = Web3(HTTPProvider('https://eth.merkle.io'))
+
+# https://docs.layerzero.network/contracts/executor-addresses
+executor = w3.eth.contract(address=w3.to_checksum_address('0x90E595783E43eb89fF07f63d27B8430e6B44bD9c'), abi=abi)
+dst_chain = 30110
+
+dst_config = relayer.functions.dstConfig(dst_chain).call()
+
+limit = dst_config[3]
+```
+
+```ts [abi.ts]
+// [!include ~/snippets/layerZero/v2/limits/abis.ts]
+```

@@ -149,7 +149,7 @@ export default defineConfig({
                 {
                   text: 'Complete Flow',
                   link: '/layerzero/v2/code-examples/completeFlow',
-                },               
+                },
                 {
                   text: 'Limits',
                   link: '/layerzero/v2/code-examples/limits',

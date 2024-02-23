@@ -4,7 +4,7 @@ export const generateTableRows = (config) => {
 const excludedChains = ['ShimmerEVM', 'Canto', 'DOS']
 // 30198 = Beam
 // 30176 = Meter
-const unsupportedV2Ids = [30198, 30176]
+const unsupportedV2Ids = [30176]
 
 const filteredConfig = Object.entries(config).filter(
 ([, value]) => !excludedChains.includes(value.name)

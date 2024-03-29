@@ -25,9 +25,24 @@ const useChainData = () => {
         )
 
         const mainnetChains = filteredChainsArray
-          .filter((chain) => chain.short <= 100)
+          .filter((chain) => {
+            // Skip chains with 'short' values greater than 256
+            if (chain.short > 256) return false
+            // Skip chains with 'short' values greater than 100, unless they are between 125 and 137 (inclusive)
+            if (chain.short > 100 && !(chain.short >= 125 && chain.short <= 137)) return false
+            return true
+          })
           .sort((a, b) => a.short - b.short)
-        const testnetChains = filteredChainsArray.filter((chain) => chain.short > 100).sort((a, b) => a.short - b.short)
+
+        const testnetChains = filteredChainsArray
+          .filter((chain) => {
+            // Skip chains with 'short' values greater than 256 or less than 100
+            if (chain.short > 256 || chain.short < 100) return false
+            // Additionally, skip chains with 'short' values between 125 and 137 (inclusive)
+            if (chain.short >= 125 && chain.short <= 137) return false
+            return true
+          })
+          .sort((a, b) => a.short - b.short)
 
         setChains({
           mainnet: mainnetChains,

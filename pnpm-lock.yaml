@@ -1,22 +1,22 @@
 lockfileVersion: 5.4
 
 specifiers:
-  ethers: ^6.11.0
+  ethers: ^6.12.0
   prettier: ^3.2.5
   react: ^18.2.0
   react-dom: ^18.2.0
-  typescript: ^5.3.3
-  vocs: 1.0.0-alpha.35
+  typescript: ^5.4.5
+  vocs: 1.0.0-alpha.45
 
 dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  vocs: 1.0.0-alpha.35_3lfo6mjrbe7gnpm2z32jgk7g6a
+  vocs: 1.0.0-alpha.45_nfwgofwwjt2lcavwo6qtcriabe
 
 devDependencies:
-  ethers: 6.11.0
+  ethers: 6.12.0
   prettier: 3.2.5
-  typescript: 5.3.3
+  typescript: 5.4.5
 
 packages:
 
@@ -1417,32 +1417,32 @@ packages:
     dev: false
     optional: true
 
-  /@shikijs/core/1.0.0-beta.5:
-    resolution: {integrity: sha512-C/MxtvK3FFCQZSsDq6OfjDHHOmyP1Jc9wO66cnE8VLEyWXzWch7Zpoc2MWuVJTSC0Pz9QxyUlsBCnroplFqoSg==}
+  /@shikijs/core/1.3.0:
+    resolution: {integrity: sha512-7fedsBfuILDTBmrYZNFI8B6ATTxhQAasUHllHmjvSZPnoq4bULWoTpHwmuQvZ8Aq03/tAa2IGo6RXqWtHdWaCA==}
     dev: false
 
-  /@shikijs/rehype/1.0.0-beta.5:
-    resolution: {integrity: sha512-O3a66eCodhoBg3UmFoKvPataVGG5O5k3dSAdKif08SxXCGPzIfwS5JpgTAXKLFChlf3Ax9xLGGSrMl1C8KsQ6w==}
+  /@shikijs/rehype/1.3.0:
+    resolution: {integrity: sha512-CknEidx0ZTg3TeYAPU4ah8cr31a16neBbMyQ5kwAVdkloCe65uhQp+C/FEFs8NRir4eU5XCDA/+w2v5wnN6zgQ==}
     dependencies:
-      '@shikijs/transformers': 1.0.0-beta.5
+      '@shikijs/transformers': 1.3.0
       '@types/hast': 3.0.4
       hast-util-to-string: 3.0.0
-      shiki: 1.0.0-beta.5
+      shiki: 1.3.0
       unified: 11.0.4
       unist-util-visit: 5.0.0
     dev: false
 
-  /@shikijs/transformers/1.0.0-beta.5:
-    resolution: {integrity: sha512-Kd3312yH6sh8Jw0xjBFfGpXTU3Qts1bwuB19wDDoKRvJqjrkffftdSuKzhHPa+DP/L0ZFhq96xMPngzQ15rQmQ==}
+  /@shikijs/transformers/1.3.0:
+    resolution: {integrity: sha512-3mlpg2I9CjhjE96dEWQOGeCWoPcyTov3s4aAsHmgvnTHa8MBknEnCQy8/xivJPSpD+olqOqIEoHnLfbNJK29AA==}
     dependencies:
-      shiki: 1.0.0-beta.5
+      shiki: 1.3.0
     dev: false
 
-  /@shikijs/twoslash/1.0.0-beta.5_typescript@5.3.3:
-    resolution: {integrity: sha512-BPn2PFgy6Bon/hWU52ELWeGrdO1lsuR6ZIhTTDw4q+GrOZQsVDkdNlhIjoanGv1UY95dlbTEuPqXtzmk+4O73Q==}
+  /@shikijs/twoslash/1.3.0_typescript@5.4.5:
+    resolution: {integrity: sha512-XF8Xmotej+cavT6ibKtnsN+TagUJF6eieOV0botcXLhj5aMTPtO+Jdjm9+0vGgloy9JHtuXsik1/JqYMvPIIVw==}
     dependencies:
-      '@shikijs/core': 1.0.0-beta.5
-      twoslash: 0.1.2_typescript@5.3.3
+      '@shikijs/core': 1.3.0
+      twoslash: 0.2.5_typescript@5.4.5
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -2233,8 +2233,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /ethers/6.11.0:
-    resolution: {integrity: sha512-kPHNTnhVWiWU6AVo6CAeTjXEK24SpCXyZvwG9ROFjT0Vlux0EOhWKBAeC+45iDj80QNJTYaT1SDEmeunT0vDNw==}
+  /ethers/6.12.0:
+    resolution: {integrity: sha512-zL5NlOTjML239gIvtVJuaSk0N9GQLi1Hom3ZWUszE5lDTQE/IVB62mrPkQ2W1bGcZwVGSLaetQbWNQSvI4rGDQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@adraffy/ens-normalize': 1.10.1
@@ -4165,10 +4165,10 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /shiki/1.0.0-beta.5:
-    resolution: {integrity: sha512-S5FV55ZH8zLicVyqlJZj8LYqh/VuUICDDNG/L9eDM9I4d69EX+FbgSnKRIuJIwLrmJfTiPoGVnH1HsHX5whP/g==}
+  /shiki/1.3.0:
+    resolution: {integrity: sha512-9aNdQy/etMXctnPzsje1h1XIGm9YfRcSksKOGqZWXA/qP9G18/8fpz5Bjpma8bOgz3tqIpjERAd6/lLjFyzoww==}
     dependencies:
-      '@shikijs/core': 1.0.0-beta.5
+      '@shikijs/core': 1.3.0
     dev: false
 
   /signal-exit/3.0.7:
@@ -4408,19 +4408,24 @@ packages:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
     dev: false
 
-  /twoslash/0.1.2_typescript@5.3.3:
-    resolution: {integrity: sha512-q0jnapnD3b0umNGCJCRlo6Em1oSFl2OBPwsXqhLzijtEzuORrGVrJffG7E1k1KPHFlwBSRX2q6yYA61etn5hSg==}
+  /twoslash-protocol/0.2.5:
+    resolution: {integrity: sha512-oUr5ZAn37CgNa6p1mrCuuR/pINffsnGCee2aS170Uj1IObxCjsHzu6sgdPUdxGLLn6++gd/qjNH1/iR6RrfLeg==}
+    dev: false
+
+  /twoslash/0.2.5_typescript@5.4.5:
+    resolution: {integrity: sha512-U8rqsfVh8jQMO1NJekUtglb52b7xD9+FrzeFrgzpHsRTKl8IQgqnZP6ld4PeKaHXhLfoZPuju9K50NXJ7wom8g==}
     peerDependencies:
       typescript: '*'
     dependencies:
       '@typescript/vfs': 1.5.0
-      typescript: 5.3.3
+      twoslash-protocol: 0.2.5
+      typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /typescript/5.3.3:
-    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+  /typescript/5.4.5:
+    resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -4653,8 +4658,8 @@ packages:
       fsevents: 2.3.3
     dev: false
 
-  /vocs/1.0.0-alpha.35_3lfo6mjrbe7gnpm2z32jgk7g6a:
-    resolution: {integrity: sha512-JFx3+be8vL3O90Z57T851N2iYQtDTFI3Tvm9iAg2R6p6wanWB7gyAklOfOPYL4saPvAXRJW1cFhwnYZR7CrfKQ==}
+  /vocs/1.0.0-alpha.45_nfwgofwwjt2lcavwo6qtcriabe:
+    resolution: {integrity: sha512-FUDuN6V0FwAlG8QAg7VHBm0LAGsvtVwxU2FGIW+eTiFQFuuzsV9Ojh4vg3aAYR3VcICL9w7ipsyt+7D0b3dJNw==}
     hasBin: true
     peerDependencies:
       react: ^18.2.0
@@ -4673,9 +4678,9 @@ packages:
       '@radix-ui/react-navigation-menu': 1.1.4_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-popover': 1.0.7_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-tabs': 1.0.4_biqbaboplfbrettd7655fr4n2y
-      '@shikijs/rehype': 1.0.0-beta.5
-      '@shikijs/transformers': 1.0.0-beta.5
-      '@shikijs/twoslash': 1.0.0-beta.5_typescript@5.3.3
+      '@shikijs/rehype': 1.3.0
+      '@shikijs/transformers': 1.3.0
+      '@shikijs/twoslash': 1.3.0_typescript@5.4.5
       '@vanilla-extract/css': 1.14.1
       '@vanilla-extract/dynamic': 2.1.0
       '@vanilla-extract/vite-plugin': 3.9.5_vite@5.1.1
@@ -4714,10 +4719,10 @@ packages:
       remark-mdx-frontmatter: 4.0.0
       remark-parse: 11.0.0
       serve-static: 1.15.0
-      shiki: 1.0.0-beta.5
+      shiki: 1.3.0
       tailwindcss: 3.4.1
       toml: 3.0.0
-      twoslash: 0.1.2_typescript@5.3.3
+      twoslash: 0.2.5_typescript@5.4.5
       ua-parser-js: 1.0.37
       unified: 11.0.4
       unist-util-visit: 5.0.0

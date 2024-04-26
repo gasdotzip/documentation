@@ -57,8 +57,8 @@ export default defineConfig({
     google: 'Inter',
   },
   logoUrl: {
-    light: '/gasBlack.png',
-    dark: '/gasWhite.png',
+    light: '/gasBlackText.png',
+    dark: '/gasWhiteText.png',
   },
   iconUrl: {
     light: '/favicon.ico',

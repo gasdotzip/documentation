@@ -4,17 +4,17 @@ The Gas.zip gas refuel bridge supports over 150+ destination chains and 7 source
 
 ## Depositing to Gas.zip
 
-Each inbound source chain has a deposit contract deployed that can accept any amount of the chains native inbound currency (ETH, AVAX, BNB, MATIC) between $1.00 USD and $50.00 USD. Gas uses the CoinGecko API for real-time coin price calculations.
+Each inbound source chain has a deposit contract deployed that can accept any amount of the chain's native inbound currency (ETH, AVAX, BNB, MATIC) between $1.00 USD and $50.00 USD. Gas uses the CoinGecko API for real-time coin price calculations.
 
 :::warning
 **WARNING:** Do not send less than $1.00 USD or more than $50.00 USD **PER CHAIN** to the deposit() function. Please contact us in [Discord](https://discord.gg/gasdotzip) via a support ticket if you have accidentally done so.
 :::
 
-To call the `deposit()` function, you must supply a list of destination chain IDs and a destionation address you desire to recieve the outbound funds. The destination address does not have to be the same address sending the inbound source transaction. The destination chain IDs are **not** the native chain IDs of each blockchain, they are internal chain IDs designated by Gas.zip. Please see [Chain Support](/gas/chain-support/outbound) for this list of chain IDs.
+To call the `deposit()` function, you must supply a list of destination chain IDs and a destination address you desire to recieve the outbound funds. The destination address does not have to be the same address sending the inbound source transaction. The destination chain IDs are **not** the native chain IDs of each blockchain, they are internal chain IDs designated by Gas.zip. Please see [Chain Support](/gas/chain-support/outbound) for this list of chain IDs.
 
 ## Mutiple Destination Chains
 
-To deposit to mutiple destination chains at once, you will need to add the destination chain IDs as `unit8`s into a single `unit256`. If you wanted to send to zkSync `51`, Polygon zkEVM `52`, Zora `56` and Gnosis `16`, you would convert it in the following manner:
+To deposit to mutiple destination chains at once, you will need to add the destination chain IDs as `uint8`s into a single `uint256`. If you wanted to send to zkSync `51`, Polygon zkEVM `52`, Zora `56` and Gnosis `16`, you would convert it in the following manner:
 
 :::code-group
 

@@ -1,13 +1,13 @@
 export interface ChainData {
-  nativeId: string
-  gas: number
-  gasPrice: number
-  rpc: string
-  fallback: string
+  bal: string
+  chain: number
+  gas: string
+  gwei: string
   name: string
-  symbol: string
-  price: string | number
+  price: number
+  rpcs: string[]
   short: number
+  symbol: string
 }
 
 export interface ChainsState {

@@ -12,46 +12,48 @@ const useChainData = () => {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const response = await fetch('https://backend.gas.zip/gas/config')
+        const response = await fetch('https://backend.gas.zip/v2/chains')
         const data = await response.json()
-        const chainsArray: ChainData[] = Object.entries(data).map(([key, chainData]) => ({
-          nativeId: key,
-          ...(chainData as Omit<ChainData, 'nativeId'>),
+        const chainsArray: ChainData[] = data.chains.map((chain: any) => ({
+          bal: chain.bal,
+          chain: chain.chain,
+          gas: chain.gas,
+          gwei: chain.gwei,
+          name: chain.name,
+          price: chain.price,
+          rpcs: chain.rpcs,
+          short: chain.short,
+          symbol: chain.symbol,
         }))
 
-        const manualRemove = [78, 44]
-        const filteredChainsArray = chainsArray.filter(
-          (chain) => chain.short <= 256 && !manualRemove.includes(chain.short),
-        )
+        const manualRemove = [78, 44, 1]
+        const filteredChainsArray = chainsArray.filter((chain) => !manualRemove.includes(chain.chain))
 
         const mainnetChains = filteredChainsArray
           .filter((chain) => {
-            // Skip chains with 'short' values greater than 256
             if (chain.short > 256) return false
-            // Skip chains with 'short' values greater than 100, unless they are between 125 and 145 (inclusive)
             if (chain.short > 100 && !(chain.short >= 125 && chain.short <= 145)) return false
             return true
           })
-          .sort((a, b) => a.short - b.short)
+          .sort((a, b) => a.chain - b.chain)
 
         const testnetChains = filteredChainsArray
           .filter((chain) => {
-            // Skip chains with 'short' values greater than 256 or less than 100
             if (chain.short > 256 || chain.short < 100) return false
-            // Additionally, skip chains with 'short' values between 125 and 145 (inclusive)
             if (chain.short >= 125 && chain.short <= 145) return false
             return true
           })
-          .sort((a, b) => a.short - b.short)
+          .sort((a, b) => a.chain - b.chain)
 
         setChains({
           mainnet: mainnetChains,
           testnet: testnetChains,
         })
       } catch (error) {
-        console.error('Error fetching chain data:', error)
+        console.error('Failed to fetch chain data:', error)
       } finally {
         setIsLoading(false)
+        console.log('Fetch operation completed')
       }
     }
 

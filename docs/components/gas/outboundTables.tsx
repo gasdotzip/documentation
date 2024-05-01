@@ -23,7 +23,7 @@ const ChainTable: React.FC<ChainTableProps> = ({ chains, isLoading }) => (
           <tr key={index} className="vocs_TableRow">
             <td className="vocs_TableCell">{chain.name}</td>
             <td className="vocs_TableCell">{chain.short}</td>
-            <td className="vocs_TableCell">{chain.nativeId}</td>
+            <td className="vocs_TableCell">{chain.chain}</td>
           </tr>
         ))
       )}

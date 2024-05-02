@@ -33,7 +33,7 @@ export default defineConfig({
           'Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.Zip contracts on-chain, and get detailed information about supported chains and code examples.'
         }
       />
-      <meta property="og:image" content="http://gas.zip/gasMeta.png" />
+      <meta property="og:image" content="https://dev.gas.zip/gasLogo1200x628" />
       <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
@@ -42,7 +42,7 @@ export default defineConfig({
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
       <meta property="twitter:card" content="summary" />
-      <meta property="twitter:url" content="https://www.lz.gas.zip/" />
+      <meta property="twitter:url" content="https://dev.gas.zip/overview" />
       <meta property="twitter:title" content="Gas.zip · Technical Documentation for Onchain Interactions" />
       <meta
         property="twitter:description"

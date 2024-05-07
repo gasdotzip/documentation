@@ -30,20 +30,28 @@ const useChainData = () => {
         const filteredChainsArray = chainsArray.filter((chain) => !manualRemove.includes(chain.chain))
 
         const mainnetChains = filteredChainsArray
-          .filter((chain) => {
-            if (chain.short > 256) return false
-            if (chain.short > 100 && !(chain.short >= 125 && chain.short <= 145)) return false
-            return true
-          })
-          .sort((a, b) => a.chain - b.chain)
+        .filter((chain) => {
+          if (chain.short > 256) return false
+          if (chain.short > 100 && !(chain.short >= 125 && chain.short <= 150)) return false
+          return true
+        })
+        .sort((a, b) => {
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
+          return 0
+        })
 
         const testnetChains = filteredChainsArray
-          .filter((chain) => {
-            if (chain.short > 256 || chain.short < 100) return false
-            if (chain.short >= 125 && chain.short <= 145) return false
-            return true
-          })
-          .sort((a, b) => a.chain - b.chain)
+        .filter((chain) => {
+          if (chain.short > 256 || chain.short < 100) return false
+          if (chain.short >= 125 && chain.short <= 150) return false
+          return true
+        })
+        .sort((a, b) => {
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
+          return 0
+        })
 
         setChains({
           mainnet: mainnetChains,

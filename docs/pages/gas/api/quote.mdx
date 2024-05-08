@@ -1,0 +1,32 @@
+import { Callout } from 'vocs/components'
+
+## Quote
+
+> This route gives a live quote returning the amount received on the given outbound chains.
+
+<Callout type="note">
+All chain id's on this route use the native id not the Gas.Zip id
+</Callout>
+
+`https://backend.gas.zip/v2/quotes/<deposit_chain>/<deposit_wei>/<outbound_chains>`
+
+<Callout type="info">
+The outbound chains parameter is a comma separated string
+
+Example: backend.gas.zip/v2/quotes/1/74176868561679620/7777777,81457,3776,666666666
+</Callout>
+
+### Schema
+
+```ts
+interface Quote {
+    quotes: [
+        {
+            chain: number
+            expected: number
+            gas: number
+            usd: number
+        }
+    ]
+}
+```

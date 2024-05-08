@@ -1,0 +1,24 @@
+## User
+
+> This route returns the Gas.Zip history of a given address.
+
+`https://backend.gas.zip/v2/user/<address>`
+
+### Schema
+
+```ts
+// [!include ~/types/schemas.ts:status]
+
+// [!include ~/types/schemas.ts:deposit]
+
+// [!include ~/types/schemas.ts:transaction]
+
+interface User {
+  user: [
+    {
+        deposit: Deposit
+        txs: Transaction[]
+    }
+  ]
+}
+```

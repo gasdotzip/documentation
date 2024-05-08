@@ -96,6 +96,31 @@ export default defineConfig({
           link: '/gas/overview',
         },
         {
+          text: 'API',
+          items: [
+            {
+              text: 'Overview',
+              link: '/gas/api/overview'
+            },
+            {
+              text: 'Chains',
+              link: '/gas/api/chains'
+            },
+            {
+              text: 'User',
+              link: '/gas/api/user'
+            },
+            {
+              text: 'Deposit',
+              link: '/gas/api/deposit'
+            },
+            {
+              text: 'Quote',
+              link: '/gas/api/quote'
+            },
+          ]
+        },
+        {
           text: 'Chain Support',
           items: [
             {

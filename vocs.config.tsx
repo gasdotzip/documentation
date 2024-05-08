@@ -97,6 +97,7 @@ export default defineConfig({
         },
         {
           text: 'API',
+          collapsed: false,
           items: [
             {
               text: 'Overview',

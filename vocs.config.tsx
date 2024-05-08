@@ -96,8 +96,30 @@ export default defineConfig({
           link: '/gas/overview',
         },
         {
+          text: 'Chain Support',
+          items: [
+            {
+              text: 'Inbound',
+              link: '/gas/chain-support/inbound',
+            },
+            {
+              text: 'Outbound',
+              link: '/gas/chain-support/outbound',
+            },
+          ],
+        },
+        {
+          text: 'Code Examples',
+          items: [
+            {
+              text: 'deposit()',
+              link: '/gas/code-examples/deposit',
+            },
+          ],
+        },
+        {
           text: 'API',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: 'Overview',
@@ -120,28 +142,6 @@ export default defineConfig({
               link: '/gas/api/quote'
             },
           ]
-        },
-        {
-          text: 'Chain Support',
-          items: [
-            {
-              text: 'Inbound',
-              link: '/gas/chain-support/inbound',
-            },
-            {
-              text: 'Outbound',
-              link: '/gas/chain-support/outbound',
-            },
-          ],
-        },
-        {
-          text: 'Code Examples',
-          items: [
-            {
-              text: 'deposit()',
-              link: '/gas/code-examples/deposit',
-            },
-          ],
         },
       ],
     },

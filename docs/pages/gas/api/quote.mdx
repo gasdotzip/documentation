@@ -27,6 +27,10 @@ interface Quote {
             gas: number // estimated gas cost in wei
             speed: number // estimated time (s) to inclusion
             usd: number
+        } | 
+        {
+            chain: number
+            error: string
         }
     ]
 }

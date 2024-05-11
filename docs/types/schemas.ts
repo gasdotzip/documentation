@@ -3,11 +3,11 @@ interface Chains {
   chains: [
     {
       name: string
-      chain: number
-      short: number
-      gas: string
-      gwei: string
-      bal: string
+      chain: number // native chain id
+      short: number // unique Gas.zip id
+      gas: string // gas usage of a simple transfer
+      gwei: string // current gas price
+      bal: string // balance of the Gas.zip reloader
       rpcs: string[]
       symbol: string
       price: number

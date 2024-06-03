@@ -26,12 +26,12 @@ const useChainData = () => {
           symbol: chain.symbol,
         }))
 
-        const manualRemove = [78, 44, 1]
+        const manualRemove = [78, 44]
         const filteredChainsArray = chainsArray.filter((chain) => !manualRemove.includes(chain.chain))
 
         const mainnetChains = filteredChainsArray
         .filter((chain) => {
-          if (chain.short > 256) return false
+          if (chain.short > 255) return false
           if (chain.short > 100 && !(chain.short >= 125 && chain.short <= 150)) return false
           return true
         })
@@ -43,7 +43,7 @@ const useChainData = () => {
 
         const testnetChains = filteredChainsArray
         .filter((chain) => {
-          if (chain.short > 256 || chain.short < 100) return false
+          if (chain.short > 255 || chain.short < 100) return false
           if (chain.short >= 125 && chain.short <= 150) return false
           return true
         })

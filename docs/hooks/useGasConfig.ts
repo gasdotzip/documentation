@@ -34,7 +34,7 @@ const useChainData = () => {
             (chain) =>
               chain.short >= 249 ||
               (chain.short >= 5 && chain.short <= 100) ||
-              (chain.short >= 125 && chain.short <= 151),
+              (chain.short >= 125 && chain.short < 151),
           )
           .sort((a, b) => {
             if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
@@ -43,7 +43,7 @@ const useChainData = () => {
           })
 
         const testnetChains = filteredChainsArray
-          .filter((chain) => chain.short >= 101 && chain.short <= 220 && !(chain.short >= 125 && chain.short <= 151))
+          .filter((chain) => chain.short >= 101 && chain.short <= 220 && !(chain.short >= 125 && chain.short < 151))
           .sort((a, b) => {
             if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
             if (a.name.toLowerCase() > b.name.toLowerCase()) return 1

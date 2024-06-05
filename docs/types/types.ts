@@ -51,8 +51,8 @@ interface Transaction {
 interface User {
   user: [
     {
-        deposit: Deposit
-        txs: Transaction[]
-    }
+      deposit: Deposit
+      txs: Transaction[]
+    },
   ]
 }

@@ -123,25 +123,25 @@ export default defineConfig({
           items: [
             {
               text: 'Overview',
-              link: '/gas/api/overview'
+              link: '/gas/api/overview',
             },
             {
               text: 'Chains',
-              link: '/gas/api/chains'
+              link: '/gas/api/chains',
             },
             {
               text: 'User',
-              link: '/gas/api/user'
+              link: '/gas/api/user',
             },
             {
               text: 'Deposit',
-              link: '/gas/api/deposit'
+              link: '/gas/api/deposit',
             },
             {
               text: 'Quote',
-              link: '/gas/api/quote'
+              link: '/gas/api/quote',
             },
-          ]
+          ],
         },
       ],
     },

@@ -11,7 +11,7 @@ interface Chains {
       rpcs: string[]
       symbol: string
       price: number
-    }
+    },
   ]
 }
 // [!endregion chains]

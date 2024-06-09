@@ -6,11 +6,12 @@ import { Callout } from 'vocs/components'
 
 `https://backend.gas.zip/v2/quotes/<deposit_chain>/<deposit_wei>/<outbound_chains>`
 
-<Callout type="note">All chain IDs on this route use the native id not the Gas.zip ID.</Callout>
+<Callout type="note" className="note">
+  All chain IDs on this route use the native id not the Gas.zip ID.
+</Callout>
 
-<Callout type="info">
-The outbound chains parameter is a comma separated string
-
+<Callout type="info" className="info">
+  The outbound chains parameter is a comma separated string
 Example: backend.gas.zip/v2/quotes/1/74176868561679620/7777777,81457,3776,666666666
 
 </Callout>
@@ -18,19 +19,5 @@ Example: backend.gas.zip/v2/quotes/1/74176868561679620/7777777,81457,3776,666666
 ### Schema
 
 ```ts
-interface Quote {
-  quotes: [
-    | {
-        chain: number
-        expected: number // estimated output in wei
-        gas: number // estimated gas cost in wei
-        speed: number // estimated time (s) to inclusion
-        usd: number
-      }
-    | {
-        chain: number
-        error: string
-      },
-  ]
-}
+// [!include ~/snippets/gas/types/types.ts:quote]
 ```

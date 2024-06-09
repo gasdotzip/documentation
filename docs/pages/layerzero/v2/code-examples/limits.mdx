@@ -10,84 +10,14 @@ Every route combination has a specifc maximum it can send/recieve on the other s
 
 ```tsx twoslash [viem]
 // @filename: ./abis.ts
-export const limitsAbi = [
-  {
-    constant: true,
-    inputs: [
-      {
-        name: '_key1',
-        type: 'uint32',
-      },
-    ],
-    name: 'dstConfig',
-    outputs: [
-      {
-        components: [
-          {
-            name: 'baseGas',
-            type: 'uint64',
-          },
-          {
-            name: 'multiplier',
-            type: 'uint16',
-          },
-          {
-            name: 'floorMarginUSD',
-            type: 'uint128',
-          },
-          {
-            name: 'nativeCap',
-            type: 'uint128',
-          },
-        ],
-        type: 'tuple',
-      },
-    ],
-    type: 'function',
-  },
-]
+// [!include ~/snippets/layerZero/v2/limits/abis.ts]
 // ---cut---
 // [!include ~/snippets/layerZero/v2/limits/limitsViem.ts]
 ```
 
 ```tsx twoslash [ethers]
 // @filename: ./abis.ts
-export const limitsAbi = [
-  {
-    constant: true,
-    inputs: [
-      {
-        name: '_key1',
-        type: 'uint32',
-      },
-    ],
-    name: 'dstConfig',
-    outputs: [
-      {
-        components: [
-          {
-            name: 'baseGas',
-            type: 'uint64',
-          },
-          {
-            name: 'multiplier',
-            type: 'uint16',
-          },
-          {
-            name: 'floorMarginUSD',
-            type: 'uint128',
-          },
-          {
-            name: 'nativeCap',
-            type: 'uint128',
-          },
-        ],
-        type: 'tuple',
-      },
-    ],
-    type: 'function',
-  },
-]
+// [!include ~/snippets/layerZero/v2/limits/abis.ts]
 // ---cut---
 // [!include ~/snippets/layerZero/v2/limits/limitsEthers.ts]
 ```

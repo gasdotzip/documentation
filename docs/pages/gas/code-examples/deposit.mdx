@@ -6,52 +6,14 @@ Below is an example implementation for calling the `deposit()` function.
 
 ```ts twoslash [viem]
 // @filename: ./depositABI.ts
-export const depositABI = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'chains',
-        type: 'uint256',
-      },
-      {
-        internalType: 'address',
-        name: 'to',
-        type: 'address',
-      },
-    ],
-    name: 'deposit',
-    outputs: [],
-    stateMutability: 'payable',
-    type: 'function',
-  },
-]
+// [!include ~/snippets/gas/depositABI.ts]
 // ---cut---
 // [!include ~/snippets/gas/depositViem.ts]
 ```
 
 ```ts twoslash [ethers]
 // @filename: ./depositABI.ts
-export const depositABI = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'chains',
-        type: 'uint256',
-      },
-      {
-        internalType: 'address',
-        name: 'to',
-        type: 'address',
-      },
-    ],
-    name: 'deposit',
-    outputs: [],
-    stateMutability: 'payable',
-    type: 'function',
-  },
-]
+// [!include ~/snippets/gas/depositABI.ts]
 // ---cut---
 // [!include ~/snippets/gas/depositEthers.ts]
 ```

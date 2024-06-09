@@ -1,3 +1,4 @@
+// [!region limitsAbi]
 export const limitsAbi = [
   {
     constant: true,
@@ -34,3 +35,4 @@ export const limitsAbi = [
     type: 'function',
   },
 ]
+// [!endregion limitsAbi]

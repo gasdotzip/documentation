@@ -14,7 +14,7 @@ const useChainData = () => {
       try {
         const response = await fetch('https://backend.gas.zip/v2/chains')
         const data = await response.json()
-        const chainsArray: ChainData[] = data.chains.map((chain: any) => ({
+        const chainsArray: ChainData[] = data.chains.map((chain: ChainData) => ({
           bal: chain.bal,
           chain: chain.chain,
           gas: chain.gas,

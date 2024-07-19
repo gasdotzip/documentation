@@ -82,6 +82,10 @@ export default defineConfig({
       icon: 'github',
       link: 'https://github.com/gasdotzip',
     },
+    {
+      icon: 'warpcast',
+      link: 'https://warpcast.com/gasdotzip',
+    },
   ],
   sidebar: [
     {

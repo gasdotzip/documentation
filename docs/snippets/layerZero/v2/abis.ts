@@ -1,3 +1,4 @@
+// [!region estimateFeesAbi]
 export const estimateFeesAbi = [
   {
     type: 'function',
@@ -29,7 +30,9 @@ export const estimateFeesAbi = [
     stateMutability: 'view',
   },
 ] as const
+// [!endregion estimateFeesAbi]
 
+// [!region lzDepositAbi]
 export const lzDepositAbi = [
   {
     inputs: [
@@ -50,3 +53,4 @@ export const lzDepositAbi = [
     type: 'function',
   },
 ] as const
+// [!endregion lzDepositAbi]

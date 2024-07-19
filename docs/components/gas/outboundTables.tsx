@@ -1,6 +1,5 @@
 import React from 'react'
-import { ChainTableProps } from '../../types/types'
-import useChainData from '../../hooks/useGasConfig'
+import { ChainData, ChainTableProps } from '../../types/types'
 
 const ChainTable: React.FC<ChainTableProps> = ({ chains, isLoading }) => (
   <table className="vocs_Table">
@@ -31,12 +30,10 @@ const ChainTable: React.FC<ChainTableProps> = ({ chains, isLoading }) => (
   </table>
 )
 
-export const MainnetTable: React.FC = () => {
-  const { mainnet, isLoading } = useChainData()
-  return <ChainTable chains={mainnet} isLoading={isLoading} />
+export const MainnetTable: React.FC<{ chains: ChainData[]; isLoading: boolean }> = ({ chains, isLoading }) => {
+  return <ChainTable chains={chains} isLoading={isLoading} />
 }
 
-export const TestnetTable: React.FC = () => {
-  const { testnet, isLoading } = useChainData()
-  return <ChainTable chains={testnet} isLoading={isLoading} />
+export const TestnetTable: React.FC<{ chains: ChainData[]; isLoading: boolean }> = ({ chains, isLoading }) => {
+  return <ChainTable chains={chains} isLoading={isLoading} />
 }

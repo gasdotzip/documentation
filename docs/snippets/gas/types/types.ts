@@ -49,3 +49,39 @@ interface Transaction {
   value: string
 }
 // [!endregion transaction]
+
+// [!region transactionStatusData]
+interface TransactionStatusData {
+  deposit: Deposit
+  txs: Transaction[]
+}
+// [!endregion transactionStatusData]
+
+// [!region userHistory]
+interface UserHistory {
+  user: [
+    {
+      deposit: Deposit
+      txs: Transaction[]
+    },
+  ]
+}
+// [!endregion userHistory]
+
+// [!region quote]
+interface Quote {
+  quotes: [
+    | {
+        chain: number
+        expected: number // estimated output in wei
+        gas: number // estimated gas cost in wei
+        speed: number // estimated time (s) to inclusion
+        usd: number
+      }
+    | {
+        chain: number
+        error: string
+      },
+  ]
+}
+// [!endregion quote]

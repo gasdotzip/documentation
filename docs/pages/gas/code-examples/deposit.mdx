@@ -1,57 +1,19 @@
 # Code Example for `deposit()`
 
-Below is an example implementation for calling the `deposit()` function.
+Below is an example implementation for calling the `deposit()` function for the v1 Deposit Contracts, v2 EOA deposit code examples WIP.
 
 :::code-group
 
 ```ts twoslash [viem]
 // @filename: ./depositABI.ts
-export const depositABI = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'chains',
-        type: 'uint256',
-      },
-      {
-        internalType: 'address',
-        name: 'to',
-        type: 'address',
-      },
-    ],
-    name: 'deposit',
-    outputs: [],
-    stateMutability: 'payable',
-    type: 'function',
-  },
-]
+// [!include ~/snippets/gas/depositABI.ts]
 // ---cut---
 // [!include ~/snippets/gas/depositViem.ts]
 ```
 
 ```ts twoslash [ethers]
 // @filename: ./depositABI.ts
-export const depositABI = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'chains',
-        type: 'uint256',
-      },
-      {
-        internalType: 'address',
-        name: 'to',
-        type: 'address',
-      },
-    ],
-    name: 'deposit',
-    outputs: [],
-    stateMutability: 'payable',
-    type: 'function',
-  },
-]
+// [!include ~/snippets/gas/depositABI.ts]
 // ---cut---
 // [!include ~/snippets/gas/depositEthers.ts]
 ```

@@ -8,6 +8,7 @@ export interface ChainData {
   rpcs: string[]
   short: number
   symbol: string
+  mainnet: boolean
 }
 
 export interface ChainsState {

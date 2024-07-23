@@ -7,7 +7,6 @@ const ChainTableWrapper: React.FC = () => {
 
   return (
     <>
-    {/* fix tags */}
       <h2 className="vocs_H2 vocs_Heading">Mainnet Chains</h2>
       <p className="vocs_Paragraph">All current supported mainnet outbound destination chains:</p>
       <MainnetTable chains={mainnet} isLoading={isLoading} />

@@ -1,10 +1,12 @@
+import { Callout } from 'vocs/components'
+
 # Code Example for an EOA Deposit
 
 Deposits using the EOA method must include calldata defining the output chains.
 
 Use the example code for an up-to date spec of how to format the calldata.
-
-In Short: The first byte of calldata defines how the 'to' address will be parsed.
+<Callout type="info">
+The first byte of calldata defines how the 'to' address will be parsed:
 
 01 - Send to msg.sender
 
@@ -13,6 +15,9 @@ In Short: The first byte of calldata defines how the 'to' address will be parsed
 03 - Send to the next 32 bytes parsed as a base58 address
 
 The remaining bytes are parsed in 2 byte increments and are treated as the short chain id's for the output chains.
+
+Example: `0x010035` defines a request for the msg.sender to receive the full value on Arbitrum
+</Callout>
 
 :::code-group
 

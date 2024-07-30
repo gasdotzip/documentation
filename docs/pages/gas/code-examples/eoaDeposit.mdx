@@ -1,0 +1,85 @@
+# Code Example for an EOA Deposit
+
+Deposits using the EOA method must include calldata defining the output chains.
+
+Use the example code for an up-to date spec of how to format the calldata.
+
+In Short: The first byte of calldata defines how the 'to' address will be parsed.
+
+01 - Send to msg.sender
+
+02 - Send to the next 20 bytes as an EVM address
+
+03 - Send to the next 32 bytes parsed as a base58 address
+
+The remaining bytes are parsed in 2 byte increments and are treated as the short chain id's for the output chains.
+
+:::code-group
+
+```ts twoslash [viem]
+// @filename: ./depositABI.ts
+// ---cut---
+// [!include ~/snippets/gas/eoaDepositViem.ts]
+```
+
+```python [python]
+from web3 import Web3, HTTPProvider
+import re
+
+w3 = Web3(HTTPProvider('https://opt-mainnet.g.alchemy.com/'))
+
+# Each chain will receive an equal portion of the value sent
+amount_in_wei = Web3.to_wei(0.0006, 'ether')
+
+# This example is targeting zkSync (51), Polygon zkEVM (52)
+gas_zip_short_chain_ids = [51, 52]
+
+# Create a wallet from a private key
+private_key = '0x...'
+account = w3.eth.account.from_key(private_key)
+nonce = w3.eth.get_transaction_count(account.address)
+
+# Replace with address you want to send funds to
+to_address = account.address
+
+def encode_data(to, shorts: list[int]) -> str:
+    data = '0x'
+    if to != None:
+        if Web3.is_address(to):
+            data += '02' # evm address
+            data += to[2:]
+        elif re.match('/[1-9A-HJ-NP-Za-km-z]{32,44}/', to):
+            data += '03' # sol address
+            data += to
+        else:
+            return None
+    else:
+        data += '01' # to == sender
+
+    for short in shorts:
+        data += hex(short)[2:].zfill(4)
+    
+    return data
+
+tx_data = encode_data(to_address, gas_zip_short_chain_ids)
+
+# Create the txn
+txn = {
+    "gasPrice": w3.eth.gas_price,
+    "data": tx_data,
+    "nonce": w3.eth.get_transaction_count(account.address),
+    "to": "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    "value": "0x5af3107a4000",
+    "chainId": 1900,
+}
+txn['gas'] = w3.eth.estimate_gas(txn)
+
+# Sign the transaction
+signed_txn = w3.eth.account.sign_transaction(txn, private_key)
+
+# Send the transaction
+transaction_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+print(f'Transaction sent with hash: {transaction_hash.hex()}')
+```
+
+:::

@@ -116,8 +116,11 @@ export default defineConfig({
           text: 'Code Examples',
           items: [
             {
-              text: 'deposit()',
+              text: 'Contract Deposit',
               link: '/gas/code-examples/deposit',
+            },            {
+              text: 'EOA Deposit',
+              link: '/gas/code-examples/eoaDeposit',
             },
           ],
         },

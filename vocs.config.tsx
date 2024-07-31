@@ -1,6 +1,9 @@
 import { defineConfig } from 'vocs'
 
 export default defineConfig({
+  title: "Gas.zip · Technical Documentation for Onchain Interactions",
+  description: "Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.Zip contracts on-chain, and get detailed information about supported chains and code examples.",
+  ogImageUrl: "https://www.gas.zip/gasLogo1200x628.png",
   head: (
     <>
       <script
@@ -33,7 +36,7 @@ export default defineConfig({
           'Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.Zip contracts on-chain, and get detailed information about supported chains and code examples.'
         }
       />
-      <meta property="og:image" content="https://dev.gas.zip/gasLogo1200x628" />
+      <meta property="og:image" content="https://www.gas.zip/gasLogo1200x628.png" />
       <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />

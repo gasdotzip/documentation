@@ -27,7 +27,7 @@ const useChainData = () => {
           mainnet: chain.mainnet,
         }))
 
-        const manualRemove = [78, 44, 7979, 2026]
+        const manualRemove = [78, 44, 7979, 2026, 501474]
         const filteredChainsArray = chainsArray.filter((chain) => !manualRemove.includes(chain.chain))
 
         const mainnetChains = filteredChainsArray

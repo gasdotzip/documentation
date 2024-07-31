@@ -3,12 +3,11 @@ import { ReactElement } from 'react'
 
 export default defineConfig({
   title: 'Gas.zip - Technical Documentation',
-  description: "Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.Zip contracts on-chain, and get detailed information about supported chains and code examples.",
+  description: "Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.zip contracts on-chain, and get detailed information about supported chains and code examples.",
   ogImageUrl: "https://www.gas.zip/gasLogo1200x628.png",
   head: (
     <>
       <script
-        /* biome-ignore lint/security/noDangerouslySetInnerHtml: <TS Doesn't like the offical vercel example> */
         dangerouslySetInnerHTML={{
           __html: `
           window.va = window.va || function (...args) { 

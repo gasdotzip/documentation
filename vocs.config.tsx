@@ -1,7 +1,8 @@
-import { defineConfig } from 'vocs'
+import { defineConfig, Config } from 'vocs'
+import { ReactElement } from 'react'
 
 export default defineConfig({
-  title: "Gas.zip · Technical Documentation for Onchain Interactions",
+  title: 'Gas.zip - Technical Documentation',
   description: "Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.Zip contracts on-chain, and get detailed information about supported chains and code examples.",
   ogImageUrl: "https://www.gas.zip/gasLogo1200x628.png",
   head: (
@@ -17,8 +18,8 @@ export default defineConfig({
         }}
       />
       <script defer src="/_vercel/insights/script.js" />
-      <title>Gas.zip · Technical Documentation for Onchain Interactions</title>
-      <meta name="title" content="Gas.zip · Technical Documentation for Onchain Interactions" />
+      <title>Gas.zip - Technical Documentation</title>
+      <meta name="title" content="Gas.zip - Technical Documentation" />
       <meta
         name="description"
         content={
@@ -29,7 +30,7 @@ export default defineConfig({
       <meta name="robots" content="index, follow" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://www.gas.zip/" />
-      <meta property="og:title" content="Gas.zip · Technical Documentation for Onchain Interactions" />
+      <meta property="og:title" content="Gas.zip - Technical Documentation" />
       <meta
         property="og:description"
         content={
@@ -46,7 +47,7 @@ export default defineConfig({
       <meta name="theme-color" content="#ffffff" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:url" content="https://dev.gas.zip/overview" />
-      <meta property="twitter:title" content="Gas.zip · Technical Documentation for Onchain Interactions" />
+      <meta property="twitter:title" content="Gas.zip - Technical Documentation" />
       <meta
         property="twitter:description"
         content={
@@ -55,7 +56,7 @@ export default defineConfig({
       />
       <meta property="twitter:image" content="https://i.imgur.com/5w0YMW3.png" />
     </>
-  ),
+  ) as ReactElement,
   font: {
     google: 'Inter',
   },
@@ -68,7 +69,6 @@ export default defineConfig({
     dark: '/favicon.ico',
   },
   rootDir: 'docs',
-  title: 'Gas.zip - Technical Documentation',
   theme: {
     accentColor: '#4182eb',
   },
@@ -246,4 +246,4 @@ export default defineConfig({
       ],
     },
   ],
-})
+} as Config)

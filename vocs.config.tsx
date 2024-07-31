@@ -116,12 +116,13 @@ export default defineConfig({
           text: 'Code Examples',
           items: [
             {
-              text: 'Contract Deposit',
-              link: '/gas/code-examples/deposit',
-            },            {
-              text: 'EOA Deposit',
+              text: 'v2: EOA Deposit',
               link: '/gas/code-examples/eoaDeposit',
             },
+            {
+              text: 'v1: Contract Deposit (Deprecated)',
+              link: '/gas/code-examples/contractDeposit',
+            },       
           ],
         },
         {
@@ -145,8 +146,16 @@ export default defineConfig({
               link: '/gas/api/deposit',
             },
             {
+              text: 'Outbound',
+              link: '/gas/api/outbound',
+            },
+            {
               text: 'Quote',
               link: '/gas/api/quote',
+            },
+            {
+              text: 'Quote Reverse',
+              link: '/gas/api/quoteReverse',
             },
           ],
         },

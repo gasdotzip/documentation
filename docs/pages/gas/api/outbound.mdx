@@ -1,0 +1,17 @@
+## Outbound
+
+> This route can be used to search for an outbound transaction (the inverse of the [deposit hash route](/gas/api/deposit)). It provides the live status and details of a given outbound transaction as well as its corresponding deposit details.
+
+`https://backend.gas.zip/v2/outbound/<hash>`
+
+### Schema
+
+```ts
+// [!include ~/snippets/gas/types/types.ts:status]
+
+// [!include ~/snippets/gas/types/types.ts:transactionStatusData]
+
+// [!include ~/snippets/gas/types/types.ts:deposit]
+
+// [!include ~/snippets/gas/types/types.ts:transaction]
+```

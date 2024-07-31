@@ -1,35 +1,15 @@
 # Overview
 
-The Gas.zip gas refuel bridge supports over 200+ destination chains and 16 source chains. The primary function from a users perspective will be depositing, where you send the Gas.zip deposit contract some amount of the native source chain asset and it will be divided up among your desired destination chains.
+The Gas.zip gas refuel bridge supports over 200+ destination chains and 17 source chains. The primary function from a user's perspective is depositing, where you send native assets to a Gas.zip EOA address along with specific calldata to distribute funds among your desired destination chains.
 
-## Depositing to Gas.zip
+## Depositing to Gas.zip (v2)
 
-Each inbound source chain has a deposit contract deployed that can accept any amount of the chain's native inbound currency (ETH, AVAX, BNB, MATIC) between $1.00 USD and $50.00 USD. Gas uses the CoinGecko API for real-time coin price calculations.
+Each inbound source chain has a designated EOA address that can accept the chain's native inbound currency (ETH, AVAX, BNB, MATIC) between $1.00 USD and $50.00 USD. Gas uses the CoinGecko API for real-time coin price calculations.
 
 :::warning
-**WARNING:** Do not send less than $1.00 USD or more than $50.00 USD **PER CHAIN** to the deposit() function. Please contact us in [Discord](https://discord.gg/gasdotzip) via a support ticket if you have accidentally done so.
+**WARNING:** Do not send less than $1.00 USD or more than $50.00 USD **PER CHAIN** to the deposit address. Please contact us in [Discord](https://discord.gg/gasdotzip) via a support ticket if you have accidentally done so.
 :::
 
-To call the `deposit()` function, you must supply a list of destination chain IDs and a destination address you desire to recieve the outbound funds. The destination address does not have to be the same address sending the inbound source transaction. The destination chain IDs are **not** the native chain IDs of each blockchain, they are internal chain IDs designated by Gas.zip. Please see [Chain Support](/gas/chain-support/outbound) for this list of chain IDs.
+To make a deposit, you must include calldata specifying the destination chains and target recipient address. The destination address can be different from the sending address. The destination chain IDs are **not** the native chain IDs of each blockchain, but internal IDs designated by Gas.zip. Please see [Chain Support](/gas/chain-support/outbound) for this list of chain IDs.
 
-## Mutiple Destination Chains
-
-To deposit to mutiple destination chains at once, you will need to add the destination chain IDs as `uint8`s into a single `uint256`. If you wanted to send to zkSync `51`, Polygon zkEVM `52`, Zora `56` and Gnosis `16`, you would convert it in the following manner:
-
-:::code-group
-
-```tsx [typescript]
-const chainsBN = [51, 52, 56, 16].reduce((p, c) => (p << BigInt(8)) + BigInt(c), BigInt(0))
-
-// The result of this function is `859060240n`,
-// which you would pass into the `chains` field in the `deposit()` function.
-```
-
-```python [python]
-gas_zip_short_chain_ids = [51, 52, 56, 16]
-chains_bn = sum(chain << (8 * i) for i, chain in enumerate(gas_zip_short_chain_ids))
-
-# The result of this function is 272118835,
-# which you would pass into the chains field in the deposit() function.
-
-```
+For detailed instructions on how to integrate Gas.zip into your project, including code examples and best practices, please refer to our [Integration Guide](/gas/code-examples/eoaDeposit).

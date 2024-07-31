@@ -1,0 +1,83 @@
+# Code Example for Contract `deposit()` (Deprecated)
+
+:::warning
+**DEPRECATION NOTICE:** The v1 Deposit Contracts are being phased out. While still functional, we recommend using the newer [EOA Deposit method](/gas/code-examples/eoaDeposit) for future integrations.
+:::
+
+This section provides example implementations for calling the `deposit()` function on the v1 Deposit Contracts. These examples are maintained for legacy support but are not recommended for new integrations.
+
+## Supported Chains and Contract Addresses
+
+For a comprehensive list of all supported chains and their respective contract addresses for v1 contract deposits, please refer to the [Contract Deposit Supported Chains](/gas/chain-support/inbound#contract-deposit) section.
+
+## Implementation Examples
+
+The following code snippets demonstrate how to interact with the `deposit()` function across various programming languages and libraries:
+
+:::code-group
+
+```ts twoslash [viem]
+// @filename: ./depositABI.ts
+// [!include ~/snippets/gas/depositABI.ts]
+// ---cut---
+// [!include ~/snippets/gas/depositViem.ts]
+```
+
+```ts twoslash [ethers]
+// @filename: ./depositABI.ts
+// [!include ~/snippets/gas/depositABI.ts]
+// ---cut---
+// [!include ~/snippets/gas/depositEthers.ts]
+```
+
+```python [python]
+from web3 import Web3, HTTPProvider
+
+deposit_abi = [{"inputs": [{"internalType": "uint256","name": "chains","type": "uint256"},{"internalType": "address","name": "to","type": "address"}],"name": "deposit","outputs": [],"stateMutability": "payable","type": "function"}]
+
+w3 = Web3(HTTPProvider('https://opt-mainnet.g.alchemy.com/'))
+
+# Each chain will receive an equal portion of the value sent
+amount_in_wei = Web3.to_wei(0.0006, 'ether')
+
+# This example is targeting zkSync (51), Polygon zkEVM (52)
+gas_zip_short_chain_ids = [51, 52]
+
+# Prepare targeted chains parameter for deposit()
+chains_bn = sum(chain << (8 * i) for i, chain in enumerate(gas_zip_short_chain_ids))
+
+# Create a contract instance
+contract_address = Web3.to_checksum_address('0x9e22ebec84c7e4c4bd6d4ae7ff6f4d436d6d8390')
+contract = w3.eth.contract(address=contract_address, abi=deposit_abi)
+
+# Create a wallet from a private key
+private_key = '0x...'
+account = w3.eth.account.from_key(private_key)
+nonce = w3.eth.get_transaction_count(account.address)
+
+# Replace with address you want to send funds to
+to_address = account.address
+
+# Create the txn
+gas = contract.functions.deposit(chains_bn, to_address).estimate_gas({'value': amount_in_wei})
+txn = contract.functions.deposit(chains_bn, to_address).build_transaction({
+    'chainId': w3.eth.chain_id,
+    'nonce': nonce,
+    'gasPrice': w3.eth.gas_price,
+    'gas': gas,
+    'value': amount_in_wei
+})
+
+# Sign the transaction
+signed_txn = w3.eth.account.sign_transaction(txn, private_key)
+
+# Send the transaction
+transaction_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+print(f'Transaction sent with hash: {transaction_hash.hex()}')
+```
+
+```ts twoslash [depositABI.ts]
+// [!include ~/snippets/gas/depositABI.ts]
+```
+
+:::

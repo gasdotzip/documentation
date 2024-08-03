@@ -9,6 +9,10 @@ Use the example code for an up-to-date spec of how to format the calldata.
 
 For a list of all supported chains for EOA deposits, please refer to the [EOA Deposit Supported Chains](/gas/chain-support/inbound#eoa-deposit) section.
 
+<Callout type="warning">
+Deposits using this method MUST be a high-level transaction sending directly to the EOA. For integrators looking to deposit with a low-level call, please use the [Contract Deposit](/gas/code-examples/contractDeposit)
+</Callout>
+
 <Callout type="info">
 The first byte of calldata defines how the 'to' address will be parsed:
 

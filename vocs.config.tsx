@@ -122,7 +122,7 @@ export default defineConfig({
               link: '/gas/code-examples/eoaDeposit',
             },
             {
-              text: 'v1: Contract Deposit (Deprecated)',
+              text: 'v1: Contract Deposit',
               link: '/gas/code-examples/contractDeposit',
             },       
           ],

@@ -38,6 +38,7 @@ Example: `0x010035` defines a request for the msg.sender to receive the full val
 ```python [python]
 from web3 import Web3, HTTPProvider
 import re
+import base58
 
 w3 = Web3(HTTPProvider('https://opt-mainnet.g.alchemy.com/'))
 
@@ -63,7 +64,7 @@ def encode_data(to, shorts: list[int]) -> str:
             data += to[2:]
         elif re.match('/[1-9A-HJ-NP-Za-km-z]{32,44}/', to):
             data += '03' # sol address
-            data += to
+            data += base58.b58decode(to).hex()
         else:
             return None
     else:

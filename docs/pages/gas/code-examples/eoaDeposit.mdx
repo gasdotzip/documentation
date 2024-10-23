@@ -83,7 +83,7 @@ txn = {
     "data": tx_data,
     "nonce": w3.eth.get_transaction_count(account.address),
     "to": "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
-    "value": "0x5af3107a4000",
+    "value": amount_in_wei,
     "chainId": 1900,
 }
 txn['gas'] = w3.eth.estimate_gas(txn)

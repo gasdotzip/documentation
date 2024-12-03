@@ -11,11 +11,11 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "vocs": "1.0.0-alpha.53"
+    "vocs": "1.0.0-alpha.62"
   },
   "devDependencies": {
-    "ethers": "^6.13.2",
-    "prettier": "^3.3.3",
-    "typescript": "^5.5.4"
+    "ethers": "^6.13.4",
+    "prettier": "^3.4.1",
+    "typescript": "^5.7.2"
   }
 }

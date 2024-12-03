@@ -118,13 +118,29 @@ export default defineConfig({
           text: 'Code Examples',
           items: [
             {
-              text: 'v2: EOA Deposit',
-              link: '/gas/code-examples/eoaDeposit',
+              text: 'EVM Deposit',
+              collapsed: false,
+              items: [
+                {
+                  text: 'v2: EOA Deposit',
+                  link: '/gas/code-examples/evm-deposit/eoaDeposit',
+                },
+                {
+                  text: 'v1: Contract Deposit',
+                  link: '/gas/code-examples/evm-deposit/contractDeposit',
+                },       
+              ],
             },
             {
-              text: 'v1: Contract Deposit',
-              link: '/gas/code-examples/contractDeposit',
-            },       
+              text: 'SVM Deposit',
+              collapsed: false,
+              items: [
+                {
+                  text: 'Solana Deposit',
+                  link: '/gas/code-examples/svm-deposit/solanaDeposit',
+                },    
+              ],
+            },
           ],
         },
         {

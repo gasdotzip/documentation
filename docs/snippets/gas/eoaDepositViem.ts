@@ -26,34 +26,42 @@ const gasZipShortChainIDs = [51, 52]
 
 const encodeTransactionInput = (to: string, shorts: number[]) => {
   let data = '0x'
+  // Check if sending to a different address than the sender
   if (to.toLowerCase() !== account.address?.toLowerCase()) {
     if (to.length === 42) {
-      data += '02'
-      data += to.slice(2)
+      // EVM address format (0x + 40 hex chars)
+      data += '02' // EVM address type
+      data += to.slice(2) // Remove 0x prefix
     } else if (to.length === 66) {
-      data += '04'
-      data += to.slice(2)
+      // MOVE/FUEL address format (0x + 64 hex chars) 
+      data += '04' // MOVE/FUEL address type
+      data += to.slice(2) // Remove 0x prefix
     } else if (new RegExp(/[1-9A-HJ-NP-Za-km-z]{32,44}/).test(to)) {
+      // Check if address is base58 encoded
       const decoded = bs58.decode(to)
       if (decoded.length === 32 && PublicKey.isOnCurve(to)) {
-        // sol
-        data += '03'
+        // Solana address (32 bytes, validates on curve)
+        data += '03' // Solana address type
         data += Buffer.from(decoded).toString('hex')
       } else {
-        // other base58
+        // Handle other base58 encoded addresses
         const hexaddr = Buffer.from(decoded).toString('hex')
         if (hexaddr.length === 50) {
-          data += '02'
+          // Base58 encoded EVM address
+          data += '02' // EVM address type
           data += hexaddr.slice(2).slice(0, hexaddr.length - 10)
         } else {
-          data += '03'
+          // Other base58 format (e.g. Tron)
+          data += '03' // Base58 address type
           data += hexaddr.slice(0, hexaddr.length - 8)
         }
       }
     } else {
+      // Invalid address format
       return null
     }
   } else {
+    // Sending to self (msg.sender)
     data += '01'
   }
 

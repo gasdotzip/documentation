@@ -14,17 +14,23 @@ Deposits using this method MUST be a high-level transaction sending directly to 
 </Callout>
 
 <Callout type="info">
-The first byte of calldata defines how the 'to' address will be parsed:
+The first byte of calldata defines how the 'to' address will be parsed. Only one address type can be used per transaction:
 
-01 - Send to msg.sender
+- 01: Send to msg.sender
+- 02: Send to the next 20 bytes as an EVM address
+- 03: Send to the next 32 bytes as a Solana address
+- 04: Send to the next 32 bytes as a MOVE/FUEL address
 
-02 - Send to the next 20 bytes as an EVM address
+Address Format Detection:
+- EVM addresses: 42 characters (0x prefix + 40 hex chars)
+- MOVE/FUEL addresses: 66 characters (0x prefix + 64 hex chars)
+- Solana addresses: base58 string that decodes to 32 bytes and validates on curve
+- Tron addresses: base58 string that decodes to a specific format
 
-03 - Send to the next 32 bytes parsed as a base58 address
+Example:
+- `0x010035` - Send to msg.sender on Arbitrum (chain ID 53)
 
-The remaining bytes are parsed in 2 byte increments and are treated as the short chain id's for the output chains.
-
-Example: `0x010035` defines a request for the msg.sender to receive the full value on Arbitrum
+Ensure the correct address type is used for the intended chain.
 </Callout>
 
 :::code-group

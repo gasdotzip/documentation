@@ -19,15 +19,15 @@ The first byte of calldata defines how the 'to' address will be parsed. Only one
 
 - 01: Send to msg.sender
 - 02: Send to the next 20 bytes as an EVM address
-- 03: Send to the next 32 bytes as a Solana address
+- 03: Send to the next 32 bytes as a SVM (Solana/Eclipse etc) address *or* other Base58 addresses (Tron/XRP)
 - 04: Send to the next 32 bytes as a MOVE/FUEL address
 
 Address Format Detection:
 
 - EVM addresses: 42 characters (0x prefix + 40 hex chars)
+- SVM addresses: Base58 string that decodes to 32 bytes and validates on curve
 - MOVE/FUEL addresses: 66 characters (0x prefix + 64 hex chars)
-- Solana addresses: base58 string that decodes to 32 bytes and validates on curve
-- Tron addresses: base58 string that decodes to a specific format
+- Tron addresses: Base58 string that decodes to a specific format
 
 Example:
 

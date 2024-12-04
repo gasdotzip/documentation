@@ -33,7 +33,7 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
       data += '02' // EVM address type
       data += to.slice(2) // Remove 0x prefix
     } else if (to.length === 66) {
-      // MOVE/FUEL address format (0x + 64 hex chars) 
+      // MOVE/FUEL address format (0x + 64 hex chars)
       data += '04' // MOVE/FUEL address type
       data += to.slice(2) // Remove 0x prefix
     } else if (new RegExp(/[1-9A-HJ-NP-Za-km-z]{32,44}/).test(to)) {

@@ -3,8 +3,9 @@ import { ReactElement } from 'react'
 
 export default defineConfig({
   title: 'Gas.zip - Technical Documentation',
-  description: "Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.zip contracts on-chain, and get detailed information about supported chains and code examples.",
-  ogImageUrl: "https://www.gas.zip/gasLogo1200x628.png",
+  description:
+    'Comprehensive guides and documentation to help you start working with Gas.zip on chain as quickly as possible. Learn how to interact with Gas.zip contracts on-chain, and get detailed information about supported chains and code examples.',
+  ogImageUrl: 'https://www.gas.zip/gasLogo1200x628.png',
   head: (
     <>
       <script
@@ -128,7 +129,7 @@ export default defineConfig({
                 {
                   text: 'v1: Contract Deposit',
                   link: '/gas/code-examples/evm-deposit/contractDeposit',
-                },       
+                },
               ],
             },
             {
@@ -138,7 +139,7 @@ export default defineConfig({
                 {
                   text: 'Solana Deposit',
                   link: '/gas/code-examples/svm-deposit/solanaDeposit',
-                },    
+                },
               ],
             },
           ],

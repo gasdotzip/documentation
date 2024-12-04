@@ -15,19 +15,16 @@ The instruction data format consists of:
 - Destination address (32 bytes)
 
 The destination address will be interpreted based on the first byte:
+
 - 0x01: EVM address (20 bytes padded to 32)
 - 0x02: Solana address (32 bytes)
-</Callout>
+  </Callout>
 
-:::code-group
+:::code
 
 ```ts twoslash [typescript]
-// @filename: ./depositSolana.ts
 // @errors: 1240
 // [!include ~/snippets/gas/depositSolana.ts]
 ```
 
 :::
-
-
-

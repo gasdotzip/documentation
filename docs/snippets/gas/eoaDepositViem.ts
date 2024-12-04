@@ -1,9 +1,8 @@
 import { parseEther, http, createWalletClient, publicActions, toHex } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
-import { optimism } from 'viem/chains'
-import { depositABI } from './depositABI'
-import bs58 from 'bs58'
 import { PublicKey } from '@solana/web3.js'
+import { optimism } from 'viem/chains'
+import bs58 from 'bs58'
 
 // Create a wallet from a private key
 const account = privateKeyToAccount('0x...')

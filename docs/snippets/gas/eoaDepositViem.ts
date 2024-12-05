@@ -35,6 +35,11 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
       // MOVE/FUEL address format (0x + 64 hex chars)
       data += '04' // MOVE/FUEL address type
       data += to.slice(2) // Remove 0x prefix
+    } else if (new RegExp(/r[0-9a-zA-Z]{24,34}/).test(to)) {
+      // XRP address format
+      data += '05' // XRP address type
+      const decoded = bs58.decode(to)
+      data += Buffer.from(decoded).toString('hex')
     } else if (new RegExp(/[1-9A-HJ-NP-Za-km-z]{32,44}/).test(to)) {
       // Check if address is base58 encoded
       const decoded = bs58.decode(to)

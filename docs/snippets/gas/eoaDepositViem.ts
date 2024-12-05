@@ -23,57 +23,84 @@ const amount: bigint = parseEther('0.0006')
 // This example is targeting zkSync (51), Polygon zkEVM (52)
 const gasZipShortChainIDs = [51, 52]
 
+// Helper functions for address type checking
+function isEVMAddress(address: string): boolean {
+  return address.length === 42
+}
+
+function isMOVEAddress(address: string): boolean {
+  return address.length === 66
+}
+
+function isXRPAddress(address: string): boolean {
+  return new RegExp(/r[0-9a-zA-Z]{24,34}/).test(address)
+}
+
+function isBase58Address(address: string): boolean {
+  return new RegExp(/[1-9A-HJ-NP-Za-km-z]{32,44}/).test(address)
+}
+
+// Helper functions for address encoding
+function encodeEVMAddress(address: string): string {
+  return '02' + address.slice(2)
+}
+
+function encodeMOVEAddress(address: string): string {
+  return '04' + address.slice(2)
+}
+
+function encodeXRPAddress(address: string): string {
+  const decoded = bs58.decode(address)
+  return '05' + Buffer.from(decoded).toString('hex')
+}
+
+function encodeSolanaAddress(address: string): string {
+  const decoded = bs58.decode(address)
+  return '03' + Buffer.from(decoded).toString('hex')
+}
+
+function encodeBase58EVMAddress(hexaddr: string): string {
+  return '02' + hexaddr.slice(2).slice(0, hexaddr.length - 10)
+}
+
+function encodeOtherBase58Address(hexaddr: string): string {
+  return '03' + hexaddr.slice(0, hexaddr.length - 8)
+}
+
+function encodeChainIds(shorts: number[]): string {
+  return shorts.reduce((acc, short) => acc + toHex(short).slice(2).padStart(4, '0'), '')
+}
+
 const encodeTransactionInput = (to: string, shorts: number[]) => {
   let data = '0x'
-  // Check if sending to a different address than the sender
-  if (to.toLowerCase() !== account.address?.toLowerCase()) {
-    if (to.length === 42) {
-      // EVM address format (0x + 40 hex chars)
-      data += '02' // EVM address type
-      data += to.slice(2) // Remove 0x prefix
-    } else if (to.length === 66) {
-      // MOVE/FUEL address format (0x + 64 hex chars)
-      data += '04' // MOVE/FUEL address type
-      data += to.slice(2) // Remove 0x prefix
-    } else if (new RegExp(/r[0-9a-zA-Z]{24,34}/).test(to)) {
-      // XRP address format
-      data += '05' // XRP address type
-      const decoded = bs58.decode(to)
-      data += Buffer.from(decoded).toString('hex')
-    } else if (new RegExp(/[1-9A-HJ-NP-Za-km-z]{32,44}/).test(to)) {
-      // Check if address is base58 encoded
-      const decoded = bs58.decode(to)
-      if (decoded.length === 32 && PublicKey.isOnCurve(to)) {
-        // Solana address (32 bytes, validates on curve)
-        data += '03' // Solana address type
-        data += Buffer.from(decoded).toString('hex')
-      } else {
-        // Handle other base58 encoded addresses
-        const hexaddr = Buffer.from(decoded).toString('hex')
-        if (hexaddr.length === 50) {
-          // Base58 encoded EVM address
-          data += '02' // EVM address type
-          data += hexaddr.slice(2).slice(0, hexaddr.length - 10)
-        } else {
-          // Other base58 format (e.g. Tron)
-          data += '03' // Base58 address type
-          data += hexaddr.slice(0, hexaddr.length - 8)
-        }
-      }
+
+  // Return early if sending to self
+  if (to.toLowerCase() === account.address?.toLowerCase()) 
+    return data + '01' + encodeChainIds(shorts)
+
+  // Handle different address types
+  if (isEVMAddress(to)) 
+    data += encodeEVMAddress(to)
+  else if (isMOVEAddress(to)) 
+    data += encodeMOVEAddress(to)
+  else if (isXRPAddress(to)) 
+    data += encodeXRPAddress(to)
+  else if (isBase58Address(to)) {
+    const decoded = bs58.decode(to)
+    
+    if (decoded.length === 32 && PublicKey.isOnCurve(to)) {
+      data += encodeSolanaAddress(to)
     } else {
-      // Invalid address format
-      return null
+      const hexaddr = Buffer.from(decoded).toString('hex')
+      data += hexaddr.length === 50 
+        ? encodeBase58EVMAddress(hexaddr)
+        : encodeOtherBase58Address(hexaddr)
     }
   } else {
-    // Sending to self (msg.sender)
-    data += '01'
+    return null // Invalid address format
   }
 
-  for (const i in shorts) {
-    data += toHex(shorts[i]).slice(2).padStart(4, '0')
-  }
-
-  return data
+  return data + encodeChainIds(shorts)
 }
 
 const txData = encodeTransactionInput(toAddress, gasZipShortChainIDs)

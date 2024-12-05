@@ -20,7 +20,6 @@ const client = createWalletClient({
 // - EVM: 0x... (42 chars)
 // - Solana: Base58 string (32-44 chars, validates on curve)
 // - MOVE/FUEL: 0x... (66 chars)
-// - XRP: r... (25-35 chars)
 // - Or leave as account.address to send to self
 const toAddress = account.address
 
@@ -39,10 +38,6 @@ function isMOVEAddress(address: string): boolean {
   return address.length === 66
 }
 
-function isXRPAddress(address: string): boolean {
-  return new RegExp(/r[0-9a-zA-Z]{24,34}/).test(address)
-}
-
 function isBase58Address(address: string): boolean {
   return new RegExp(/[1-9A-HJ-NP-Za-km-z]{32,44}/).test(address)
 }
@@ -54,11 +49,6 @@ function encodeEVMAddress(address: string): string {
 
 function encodeMOVEAddress(address: string): string {
   return '04' + address.slice(2)
-}
-
-function encodeXRPAddress(address: string): string {
-  const decoded = bs58.decode(address)
-  return '05' + Buffer.from(decoded).toString('hex')
 }
 
 function encodeSolanaAddress(address: string): string {
@@ -87,7 +77,6 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
   // Handle different address types
   if (isEVMAddress(to)) data += encodeEVMAddress(to)
   else if (isMOVEAddress(to)) data += encodeMOVEAddress(to)
-  else if (isXRPAddress(to)) data += encodeXRPAddress(to)
   else if (isBase58Address(to)) {
     const decoded = bs58.decode(to)
 

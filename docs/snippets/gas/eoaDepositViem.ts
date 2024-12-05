@@ -16,7 +16,12 @@ const client = createWalletClient({
   transport: http(),
 }).extend(publicActions)
 
-// Replace with address you want to send funds to
+// Replace with the destination address. Supported formats:
+// - EVM: 0x... (42 chars)
+// - Solana: Base58 string (32-44 chars, validates on curve)
+// - MOVE/FUEL: 0x... (66 chars)
+// - XRP: r... (25-35 chars)
+// - Or leave as account.address to send to self
 const toAddress = account.address
 
 // Each chain will receive an equal portion of the value sent
@@ -77,26 +82,20 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
   let data = '0x'
 
   // Return early if sending to self
-  if (to.toLowerCase() === account.address?.toLowerCase()) 
-    return data + '01' + encodeChainIds(shorts)
+  if (to.toLowerCase() === account.address?.toLowerCase()) return data + '01' + encodeChainIds(shorts)
 
   // Handle different address types
-  if (isEVMAddress(to)) 
-    data += encodeEVMAddress(to)
-  else if (isMOVEAddress(to)) 
-    data += encodeMOVEAddress(to)
-  else if (isXRPAddress(to)) 
-    data += encodeXRPAddress(to)
+  if (isEVMAddress(to)) data += encodeEVMAddress(to)
+  else if (isMOVEAddress(to)) data += encodeMOVEAddress(to)
+  else if (isXRPAddress(to)) data += encodeXRPAddress(to)
   else if (isBase58Address(to)) {
     const decoded = bs58.decode(to)
-    
+
     if (decoded.length === 32 && PublicKey.isOnCurve(to)) {
       data += encodeSolanaAddress(to)
     } else {
       const hexaddr = Buffer.from(decoded).toString('hex')
-      data += hexaddr.length === 50 
-        ? encodeBase58EVMAddress(hexaddr)
-        : encodeOtherBase58Address(hexaddr)
+      data += hexaddr.length === 50 ? encodeBase58EVMAddress(hexaddr) : encodeOtherBase58Address(hexaddr)
     }
   } else {
     return null // Invalid address format
@@ -105,7 +104,7 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
   return data + encodeChainIds(shorts)
 }
 
-(async () => {
+;(async () => {
   const txData = encodeTransactionInput(toAddress, gasZipShortChainIDs)
 
   if (!txData || !txData.startsWith('0x')) {
@@ -115,7 +114,7 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
   const hash = await client.sendTransaction({
     to: EOA_DEPOSIT_ADDRESS,
     value: amount,
-    data: txData as `0x${string}`, 
+    data: txData as `0x${string}`,
   })
 
   console.log('Transaction hash:', hash)

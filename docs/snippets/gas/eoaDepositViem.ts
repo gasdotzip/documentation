@@ -4,6 +4,8 @@ import { PublicKey } from '@solana/web3.js'
 import { optimism } from 'viem/chains'
 import bs58 from 'bs58'
 
+const EOA_DEPOSIT_ADDRESS = '0x391E7C679d29bD940d63be94AD22A25d25b5A604'
+
 // Create a wallet from a private key
 const account = privateKeyToAccount('0x...')
 
@@ -103,13 +105,18 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
   return data + encodeChainIds(shorts)
 }
 
-const txData = encodeTransactionInput(toAddress, gasZipShortChainIDs)
+(async () => {
+  const txData = encodeTransactionInput(toAddress, gasZipShortChainIDs)
 
-;(async () => {
-  // Prepare the contract write configuration
+  if (!txData || !txData.startsWith('0x')) {
+    throw new Error('Invalid transaction data')
+  }
+
   const hash = await client.sendTransaction({
-    address: '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
+    to: EOA_DEPOSIT_ADDRESS,
     value: amount,
-    data: txData,
+    data: txData as `0x${string}`, 
   })
+
+  console.log('Transaction hash:', hash)
 })()

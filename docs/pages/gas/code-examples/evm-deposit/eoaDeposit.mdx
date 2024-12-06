@@ -19,9 +19,10 @@ The first byte of calldata defines how the 'to' address will be parsed. Only one
 
 - 01: Send to msg.sender
 - 02: Send to the next 20 bytes as an EVM address
-- 03: Send to the next 32 bytes as a SVM (Solana/Eclipse etc) address
+- 03: Send to the next 32 bytes as a SVM (Solana/Eclipse etc) address / Tron address
 - 04: Send to the next 32 bytes as a MOVE/FUEL address
 - 05: Send to XRP address (decoded from Base58)
+- 06: Send to Initia address (decoded from Bech32)
 
 Address Format Detection:
 
@@ -30,13 +31,11 @@ Address Format Detection:
 - MOVE/FUEL addresses: 66 characters (0x prefix + 64 hex chars)
 - Tron addresses: Base58 string that decodes to a specific format
 - XRP addresses: Base58 string starting with 'r' followed by 24-34 alphanumeric characters
+- Initia addresses: Bech32 string starting with 'init' followed by 39 alphanumeric characters
 
 Example:
 
 - `0x010035` - Send to msg.sender on Arbitrum (chain ID 53)
-
-Ensure the correct address type is used for the intended chain.
-
 </Callout>
 
 :::code-group

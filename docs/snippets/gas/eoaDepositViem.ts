@@ -1,5 +1,6 @@
 import { parseEther, http, createWalletClient, publicActions, toHex } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
+import bech32Converting from 'bech32-converting'
 import { PublicKey } from '@solana/web3.js'
 import { optimism } from 'viem/chains'
 import bs58 from 'bs58'
@@ -46,13 +47,13 @@ function isXRPAddress(address: string): boolean {
   return new RegExp(/r[0-9a-zA-Z]{24,34}/).test(address)
 }
 
+function isInitiaAddress(address: string): boolean {
+  return /^init[a-zA-Z0-9]{39}$/.test(address)
+}
+
 // Helper functions for address encoding
 function encodeEVMAddress(address: string): string {
   return '02' + address.slice(2)
-}
-
-function encodeMOVEAddress(address: string): string {
-  return '04' + address.slice(2)
 }
 
 function encodeSolanaAddress(address: string): string {
@@ -68,9 +69,18 @@ function encodeOtherBase58Address(hexaddr: string): string {
   return '03' + hexaddr.slice(0, hexaddr.length - 8)
 }
 
+function encodeMOVEAddress(address: string): string {
+  return '04' + address.slice(2)
+}
+
 function encodeXRPAddress(address: string): string {
   const decoded = bs58.decode(address)
   return '05' + Buffer.from(decoded).toString('hex')
+}
+
+export function encodeInitiaAddress(bech32Address: string): string {
+  const hexAddress = bech32Converting('init').toHex(bech32Address)
+  return `06${hexAddress.slice(2)}`
 }
 
 function encodeChainIds(shorts: number[]): string {
@@ -87,7 +97,8 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
   if (isEVMAddress(to)) data += encodeEVMAddress(to)
   else if (isMOVEAddress(to)) data += encodeMOVEAddress(to)
   else if (isXRPAddress(to)) data += encodeXRPAddress(to)
-  else if (isBase58Address(to)) {
+  else if (isInitiaAddress(to)) { data += encodeInitiaAddress(to)
+  } else if (isBase58Address(to)) {
     const decoded = bs58.decode(to)
 
     if (decoded.length === 32 && PublicKey.isOnCurve(to)) {

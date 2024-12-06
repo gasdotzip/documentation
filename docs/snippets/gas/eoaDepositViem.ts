@@ -3,6 +3,7 @@ import { privateKeyToAccount } from 'viem/accounts'
 import bech32Converting from 'bech32-converting'
 import { PublicKey } from '@solana/web3.js'
 import { optimism } from 'viem/chains'
+import basex from 'base-x'
 import bs58 from 'bs58'
 
 const EOA_DEPOSIT_ADDRESS = '0x391E7C679d29bD940d63be94AD22A25d25b5A604'
@@ -73,9 +74,10 @@ function encodeMOVEAddress(address: string): string {
   return '04' + address.slice(2)
 }
 
-function encodeXRPAddress(address: string): string {
-  const decoded = bs58.decode(address)
-  return '05' + Buffer.from(decoded).toString('hex')
+export function encodeXRPAddress(address: string): string {
+  const xrpb58 = basex('rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz')
+  const decoded = xrpb58.decode(address)
+  return `05${Buffer.from(decoded).toString('hex')}`
 }
 
 export function encodeInitiaAddress(bech32Address: string): string {
@@ -97,7 +99,8 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
   if (isEVMAddress(to)) data += encodeEVMAddress(to)
   else if (isMOVEAddress(to)) data += encodeMOVEAddress(to)
   else if (isXRPAddress(to)) data += encodeXRPAddress(to)
-  else if (isInitiaAddress(to)) { data += encodeInitiaAddress(to)
+  else if (isInitiaAddress(to)) {
+    data += encodeInitiaAddress(to)
   } else if (isBase58Address(to)) {
     const decoded = bs58.decode(to)
 

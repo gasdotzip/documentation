@@ -42,6 +42,10 @@ function isBase58Address(address: string): boolean {
   return new RegExp(/[1-9A-HJ-NP-Za-km-z]{32,44}/).test(address)
 }
 
+function isXRPAddress(address: string): boolean {
+  return new RegExp(/r[0-9a-zA-Z]{24,34}/).test(address)
+}
+
 // Helper functions for address encoding
 function encodeEVMAddress(address: string): string {
   return '02' + address.slice(2)
@@ -64,6 +68,11 @@ function encodeOtherBase58Address(hexaddr: string): string {
   return '03' + hexaddr.slice(0, hexaddr.length - 8)
 }
 
+function encodeXRPAddress(address: string): string {
+  const decoded = bs58.decode(address)
+  return '05' + Buffer.from(decoded).toString('hex')
+}
+
 function encodeChainIds(shorts: number[]): string {
   return shorts.reduce((acc, short) => acc + toHex(short).slice(2).padStart(4, '0'), '')
 }
@@ -77,6 +86,7 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
   // Handle different address types
   if (isEVMAddress(to)) data += encodeEVMAddress(to)
   else if (isMOVEAddress(to)) data += encodeMOVEAddress(to)
+  else if (isXRPAddress(to)) data += encodeXRPAddress(to)
   else if (isBase58Address(to)) {
     const decoded = bs58.decode(to)
 

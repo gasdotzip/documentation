@@ -1,0 +1,32 @@
+import { Callout } from 'vocs/components'
+
+# Code Example for Solana Deposit
+
+Below are example implementations for setting up and executing deposits into the Gas.zip Solana deposit program.
+
+Deposits using the Solana method must include instruction data defining the output chains and destination address.
+Use the example code for an up-to-date spec of how to format the instruction data.
+
+<Callout type="info">
+The instruction data format consists of:
+- Program discriminator (8 bytes)
+- Value in lamports (u64) 
+- Array of destination chain IDs (vec\<u16\>)
+- Destination address (32 bytes)
+
+The destination address will be interpreted based on the first byte:
+
+- 0x01: EVM address (20 bytes padded to 32)
+- 0x02: Solana address (32 bytes)
+</Callout>
+
+:::code
+
+```ts twoslash [typescript]
+// @experimentalDecorators: true
+// @emitDecoratorMetadata: true
+// ---cut---
+// [!include ~/snippets/gas/depositSolana.ts]
+```
+
+:::

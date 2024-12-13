@@ -1,0 +1,110 @@
+import { Callout } from 'vocs/components'
+
+# Code Example for EOA Deposit
+
+Below are example implementations for setting up and executing deposits into the Gas.zip V2 EOA Deposit address.
+
+Deposits using the EOA method must include calldata defining the output chains.
+Use the example code for an up-to-date spec of how to format the calldata.
+
+For a list of all supported chains for EOA deposits, please refer to the [EOA Deposit Supported Chains](/gas/chain-support/inbound#eoa-deposit) section.
+
+<Callout type="warning">
+  Deposits using this method MUST be a high-level transaction sending directly to the EOA. For integrators looking to
+  deposit with a low-level call, please use the [Contract Deposit](/gas/code-examples/evm-deposit/contractDeposit)
+</Callout>
+
+<Callout type="info">
+The first byte of calldata defines how the 'to' address will be parsed. Only one address type can be used per transaction:
+
+- 01: Send to msg.sender
+- 02: Send to the next 20 bytes as an EVM address
+- 03: Send to the next 32 bytes as a SVM (Solana/Eclipse etc) address / Tron address
+- 04: Send to the next 32 bytes as a MOVE/FUEL address
+- 05: Send to XRP address (decoded from Base58)
+- 06: Send to Initia address (decoded from Bech32)
+
+Address Format Detection:
+
+- EVM addresses: 42 characters (0x prefix + 40 hex chars)
+- SVM addresses: Base58 string that decodes to 32 bytes and validates on curve
+- MOVE/FUEL addresses: 66 characters (0x prefix + 64 hex chars)
+- Tron addresses: Base58 string that decodes to a specific format
+- XRP addresses: Base58 string starting with 'r' followed by 24-34 alphanumeric characters
+- Initia addresses: Bech32 string starting with 'init' followed by 39 alphanumeric characters
+
+Example:
+
+- `0x010035` - Send to msg.sender on Arbitrum (chain ID 53)
+</Callout>
+
+:::code-group
+
+```ts twoslash [viem]
+// @filename: ./depositABI.ts
+// ---cut---
+// [!include ~/snippets/gas/eoaDepositViem.ts]
+```
+
+```python [python]
+from web3 import Web3, HTTPProvider
+import re
+import base58
+
+w3 = Web3(HTTPProvider('https://opt-mainnet.g.alchemy.com/'))
+
+# Each chain will receive an equal portion of the value sent
+amount_in_wei = Web3.to_wei(0.0006, 'ether')
+
+# This example is targeting zkSync (51), Polygon zkEVM (52)
+gas_zip_short_chain_ids = [51, 52]
+
+# Create a wallet from a private key
+private_key = '0x...'
+account = w3.eth.account.from_key(private_key)
+nonce = w3.eth.get_transaction_count(account.address)
+
+# Replace with address you want to send funds to
+to_address = account.address
+
+def encode_data(to, shorts: list[int]) -> str:
+    data = '0x'
+    if to != None:
+        if Web3.is_address(to):
+            data += '02' # evm address
+            data += to[2:]
+        elif re.match('/[1-9A-HJ-NP-Za-km-z]{32,44}/', to):
+            data += '03' # sol address
+            data += base58.b58decode(to).hex()
+        else:
+            return None
+    else:
+        data += '01' # to == sender
+
+    for short in shorts:
+        data += hex(short)[2:].zfill(4)
+
+    return data
+
+tx_data = encode_data(to_address, gas_zip_short_chain_ids)
+
+# Create the txn
+txn = {
+    "gasPrice": w3.eth.gas_price,
+    "data": tx_data,
+    "nonce": w3.eth.get_transaction_count(account.address),
+    "to": "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    "value": amount_in_wei,
+    "chainId": 1900,
+}
+txn['gas'] = w3.eth.estimate_gas(txn)
+
+# Sign the transaction
+signed_txn = w3.eth.account.sign_transaction(txn, private_key)
+
+# Send the transaction
+transaction_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+print(f'Transaction sent with hash: {transaction_hash.hex()}')
+```
+
+:::

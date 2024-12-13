@@ -103,7 +103,12 @@ export default defineConfig({
           link: '/gas/overview',
         },
         {
+          text: 'URL Parameters',
+          link: '/gas/url-parameters',
+        },
+        {
           text: 'Chain Support',
+          collapsed: false,
           items: [
             {
               text: 'Inbound',

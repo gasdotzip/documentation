@@ -17,7 +17,7 @@ interface Chains {
 // [!endregion chains]
 
 // [!region status]
-type Status = 'SEEN' | 'PENDING' | 'CONFIRMED'
+type Status = 'SEEN' | 'PENDING' | 'CONFIRMED' | 'PRIORITY' | 'CANCELLED'
 // [!endregion status]
 
 // [!region deposit]

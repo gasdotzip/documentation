@@ -174,6 +174,10 @@ export default defineConfig({
               link: '/gas/api/outbound',
             },
             {
+              text: 'Search',
+              link: '/gas/api/search',
+            },
+            {
               text: 'Quote',
               link: '/gas/api/quote',
             },

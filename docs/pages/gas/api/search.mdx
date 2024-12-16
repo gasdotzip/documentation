@@ -1,0 +1,17 @@
+## Search
+
+> This route can be used to search for either an outbound transaction or a deposit transaction. It provides the live status and details of a given outbound transaction as well as its corresponding deposit details.
+
+`https://backend.gas.zip/v2/search/<hash>`
+
+### Schema
+
+```ts
+// [!include ~/snippets/gas/types/types.ts:status]
+
+// [!include ~/snippets/gas/types/types.ts:transactionStatusData]
+
+// [!include ~/snippets/gas/types/types.ts:deposit]
+
+// [!include ~/snippets/gas/types/types.ts:transaction]
+```

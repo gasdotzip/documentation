@@ -41,12 +41,14 @@ interface Transaction {
   chain: number
   hash: string
   nonce: number
+  refund: boolean
+  cancelled: boolean
   signer: string
   status: Status
   time: number
   to: string
   usd: number
-  value: string
+  value: number
 }
 // [!endregion transaction]
 

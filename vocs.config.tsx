@@ -185,6 +185,10 @@ export default defineConfig({
               text: 'Quote Reverse',
               link: '/gas/api/quoteReverse',
             },
+            {
+              text: 'Call Data Builder',
+              link: '/gas/api/callData',
+            },
           ],
         },
       ],

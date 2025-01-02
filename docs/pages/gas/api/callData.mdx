@@ -1,0 +1,56 @@
+import { Callout } from 'vocs/components'
+
+## Calldata Builder
+
+> This route extends the quote endpoint to provide ready-to-use calldata for your transaction.
+
+```
+https://backend.gas.zip/v2/quotes/<deposit_chain>/<deposit_wei>/<outbound_chains>?to=<address>&from=<address>
+```
+
+### Parameters
+
+- `to`: (Required) The destination address that will receive the bridged funds
+- `from`: (Optional) The source address sending the transaction
+
+<Callout type="info">
+Example request:
+```
+https://backend.gas.zip/v2/quotes/42161/11000000000000000/501474?from=0x4c968f6bEecf1906710b08e8B472b8Ba6E75F957&to=gasZT2bpe7mxu5wMgQbvry84vok5CuF2huCEokyC3qh
+```
+</Callout>
+
+### Response
+
+```typescript
+interface CalldataQuoteResponse {
+  calldata: string
+  quotes: {
+    chain: number
+    expected: string 
+    gas: string
+    speed: number
+    usd: number
+  }[]
+}
+```
+
+Example Response:
+```json
+{
+  "calldata": "0x030a23f34efcd2d9f1a203e0c65a2b3d63570927c761bc55e8f97f5100e1abe56800f5",
+  "quotes": [
+    {
+      "chain": 501474,
+      "expected": 182318696228826016,
+      "gas": 0,
+      "speed": 4,
+      "usd": 37.752732428103
+    }
+  ]
+}
+```
+
+<Callout type="warning">
+The returned calldata can be used directly in your transaction without additional encoding.
+</Callout>

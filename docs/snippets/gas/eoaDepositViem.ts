@@ -39,7 +39,7 @@ async function getCalldata({
   if (!response.ok) throw new Error('Failed to fetch calldata')
   
   const data = await response.json()
-  return data.calldata as `0x${string}`
+  return data.calldata 
 }
 
 ;(async () => {

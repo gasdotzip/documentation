@@ -87,3 +87,16 @@ interface Quote {
   ]
 }
 // [!endregion quote]
+
+// [!region calldataQuoteResponse]
+interface CalldataQuoteResponse {
+  calldata: string
+  quotes: {
+    chain: number
+    expected: string
+    gas: string
+    speed: number
+    usd: number
+  }[]
+}
+// [!endregion calldataQuoteResponse]

@@ -14,14 +14,7 @@ https://backend.gas.zip/v2/quotes/<deposit_chain>/<deposit_wei>/<outbound_chains
 - `deposit_wei`: The amount of native currency to deposit in wei
 - `to`: The destination address that will receive the bridged funds
 - `from`: (Optional) The source address sending the transaction
-- `outbound_chains`: Comma-separated list of native chain IDs (e.g., "42161,10" for Arbitrum and Optimism)
-
-<Callout type="info">
-Example request with multiple outbound chains:
-```
-https://backend.gas.zip/v2/quotes/1/11000000000000000/42161,10?to=0x7Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc9
-```
-</Callout>
+- `outbound_chains`: Comma-separated list of native chain IDs (e.g., [42161,10] for Arbitrum and Optimism)
 
 <Callout type="info">
 Example request with a single outbound chain:
@@ -30,19 +23,18 @@ https://backend.gas.zip/v2/quotes/1/600000000000000/42161?to=0x7Ed2A81B7054Dc5D3
 ```
 </Callout>
 
+<Callout type="info">
+Example request with multiple outbound chains:
+```
+https://backend.gas.zip/v2/quotes/1/11000000000000000/42161,10?to=0x7Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc9
+```
+</Callout>
+
+
 ### Response
 
-```typescript
-interface CalldataQuoteResponse {
-  calldata: string
-  quotes: {
-    chain: number
-    expected: string
-    gas: string
-    speed: number
-    usd: number
-  }[]
-}
+```ts
+// [!include ~/snippets/gas/types/types.ts:calldataQuoteResponse]
 ```
 
 Example Response:
@@ -99,13 +91,6 @@ Example Response (Single Outbound):
   ]
 }
 ```
-
-<Callout type="info">
-The calldata format follows this structure:
-- `0x02` - EVM address identifier
-- `<address>` - Destination address
-- `<chain_ids>` - Encoded chain IDs
-</Callout>
 
 <Callout type="warning">
 The returned calldata can be used directly in your transaction without additional encoding.

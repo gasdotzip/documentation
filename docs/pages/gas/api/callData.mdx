@@ -10,13 +10,23 @@ https://backend.gas.zip/v2/quotes/<deposit_chain>/<deposit_wei>/<outbound_chains
 
 ### Parameters
 
-- `to`: (Required) The destination address that will receive the bridged funds
+- `deposit_chain`: The native chain ID of the deposit
+- `deposit_wei`: The amount of native currency to deposit in wei
+- `to`: The destination address that will receive the bridged funds
 - `from`: (Optional) The source address sending the transaction
+- `outbound_chains`: Comma-separated list of native chain IDs (e.g., "42161,10" for Arbitrum and Optimism)
 
 <Callout type="info">
-Example request:
+Example request with multiple outbound chains:
 ```
-https://backend.gas.zip/v2/quotes/42161/11000000000000000/501474?from=0x4c968f6bEecf1906710b08e8B472b8Ba6E75F957&to=gasZT2bpe7mxu5wMgQbvry84vok5CuF2huCEokyC3qh
+https://backend.gas.zip/v2/quotes/1/11000000000000000/42161,10?to=0x7Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc9
+```
+</Callout>
+
+<Callout type="info">
+Example request with a single outbound chain:
+```
+https://backend.gas.zip/v2/quotes/1/600000000000000/42161?to=0x7Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc9
 ```
 </Callout>
 
@@ -27,7 +37,7 @@ interface CalldataQuoteResponse {
   calldata: string
   quotes: {
     chain: number
-    expected: string 
+    expected: string
     gas: string
     speed: number
     usd: number
@@ -50,6 +60,51 @@ Example Response:
   ]
 }
 ```
+
+Example Response with Multiple Outbounds:
+```json
+{
+  "calldata": "0x027Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc900390037",
+  "quotes": [
+    {
+      "chain": 42161,
+      "expected": "5498052599999999",
+      "gas": "847400000000",
+      "speed": 7,
+      "usd": 19.008707498
+    },
+    {
+      "chain": 10,
+      "expected": "5498878990738999",
+      "gas": "21009261000",
+      "speed": 8,
+      "usd": 19.008707498
+    }
+  ]
+}
+```
+
+Example Response (Single Outbound):
+```json
+{
+  "calldata": "0x010039",
+  "quotes": [
+    {
+      "chain": 42161,
+      "expected": "599131010000000",
+      "gas": "868990000000",
+      "speed": 7,
+      "usd": 2.078004
+    }
+  ]
+}
+
+<Callout type="info">
+The calldata format follows this structure:
+- `0x02` - EVM address identifier
+- `<address>` - Destination address
+- `<chain_ids>` - Encoded chain IDs
+</Callout>
 
 <Callout type="warning">
 The returned calldata can be used directly in your transaction without additional encoding.

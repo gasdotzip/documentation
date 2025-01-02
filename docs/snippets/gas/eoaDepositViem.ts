@@ -18,7 +18,7 @@ const client = createWalletClient({
 const toAddress = account.address
 
 const amount: bigint = parseEther('0.0006')
-const gasZipShortChainIDs = [51, 52] // zkSync (51), Polygon zkEVM (52)
+const outboundChains = [42161,10] // Arbitrum (42161), Optimism (10)
 
 async function getCalldata({ 
   fromAddress, 
@@ -34,7 +34,7 @@ async function getCalldata({
   const chainIdsStr = chainIds.join(',')
   // For CallData API documentation, see: https://docs.gas.zip/gas/api/calldata
   const url = `https://backend.gas.zip/v2/quotes/${optimism.id}/${amount}/${chainIdsStr}?from=${fromAddress}&to=${toAddress}`
-  
+
   const response = await fetch(url)
   if (!response.ok) throw new Error('Failed to fetch calldata')
   
@@ -47,7 +47,7 @@ async function getCalldata({
     fromAddress: account.address,
     toAddress,
     amount,
-    chainIds: gasZipShortChainIDs
+    chainIds: outboundChains
   })
 
   const hash = await client.sendTransaction({

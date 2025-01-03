@@ -2,20 +2,23 @@
 layout: docs
 ---
 
+import { inboundChains } from '../../../data/gas/inboundChains'
+
+
 # Overview
 
 Comprehensive guides and documentation to help you start working with the Gas.zip gas reloader as quickly as possible. Learn how to interact with Gas.zip contracts on-chain and get detailed information about supported chains and code examples.
 
-## <a href="./gas">Gas.zip</a>
+## <a href="./gas/overview">Gas.zip</a>
 
 Gas.zip is the fastest one-stop gas refuel bridge for over 300+ chains and counting. Users can instantly bridge to multiple destination blockchains with a single inbound transaction.
 
-Gas.zip has both a deposit contract and an EOA deposit address deployed on:
+Gas.zip has both a Deposit Contract and an Direct Deposit address deployed on:
 
-APE, Arbitrum, Avalanche, Base, Blast, BSC, Ethereum, Fantom, Gnosis, Gravity, Linea, Lisk, Mantle, Metis, Mode, Morph, Optimism, Polygon, Scroll, Solana, Taiko, World Chain, X Layer, zkSync, and Zora.
+{inboundChains.map(chain => chain.name).join(', ')}.
 
 Each deposit is split and instantly settled across all selected destination chains.
 
-## <a href="./layerzero">Gas.zip LayerZero</a>
+## <a href="./layerzero/overview">Gas.zip LayerZero</a>
 
 Gas.zip LayerZero is a gas refuel bridge for all 40+ supported LayerZero chains. It uses the LayerZero v2 protocols native gas refuel function, allowing users to bridge native gas across the LayerZero network. Users can bridge to all 40+ supported LayerZero chains with a single inbound transaction. Each selected destination chain is its own unique LayerZero transaction.

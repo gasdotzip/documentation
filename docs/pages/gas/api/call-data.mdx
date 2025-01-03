@@ -3,6 +3,12 @@ import { Callout } from 'vocs/components'
 ## Calldata Builder
 
 > This route extends the quote endpoint to provide ready-to-use calldata for your transaction.
+> The calldata is formatted as a hex string, which can be used directly in your transaction without additional encoding.
+
+<Callout type="warning">
+  Warning: This method only works for the v2 Direct deposits method. For contract deposits, see the [Contract
+  Deposit](/gas/code-examples/evm-deposit/contract-deposit) methods.
+</Callout>
 
 ```
 https://backend.gas.zip/v2/quotes/<deposit_chain>/<deposit_wei>/<outbound_chains>?to=<address>&from=<address>
@@ -13,23 +19,25 @@ https://backend.gas.zip/v2/quotes/<deposit_chain>/<deposit_wei>/<outbound_chains
 - `deposit_chain`: The native chain ID of the deposit
 - `deposit_wei`: The amount of native currency to deposit in wei
 - `to`: The destination address that will receive the bridged funds
-- `from`: (Optional) The source address sending the transaction
 - `outbound_chains`: Comma-separated list of native chain IDs (e.g., [42161,10] for Arbitrum and Optimism)
-
-<Callout type="info">
-Example request with a single outbound chain:
-```
-https://backend.gas.zip/v2/quotes/1/600000000000000/42161?to=0x7Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc9
-```
+- `from`: (Optional) The source address sending the transaction 
+<Callout type='note'>
+  If targeting the same outbound address as the deposit address, the `from` parameter is recommended to save on gas fees via calldata construction
 </Callout>
 
 <Callout type="info">
-Example request with multiple outbound chains:
-```
-https://backend.gas.zip/v2/quotes/1/11000000000000000/42161,10?to=0x7Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc9
-```
+  Example request with a single outbound chain: 
+  ```
+  https://backend.gas.zip/v2/quotes/1/600000000000000/42161?to=0x7Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc9&from=0x7Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc9
+  ```
 </Callout>
 
+<Callout type="info">
+  Example request with multiple outbound chains: 
+  ```
+  https://backend.gas.zip/v2/quotes/1/11000000000000000/42161,10?to=0x7Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc9&from=0x7Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc9
+  ```
+</Callout>
 
 ### Response
 
@@ -38,6 +46,7 @@ https://backend.gas.zip/v2/quotes/1/11000000000000000/42161,10?to=0x7Ed2A81B7054
 ```
 
 Example Response:
+
 ```json
 {
   "calldata": "0x030a23f34efcd2d9f1a203e0c65a2b3d63570927c761bc55e8f97f5100e1abe56800f5",
@@ -54,6 +63,7 @@ Example Response:
 ```
 
 Example Response with Multiple Outbounds:
+
 ```json
 {
   "calldata": "0x027Ed2A81B7054Dc5D393234B7a3A33B9ba125cAc900390037",
@@ -77,6 +87,7 @@ Example Response with Multiple Outbounds:
 ```
 
 Example Response (Single Outbound):
+
 ```json
 {
   "calldata": "0x010039",
@@ -93,5 +104,5 @@ Example Response (Single Outbound):
 ```
 
 <Callout type="warning">
-The returned calldata can be used directly in your transaction without additional encoding.
+  The returned calldata can be used directly in your transaction without additional encoding.
 </Callout>

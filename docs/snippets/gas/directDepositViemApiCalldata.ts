@@ -2,7 +2,7 @@ import { parseEther, http, createWalletClient, publicActions } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 import { optimism } from 'viem/chains'
 
-const EOA_DEPOSIT_ADDRESS = '0x391E7C679d29bD940d63be94AD22A25d25b5A604'
+const DIRECT_DEPOSIT_ADDRESS = '0x391E7C679d29bD940d63be94AD22A25d25b5A604'
 
 // Create a wallet from a private key
 const account = privateKeyToAccount('0x...')
@@ -18,13 +18,13 @@ const client = createWalletClient({
 const toAddress = account.address
 
 const amount: bigint = parseEther('0.0006')
-const outboundChains = [42161,10] // Arbitrum (42161), Optimism (10)
+const outboundChains = [42161, 10] // Arbitrum (42161), Optimism (10) - These are native chain IDs
 
-async function getCalldata({ 
-  fromAddress, 
-  toAddress, 
-  amount, 
-  chainIds 
+async function getCalldata({
+  fromAddress,
+  toAddress,
+  amount,
+  chainIds,
 }: {
   fromAddress: string
   toAddress: string
@@ -37,9 +37,9 @@ async function getCalldata({
 
   const response = await fetch(url)
   if (!response.ok) throw new Error('Failed to fetch calldata')
-  
+
   const data = await response.json()
-  return data.calldata 
+  return data.calldata
 }
 
 ;(async () => {
@@ -47,11 +47,11 @@ async function getCalldata({
     fromAddress: account.address,
     toAddress,
     amount,
-    chainIds: outboundChains
+    chainIds: outboundChains,
   })
 
   const hash = await client.sendTransaction({
-    to: EOA_DEPOSIT_ADDRESS,
+    to: DIRECT_DEPOSIT_ADDRESS,
     value: amount,
     data: txData,
   })

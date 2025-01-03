@@ -1,7 +1,7 @@
 import React from 'react'
-import { ChainData, ChainTableProps } from '../../types/types'
+import { ChainData, OutboundChainTableProps } from '../../types/types'
 
-const ChainTable: React.FC<ChainTableProps> = ({ chains, isLoading }) => (
+const OutboundChainTable: React.FC<OutboundChainTableProps> = ({ chains, isLoading }) => (
   <div className="w-full">
     <table className="vocs_Table w-full">
       <thead>
@@ -39,9 +39,9 @@ const ChainTable: React.FC<ChainTableProps> = ({ chains, isLoading }) => (
 )
 
 export const MainnetTable: React.FC<{ chains: ChainData[]; isLoading: boolean }> = ({ chains, isLoading }) => {
-  return <ChainTable chains={chains} isLoading={isLoading} />
+  return <OutboundChainTable chains={chains} isLoading={isLoading} />
 }
 
 export const TestnetTable: React.FC<{ chains: ChainData[]; isLoading: boolean }> = ({ chains, isLoading }) => {
-  return <ChainTable chains={chains} isLoading={isLoading} />
+  return <OutboundChainTable chains={chains} isLoading={isLoading} />
 }

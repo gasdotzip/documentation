@@ -38,11 +38,10 @@ function addressToBytes(address: string): number[] {
   if (new RegExp(/^[1-9A-HJ-NP-Za-km-z]{32,44}/).test(address)) {
     const decoded = bs58.decode(address)
     const hexaddr = Buffer.from(decoded).toString('hex')
-    
+
     // If the address is already 32 bytes (64 hex chars), convert directly
-    if (hexaddr.length === 64) 
-      return addressToBytes(`0x${hexaddr}`)
-    
+    if (hexaddr.length === 64) return addressToBytes(`0x${hexaddr}`)
+
     // Otherwise, handle as a program derived address
     const rawAddr = Buffer.from(bs58.decode(address).subarray(1)).toString('hex')
     return addressToBytes(`0x${rawAddr.substring(0, rawAddr.length - 8)}`)

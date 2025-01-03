@@ -1,10 +1,12 @@
+import { inboundChains } from '../../../data/gas/inboundChains'
+
 # Overview
 
-The Gas.zip gas refuel bridge supports over 300+ destination chains and 25 source chains. The primary function from a user's perspective is depositing, where you send native assets to a Gas.zip EOA address along with specific calldata to distribute funds among your desired destination chains.
+The Gas.zip gas refuel bridge supports over 300+ destination chains and {inboundChains.length} source chains. The primary function from a user's perspective is depositing, where you send native assets to a Gas.zip Direct Deposit address along with specific calldata to distribute funds among your desired destination chains.
 
 ## Depositing to Gas.zip (v2)
 
-Each inbound source chain has a designated EOA address that can accept the chain's native gas asset (e.g. ETH, AVAX, BNB, MATIC) between $0.25 USD and $50.00 USD. Gas uses the CoinGecko API for real-time coin price calculations.
+Each inbound source chain has a designated Direct Deposit address that can accept the chain's native gas asset (e.g. ETH, AVAX, BNB, MATIC) between $0.25 USD and $50.00 USD. Gas uses the CoinGecko API for real-time coin price calculations.
 
 :::warning
 **WARNING:** Do not send less than $0.25 USD or more than $50.00 USD **PER CHAIN** to the deposit address. Please contact us in [Discord](https://discord.gg/gasdotzip) via a support ticket if you have accidentally done so.
@@ -12,4 +14,4 @@ Each inbound source chain has a designated EOA address that can accept the chain
 
 To make a deposit, you must include calldata specifying the destination chains and target recipient address. The destination address can be different from the sending address. The destination chain IDs are **not** the native chain IDs of each blockchain, but internal IDs designated by Gas.zip. Please see [Chain Support](/gas/chain-support/outbound) for this list of chain IDs.
 
-For detailed instructions on how to integrate Gas.zip into your project, including code examples and best practices, please refer to our [Integration Guide](/gas/code-examples/evm-deposit/eoaDeposit).
+For detailed instructions on how to integrate Gas.zip into your project, including code examples and best practices, please refer to our [Integration Guide](/gas/code-examples/evm-deposit/direct-deposit).

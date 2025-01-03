@@ -128,12 +128,12 @@ export default defineConfig({
               collapsed: false,
               items: [
                 {
-                  text: 'v2: EOA Deposit',
-                  link: '/gas/code-examples/evm-deposit/eoaDeposit',
+                  text: 'v2: Direct Deposit',
+                  link: '/gas/code-examples/evm-deposit/direct-deposit',
                 },
                 {
                   text: 'v1: Contract Deposit',
-                  link: '/gas/code-examples/evm-deposit/contractDeposit',
+                  link: '/gas/code-examples/evm-deposit/contract-deposit',
                 },
               ],
             },
@@ -183,11 +183,11 @@ export default defineConfig({
             },
             {
               text: 'Quote Reverse',
-              link: '/gas/api/quoteReverse',
+              link: '/gas/api/quote-reverse',
             },
             {
-              text: 'Call Data Builder',
-              link: '/gas/api/callData',
+              text: 'Calldata Builder',
+              link: '/gas/api/call-data',
             },
           ],
         },

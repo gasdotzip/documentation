@@ -1,4 +1,4 @@
-import lzConfigData from '../../../lzConfig/lzConfigData.json'
+import lzConfigData from '../../../../data/layerzero/lzConfigData.json'
 
 export const generateTableRows = (config) => {
 const excludedChains = ['ShimmerEVM', 'Canto', 'DOS']
@@ -14,19 +14,19 @@ return filteredConfig.map(([key, value]) => {
 const displayIdV2 = unsupportedV2Ids.includes(value.idv2) ? 'Not Supported' : value.idv2
 return (
 
-<tr key={key}>
-  <td className="whitespace-nowrap capitalize">{value.name || 'Not Supported'}</td>
-  <td className="whitespace-nowrap capitalize">{value.id || 'Not Supported'}</td>
-  <td className="whitespace-nowrap capitalize">{displayIdV2}</td>
+<tr key={key} className="vocs_TableRow">
+  <td className="vocs_TableCell">{value.name || 'Not Supported'}</td>
+  <td className="vocs_TableCell">{value.id || 'Not Supported'}</td>
+  <td className="vocs_TableCell">{displayIdV2}</td>
 </tr>
 ) }) }
 
 export const generateTableHeader = () => {
   return (
     <tr>
-      <th>Chain Name</th>
-      <th>LayerZero ID v1</th>
-      <th>LayerZero ID v2</th>
+      <th className="vocs_TableHeader">Chain Name</th>
+      <th className="vocs_TableHeader">LayerZero ID v1</th>
+      <th className="vocs_TableHeader">LayerZero ID v2</th>
     </tr>
   )
 }
@@ -43,7 +43,9 @@ Below are the supported outbound destination chains and their respective chain I
 
 All current supported mainnet outbound destination chains:
 
-<table>
-  <thead>{generateTableHeader()}</thead>
-  <tbody>{generateTableRows(lzConfigData)}</tbody>
-</table>
+<div className="w-full overflow-x-auto">
+  <table className="vocs_Table w-full">
+    <thead>{generateTableHeader()}</thead>
+    <tbody>{generateTableRows(lzConfigData)}</tbody>
+  </table>
+</div>

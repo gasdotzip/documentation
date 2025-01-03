@@ -1,17 +1,18 @@
 import { Callout } from 'vocs/components'
 
-# Code Example for EOA Deposit
+# Code Example for Direct Deposit
 
-Below are example implementations for setting up and executing deposits into the Gas.zip V2 EOA Deposit address.
+Below are example implementations for setting up and executing deposits into the Gas.zip V2 Direct Deposit address.
 
-Deposits using the EOA method must include calldata defining the output chains.
+Using the Direct Deposit method must include calldata defining the output chains.
 Use the example code for an up-to-date spec of how to format the calldata.
+You can use the [Calldata API](/gas/api/call-data) to generate the calldata for you, or you can manually create the calldata. It is recommended to use the API for most use cases.
 
-For a list of all supported chains for EOA deposits, please refer to the [EOA Deposit Supported Chains](/gas/chain-support/inbound#eoa-deposit) section.
+For a list of all supported chains for Direct Deposit, please refer to the [Direct Deposit Supported Chains](/gas/chain-support/inbound#direct-deposit) section.
 
 <Callout type="warning">
-  Deposits using this method MUST be a high-level transaction sending directly to the EOA. For integrators looking to
-  deposit with a low-level call, please use the [Contract Deposit](/gas/code-examples/evm-deposit/contractDeposit)
+  Deposits using this method MUST be a high-level transaction sending directly to the Direct Deposit address. For integrators looking to
+  deposit with a low-level call, please use the [Contract Deposit](/gas/code-examples/evm-deposit/contract-deposit)
 </Callout>
 
 <Callout type="info">
@@ -41,10 +42,16 @@ Example:
 
 :::code-group
 
-```ts twoslash [viem]
+```ts twoslash [viem (with Calldata API)]
 // @filename: ./depositABI.ts
 // ---cut---
-// [!include ~/snippets/gas/eoaDepositViem.ts]
+// [!include ~/snippets/gas/directDepositViemApiCalldata.ts]
+```
+
+```ts twoslash [viem (with manual Calldata)]
+// @filename: ./depositABI.ts
+// ---cut---
+// [!include ~/snippets/gas/directDepositViemManualCalldata.ts]
 ```
 
 ```python [python]

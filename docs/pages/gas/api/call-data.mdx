@@ -45,24 +45,24 @@ https://backend.gas.zip/v2/quotes/<deposit_chain>/<deposit_wei>/<outbound_chains
 // [!include ~/snippets/gas/types/types.ts:calldataQuoteResponse]
 ```
 
-Example Response:
+#### Example Response (Single Outbound):
 
 ```json
 {
-  "calldata": "0x030a23f34efcd2d9f1a203e0c65a2b3d63570927c761bc55e8f97f5100e1abe56800f5",
+  "calldata": "0x010039",
   "quotes": [
     {
-      "chain": 501474,
-      "expected": 182318696228826016,
-      "gas": 0,
-      "speed": 4,
-      "usd": 37.752732428103
+      "chain": 42161,
+      "expected": "599131010000000",
+      "gas": "868990000000",
+      "speed": 7,
+      "usd": 2.078004
     }
   ]
 }
 ```
 
-Example Response with Multiple Outbounds:
+#### Example Response with Multiple Outbounds:
 
 ```json
 {
@@ -85,24 +85,3 @@ Example Response with Multiple Outbounds:
   ]
 }
 ```
-
-Example Response (Single Outbound):
-
-```json
-{
-  "calldata": "0x010039",
-  "quotes": [
-    {
-      "chain": 42161,
-      "expected": "599131010000000",
-      "gas": "868990000000",
-      "speed": 7,
-      "usd": 2.078004
-    }
-  ]
-}
-```
-
-<Callout type="warning">
-  The returned calldata can be used directly in your transaction without additional encoding.
-</Callout>

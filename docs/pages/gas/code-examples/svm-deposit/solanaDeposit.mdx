@@ -14,17 +14,17 @@ The instruction data format consists of:
 - Array of destination chain IDs (vec\<u16\>)
 - Destination address (32 bytes)
 
-The destination address will be interpreted based on the first byte:
-
-- 0x01: EVM address (20 bytes padded to 32)
-- 0x02: Solana address (32 bytes)
-
+The destination address handling:
+- EVM addresses: 20 bytes padded with leading zeros to 32 bytes
+- Solana addresses: 
+  - Regular addresses: Decoded from base58 to 32 bytes
+  - Program Derived Addresses (PDAs): First byte removed, last 8 bytes (bump seed) removed, padded if needed
 </Callout>
 
 <Callout type="warning">
-  EVM and alternative VM chains are supported via the provided code example. However, Initia and XRP VM types are not
-  currently supported.
+Currently supported VM types for destination chains include: EVM, Solana, Fuel, Tron, Sui, and Aptos. Other VM types (Initia, XRP, etc.) are not supported at this time.
 </Callout>
+
 
 :::code
 

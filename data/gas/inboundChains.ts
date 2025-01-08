@@ -271,4 +271,44 @@ export const inboundChains: InboundChain[] = [
       name: 'BitLayer Explorer',
     },
   },
+  {
+    name: "Sei",
+    chainId: 1329,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x3ac2cD998cB96a699f88C3C665abC767A9800cc8",
+    explorer: {
+      url: "https://seitrace.com",
+      name: "Sei Explorer"
+    }
+  },
+  {
+    name: "Celo",
+    chainId: 42220,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0xA60768b03eB14d940F6c9a8553329B7F9037C91b",
+    explorer: {
+      url: "https://celoscan.io",
+      name: "Celoscan"
+    }
+  },
+  {
+    name: "Cronos",
+    chainId: 25,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://cronoscan.com",
+      name: "Cronoscan"
+    }
+  },
+  {
+    name: "Rootstock",
+    chainId: 30,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x1a4FABce513633A9Bbb67A08c52F0CB195eb0591",
+    explorer: {
+      url: "https://explorer.rsk.co",
+      name: "RSK Explorer"
+    }
+  }
 ]

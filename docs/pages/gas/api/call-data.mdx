@@ -20,7 +20,7 @@ https://backend.gas.zip/v2/quotes/<deposit_chain>/<deposit_wei>/<outbound_chains
 - `deposit_wei`: The amount of native currency to deposit in wei
 - `to`: The destination address that will receive the bridged funds
 - `outbound_chains`: Comma-separated list of native chain IDs (e.g., [42161,10] for Arbitrum and Optimism)
-- `from`: (Optional) The source address sending the transaction 
+- `from`: (Optional) The deposit address sending the transaction 
 <Callout type='note'>
   If targeting the same outbound address as the deposit address, the `from` parameter is recommended to save on gas fees via calldata construction
 </Callout>

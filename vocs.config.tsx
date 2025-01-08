@@ -111,8 +111,8 @@ export default defineConfig({
           collapsed: false,
           items: [
             {
-              text: 'Inbound',
-              link: '/gas/chain-support/inbound',
+              text: 'Deposit',
+              link: '/gas/chain-support/deposit',
             },
             {
               text: 'Outbound',
@@ -204,8 +204,8 @@ export default defineConfig({
           text: 'Chain Support',
           items: [
             {
-              text: 'Inbound',
-              link: '/layerzero/chain-support/inbound',
+              text: 'Deposit',
+              link: '/layerzero/chain-support/deposit',
             },
             {
               text: 'Outbound',

@@ -31,7 +31,7 @@ function InboundChainTableWrapper() {
               className="vocs_Anchor vocs_Autolink"
               aria-hidden="true"
               tabIndex={-1}
-              href="/gas/chain-support/inbound#direct-deposit"
+              href="/gas/chain-support/deposit#direct-deposit"
             >
               <div
                 data-autolink-icon="true"
@@ -41,7 +41,7 @@ function InboundChainTableWrapper() {
             </a>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            Below are the supported inbound chains and their respective v2 Direct Deposit addresses.
+            Below are the supported deposit chains and their respective v2 Direct Deposit addresses.
           </p>
           <InboundChainTable chains={filteredChains} isLoading={false} type="direct" />
         </div>
@@ -54,7 +54,7 @@ function InboundChainTableWrapper() {
               className="vocs_Anchor vocs_Autolink"
               aria-hidden="true"
               tabIndex={-1}
-              href="/gas/chain-support/inbound#contract-deposit"
+              href="/gas/chain-support/deposit#contract-deposit"
             >
               <div
                 data-autolink-icon="true"
@@ -64,7 +64,7 @@ function InboundChainTableWrapper() {
             </a>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            Below are the supported inbound chains and their respective verified contract addresses.
+            Below are the supported deposit chains and their respective verified contract addresses.
           </p>
           <InboundChainTable chains={filteredChains} isLoading={false} type="contract" />
         </div>

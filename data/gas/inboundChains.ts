@@ -310,5 +310,15 @@ export const inboundChains: InboundChain[] = [
       url: "https://explorer.rsk.co",
       name: "RSK Explorer"
     }
-  }
+  },
+  {
+    name: "Fraxtal",
+    chainId: 252,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://fraxscan.com",
+      name: "Fraxscan"
+    }
+  },
 ]

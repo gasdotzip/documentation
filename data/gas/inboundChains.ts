@@ -321,4 +321,14 @@ export const inboundChains: InboundChain[] = [
       name: "Fraxscan"
     }
   },
+  {
+    name: "Abstract",
+    chainId: 2741,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x252fb662e4D7435D2a5DED8EC94d8932CF76C178",
+    explorer: {
+      url: "https://abscan.org",
+      name: "Abscan"
+    }
+  },
 ]

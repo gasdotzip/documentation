@@ -26,9 +26,9 @@ Currently supported VM types for destination chains include: EVM, Solana, Fuel, 
 </Callout>
 
 
-:::code
+:::code-group
 
-```ts twoslash [typescript]
+```ts [typescript]
 // [!include ~/snippets/gas/depositSolana.ts]
 ```
 
@@ -82,14 +82,6 @@ tx_sig = http_client.send_transaction(tx).value
 print(tx_sig)
 http_client.confirm_transaction(tx_sig).value
 
-
-"""
-8 bytes discriminator
-8 bytes u64 value
-4 bytes chains length
-N bytes chains data
-32 bytes to
-"""
 ```
 
 :::

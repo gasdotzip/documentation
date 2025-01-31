@@ -3,7 +3,7 @@ import { serialize, field, vec, fixedArray } from '@dao-xyz/borsh'
 import bs58 from 'bs58'
 
 // Constants
-const PROGRAM_ID = new PublicKey('gasZT2bpe7mxu5wMgQbvry84vok5CuF3huCEokyC3qh')
+const PROGRAM_ID = new PublicKey('FzuVV5WeLyWHDuX6SPbeLgqkvePDTzMCRKYAhDbiP3z3')
 const SYSTEM_PROGRAM_ID = new PublicKey('11111111111111111111111111111111')
 const GAS_RECIPIENT = new PublicKey('gasZT2bpe7mxu5wMgQbvry84vok5CuF2huCEokyC3qh')
 const PROGRAM_DISCRIMINATOR = [242, 35, 198, 137, 82, 225, 242, 182]

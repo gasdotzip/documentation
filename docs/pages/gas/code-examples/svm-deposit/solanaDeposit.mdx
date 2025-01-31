@@ -23,10 +23,67 @@ The destination address will be interpreted based on the first byte:
 :::code
 
 ```ts twoslash [typescript]
-// @experimentalDecorators: true
-// @emitDecoratorMetadata: true
-// ---cut---
 // [!include ~/snippets/gas/depositSolana.ts]
+```
+
+```python [python]
+from solana.rpc.api import Client
+from solders.transaction import VersionedTransaction
+from solders.message import MessageV0
+from solders.instruction import Instruction, AccountMeta
+from solders.pubkey import Pubkey
+from solders.keypair import Keypair
+
+from borsh_construct import CStruct, Vec, U16, U8, U64
+
+http_client = Client("https://mainnet.helius-rpc.com/?api-key=HELIUS_RPC_KEY")
+keypair = Keypair.from_bytes(KEYPAIR)
+recent_bh = http_client.get_latest_blockhash().value.blockhash
+
+event = CStruct(
+    'value' / U64,
+    'chains' / Vec(U16),
+    'to' / U8[32],
+)
+
+def addr_to_arr(addr: str) -> list[int]:
+    arr = []
+    addr = addr[2:].zfill(64)
+
+    while addr != '':
+        arr.append(int(addr[0:2], 16) & 0xff)
+        addr = addr[2:]
+
+    return arr
+
+to = addr_to_arr('0x4c968f6bEecf1906710b08e8B472b8Ba6E75F957')
+value = 50000000
+short_chains = [55]
+instruction_data = bytes.fromhex('f223c68952e1f2b6' + event.build({'value': value, 'chains': short_chains, 'to': to}).hex())
+
+tx = VersionedTransaction(MessageV0.try_compile(
+    payer=keypair.pubkey(),
+    address_lookup_table_accounts=[],
+    recent_blockhash=recent_bh,
+    instructions=[Instruction(Pubkey.from_string('FzuVV5WeLyWHDuX6SPbeLgqkvePDTzMCRKYAhDbiP3z3'), data=instruction_data, accounts=[
+        AccountMeta(keypair.pubkey(), True, True),
+        AccountMeta(Pubkey.from_string('11111111111111111111111111111111'), False, False),
+        AccountMeta(Pubkey.from_string('gasZT2bpe7mxu5wMgQbvry84vok5CuF2huCEokyC3qh'), False, True),
+    ])]
+), [keypair])
+
+tx_sig = http_client.send_transaction(tx).value
+print(tx_sig)
+http_client.confirm_transaction(tx_sig).value
+
+
+"""
+8 bytes discriminator
+8 bytes u64 value
+4 bytes chains length
+N bytes chains data
+32 bytes to
+"""
 ```
 
 :::

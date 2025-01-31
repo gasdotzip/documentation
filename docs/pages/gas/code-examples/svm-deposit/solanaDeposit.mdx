@@ -25,10 +25,12 @@ The destination address handling:
 Currently supported VM types for destination chains include: EVM, Solana, Fuel, Tron, Sui, and Aptos. Other VM types (Initia, XRP, etc.) are not supported at this time.
 </Callout>
 
-
 :::code-group
-
-```ts [typescript]
+```ts twoslash [typescript]
+// @experimentalDecorators: true
+// @emitDecoratorMetadata: true
+// @errors: 1240
+// ---cut---
 // [!include ~/snippets/gas/depositSolana.ts]
 ```
 
@@ -83,5 +85,4 @@ print(tx_sig)
 http_client.confirm_transaction(tx_sig).value
 
 ```
-
 :::

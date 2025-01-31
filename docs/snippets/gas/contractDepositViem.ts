@@ -19,11 +19,12 @@ const toAddress = account.address
 // Each chain will receive an equal portion of the value sent
 const amount: bigint = parseEther('0.0006')
 
-// This example is targeting zkSync (51), Polygon zkEVM (52)
+// This example is targeting zkSync (51), Polygon zkEVM (52) - These are Gas.zip short chain IDs
 const gasZipShortChainIDs = [51, 52]
 
 // Prepare targeted chains parameter for deposit()
 const chainsBN = gasZipShortChainIDs.reduce((p, c) => (p << BigInt(8)) + BigInt(c), BigInt(0))
+
 ;(async () => {
   // Prepare the contract write configuration
   const { request } = await client.simulateContract({

@@ -41,12 +41,14 @@ interface Transaction {
   chain: number
   hash: string
   nonce: number
+  refund: boolean
+  cancelled: boolean
   signer: string
   status: Status
   time: number
   to: string
   usd: number
-  value: string
+  value: number
 }
 // [!endregion transaction]
 
@@ -85,3 +87,16 @@ interface Quote {
   ]
 }
 // [!endregion quote]
+
+// [!region calldataQuoteResponse]
+interface CalldataQuoteResponse {
+  calldata: string
+  quotes: {
+    chain: number
+    expected: string
+    gas: string
+    speed: number
+    usd: number
+  }[]
+}
+// [!endregion calldataQuoteResponse]

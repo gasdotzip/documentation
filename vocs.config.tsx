@@ -111,8 +111,8 @@ export default defineConfig({
           collapsed: false,
           items: [
             {
-              text: 'Inbound',
-              link: '/gas/chain-support/inbound',
+              text: 'Deposit',
+              link: '/gas/chain-support/deposit',
             },
             {
               text: 'Outbound',
@@ -128,12 +128,12 @@ export default defineConfig({
               collapsed: false,
               items: [
                 {
-                  text: 'v2: EOA Deposit',
-                  link: '/gas/code-examples/evm-deposit/eoaDeposit',
+                  text: 'v2: Direct Deposit',
+                  link: '/gas/code-examples/evm-deposit/direct-deposit',
                 },
                 {
                   text: 'v1: Contract Deposit',
-                  link: '/gas/code-examples/evm-deposit/contractDeposit',
+                  link: '/gas/code-examples/evm-deposit/contract-deposit',
                 },
               ],
             },
@@ -183,7 +183,11 @@ export default defineConfig({
             },
             {
               text: 'Quote Reverse',
-              link: '/gas/api/quoteReverse',
+              link: '/gas/api/quote-reverse',
+            },
+            {
+              text: 'Calldata Builder',
+              link: '/gas/api/call-data',
             },
           ],
         },
@@ -200,8 +204,8 @@ export default defineConfig({
           text: 'Chain Support',
           items: [
             {
-              text: 'Inbound',
-              link: '/layerzero/chain-support/inbound',
+              text: 'Deposit',
+              link: '/layerzero/chain-support/deposit',
             },
             {
               text: 'Outbound',

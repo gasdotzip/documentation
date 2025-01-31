@@ -16,7 +16,20 @@ export interface ChainsState {
   testnet: ChainData[]
 }
 
-export interface ChainTableProps {
+export interface OutboundChainTableProps {
   chains: ChainData[]
   isLoading: boolean
+}
+
+export interface ExplorerConfig {
+  url: string
+  name: string
+}
+
+export interface InboundChain {
+  name: string
+  chainId: number
+  directAddress: string
+  contractAddress: string
+  explorer: ExplorerConfig
 }

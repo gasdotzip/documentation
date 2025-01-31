@@ -6,7 +6,7 @@ import { optimism } from 'viem/chains'
 import basex from 'base-x'
 import bs58 from 'bs58'
 
-const EOA_DEPOSIT_ADDRESS = '0x391E7C679d29bD940d63be94AD22A25d25b5A604'
+const DIRECT_DEPOSIT_ADDRESS = '0x391E7C679d29bD940d63be94AD22A25d25b5A604'
 
 // Create a wallet from a private key
 const account = privateKeyToAccount('0x...')
@@ -125,7 +125,7 @@ const encodeTransactionInput = (to: string, shorts: number[]) => {
   }
 
   const hash = await client.sendTransaction({
-    to: EOA_DEPOSIT_ADDRESS,
+    to: DIRECT_DEPOSIT_ADDRESS,
     value: amount,
     data: txData as `0x${string}`,
   })

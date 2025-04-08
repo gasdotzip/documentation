@@ -331,4 +331,44 @@ export const inboundChains: InboundChain[] = [
       name: "Abscan"
     }
   },
+  {
+    name: "Soneium",
+    chainId: 1868,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://soneium.blockscout.com",
+      name: "Soneium Explorer"
+    }
+  },
+  {
+    name: "Berachain",
+    chainId: 80094,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://berascan.com",
+      name: "Berascan"
+    }
+  },
+  {
+    name: "Unichain",
+    chainId: 130,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://uniscan.xyz",
+      name: "Uniscan"
+    }
+  },
+  {
+    name: "HyperEVM",
+    chainId: 999,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://hyperscan.gas.zip",
+      name: "Hyperscan"
+    }
+  },
 ]

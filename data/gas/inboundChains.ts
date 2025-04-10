@@ -371,4 +371,94 @@ export const inboundChains: InboundChain[] = [
       name: "Hyperscan"
     }
   },
+  {
+    name: "Swell",
+    chainId: 1923,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://swellchainscan.io",
+      name: "Swellscan"
+    }
+  },
+  {
+    name: "Etherlink",
+    chainId: 42793,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://explorer.etherlink.com/",
+      name: "Etherlink Explorer"
+    }
+  },
+  {
+    name: "Corn",
+    chainId: 21000000,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://cornscan.io/",
+      name: "Cornscan"
+    }
+  },
+  {
+    name: "Hemi",
+    chainId: 43111,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://explorer.hemi.xyz/",
+      name: "Hemi Explorer"
+    }
+  },
+  {
+    name: "Superposition",
+    chainId: 55244,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://explorer.superposition.so/",
+      name: "Superposition Explorer"
+    }
+  },
+  {
+    name: "Story",
+    chainId: 1514,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://www.storyscan.io/",
+      name: "Storyscan"
+    }
+  },
+  {
+    name: "BOB",
+    chainId: 60808,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://explorer.gobob.xyz/",
+      name: "Bob Explorer"
+    }
+  },
+  {
+    name: "Superseed",
+    chainId: 5330,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://explorer.superseed.xyz",
+      name: "Superseed Explorer"
+    }
+  },
+  {
+    name: "Mint",
+    chainId: 185,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://explorer.mintchain.io",
+      name: "Mintscan"
+    }
+  },
 ]

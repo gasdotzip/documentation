@@ -450,6 +450,16 @@ export const inboundChains: InboundChain[] = [
       url: "https://explorer.superseed.xyz",
       name: "Superseed Explorer"
     }
+  },  
+  {
+    name: "Lens",
+    chainId: 232,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0xDeb8609F3f6c1A3EA814ED571C7d7C61a9Cfa76A",
+    explorer: {
+      url: "https://explorer.lens.xyz/",
+      name: "Lensscan"
+    }
   },
   {
     name: "Mint",

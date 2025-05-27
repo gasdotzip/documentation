@@ -472,6 +472,16 @@ export const inboundChains: InboundChain[] = [
     }
   },
   {
+    name: "Viction",
+    chainId: 88,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x549Fd6feFAe192deFd626279d479F8F754B85fB7",
+    explorer: {
+      url: "https://tomoscan.io",
+      name: "VicScan"
+    }
+  },
+  {
     name: "Nibiru",
     chainId: 6900,
     directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",

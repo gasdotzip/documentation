@@ -482,6 +482,26 @@ export const inboundChains: InboundChain[] = [
     }
   },
   {
+    name: "Ronin",
+    chainId: 2020,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x31030df252cb281d8b94863af6af4af8774adb7e",
+    explorer: {
+      url: "https://app.roninchain.com/",
+      name: "RoninScan"
+    }
+  },
+  {
+    name: "Plume",
+    chainId: 98866,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0xc62155f48D2aEE12FFF6Bb3b7946385d3A98854C",
+    explorer: {
+      url: "https://explorer.plume.org/",
+      name: "PlumeExplorer"
+    }
+  },
+  {
     name: "Nibiru",
     chainId: 6900,
     directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",

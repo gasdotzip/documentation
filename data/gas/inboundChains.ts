@@ -502,6 +502,16 @@ export const inboundChains: InboundChain[] = [
     }
   },
   {
+    name: "Flare",
+    chainId: 14,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x431F08321d06e41CB062D370cc4Ba2BAc39Ffef0",
+    explorer: {
+      url: "https://flare-explorer.flare.network",
+      name: "Flare Explorer"
+    }
+  },
+  {
     name: "Nibiru",
     chainId: 6900,
     directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",

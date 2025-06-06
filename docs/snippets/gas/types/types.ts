@@ -73,7 +73,7 @@ interface UserHistory {
 // [!region quote]
 interface Quote {
   quotes: [
-    | {
+      {
         chain: number
         expected: number // estimated output in wei
         gas: number // estimated gas cost in wei
@@ -84,7 +84,10 @@ interface Quote {
         chain: number
         error: string
       },
-  ]
+  ],
+  error: string,
+  calldata: string, // constructed data for Direct Deposit
+  expires: number // time the quote is no longer guaranteed after
 }
 // [!endregion quote]
 

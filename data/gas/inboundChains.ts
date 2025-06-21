@@ -522,6 +522,16 @@ export const inboundChains: InboundChain[] = [
     }
   },
   {
+    name: "Vana",
+    chainId: 1480,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://vanascan.io/",
+      name: "VanaScan"
+    }
+  },
+  {
     name: "Nibiru",
     chainId: 6900,
     directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",

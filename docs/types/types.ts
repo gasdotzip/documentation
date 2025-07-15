@@ -1,14 +1,17 @@
 export interface ChainData {
   bal: string
   chain: number
+  decimals: number
   gas: string
   gwei: string
+  mainnet: boolean
+  maxOutbound: number
+  minOutbound: number
   name: string
   price: number
   rpcs: string[]
   short: number
   symbol: string
-  mainnet: boolean
 }
 
 export interface ChainsState {

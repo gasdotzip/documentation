@@ -8,11 +8,11 @@ Using the Direct Deposit method must include calldata defining the output chains
 Use the example code for an up-to-date spec of how to format the calldata.
 You can use the [Calldata API](/gas/api/call-data) to generate the calldata for you, or you can manually create the calldata. It is recommended to use the API for most use cases.
 
-For a list of all supported chains for Direct Deposit, please refer to the [Direct Deposit Supported Chains](/gas/chain-support/deposit#direct-deposit) section.
+For a list of all supported chains for Direct Deposit, please refer to the [Direct Deposit Supported Chains](/gas/chain-support/inbound#direct-deposit) section.
 
 <Callout type="warning">
   Deposits using this method MUST be a high-level transaction sending directly to the Direct Deposit address. For integrators looking to
-  deposit with a low-level call, please use the [Contract Deposit](/gas/code-examples/evm-deposit/contract-deposit)
+  deposit with a low-level call, please use the [Contract Deposit](/gas/code-examples/evm-deposit/contract-forwarder)
 </Callout>
 
 <Callout type="info">

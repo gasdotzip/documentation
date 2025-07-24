@@ -99,20 +99,12 @@ export default defineConfig({
       text: 'Gas.zip',
       items: [
         {
-          text: 'Overview',
-          link: '/gas/overview',
-        },
-        {
-          text: 'URL Parameters',
-          link: '/gas/url-parameters',
-        },
-        {
-          text: 'Chain Support',
+          text: 'Supported Chains',
           collapsed: false,
           items: [
             {
-              text: 'Deposit',
-              link: '/gas/chain-support/deposit',
+              text: 'Inbound',
+              link: '/gas/chain-support/inbound',
             },
             {
               text: 'Outbound',
@@ -121,37 +113,8 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Code Examples',
-          items: [
-            {
-              text: 'EVM Deposit',
-              collapsed: false,
-              items: [
-                {
-                  text: 'v2: Direct Deposit',
-                  link: '/gas/code-examples/evm-deposit/direct-deposit',
-                },
-                {
-                  text: 'v1: Contract Deposit',
-                  link: '/gas/code-examples/evm-deposit/contract-deposit',
-                },
-              ],
-            },
-            {
-              text: 'SVM Deposit',
-              collapsed: false,
-              items: [
-                {
-                  text: 'Solana Deposit',
-                  link: '/gas/code-examples/svm-deposit/solanaDeposit',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          text: 'API',
-          collapsed: true,
+          text: 'v2: API',
+          collapsed: false,
           items: [
             {
               text: 'Overview',
@@ -191,6 +154,36 @@ export default defineConfig({
             },
           ],
         },
+        {
+          text: 'v1: Manual',
+          collapsed: true,
+          items: [
+            {
+              text: 'EVM:',
+              collapsed: false,
+              items: [
+                {
+                  text: 'Direct Forwarder',
+                  link: '/gas/code-examples/evm-deposit/direct-forwarder',
+                },
+                {
+                  text: 'Contract Forwarder',
+                  link: '/gas/code-examples/evm-deposit/contract-forwarder',
+                },
+              ],
+            },
+            {
+              text: 'SVM:',
+              collapsed: false,
+              items: [
+                {
+                  text: 'Solana Deposit',
+                  link: '/gas/code-examples/svm-deposit/solana-forwarder',
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
     {
@@ -202,6 +195,7 @@ export default defineConfig({
         },
         {
           text: 'Chain Support',
+          collapsed: true,
           items: [
             {
               text: 'Deposit',
@@ -214,8 +208,8 @@ export default defineConfig({
           ],
         },
         {
-          text: 'v2',
-          collapsed: false,
+          text: 'v2: GasLZ Router',
+          collapsed: true,
           items: [
             {
               text: 'Code Examples',
@@ -233,7 +227,7 @@ export default defineConfig({
           ],
         },
         {
-          text: 'v1',
+          text: 'v1: GasLZ Router',
           collapsed: true,
           items: [
             {

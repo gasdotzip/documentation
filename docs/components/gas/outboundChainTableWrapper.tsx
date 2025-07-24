@@ -25,31 +25,20 @@ function ChainTableWrapper() {
     <>
       <h2 className="vocs_H2 vocs_Heading">
         <div id="mainnet-chains" className="vocs_Heading_slugTarget"></div>
-        Mainnet Chains
+        Outbound: Mainnet
         <a className="vocs_Anchor vocs_Autolink" aria-hidden="true" tabIndex={-1} href="#mainnet-chains">
           <div data-autolink-icon="true" className="vocs_Div vocs_AutolinkIcon"></div>
         </a>
       </h2>
-      <p className="vocs_Paragraph">All current supported mainnet outbound destination chains:</p>
-      <div className="w-full mb-4 vocs_SearchDialog_searchBox">
-        <input
-          className="vocs_SearchDialog_searchInput w-full"
-          type="search"
-          placeholder="Search mainnet chains..."
-          value={mainnetSearch}
-          onChange={(e) => setMainnetSearch(e.target.value)}
-        />
-      </div>
       <MainnetTable chains={filteredMainnet} isLoading={isLoading} />
 
       <h2 className="vocs_H2 vocs_Heading">
         <div id="testnet-chains" className="vocs_Heading_slugTarget"></div>
-        Testnet Chains
+        Outbound: Testnet
         <a className="vocs_Anchor vocs_Autolink" aria-hidden="true" tabIndex={-1} href="#testnet-chains">
           <div data-autolink-icon="true" className="vocs_Div vocs_AutolinkIcon"></div>
         </a>
       </h2>
-      <p className="vocs_Paragraph">All current supported testnet outbound destination chains:</p>
       <div className="w-full mb-4 vocs_SearchDialog_searchBox">
         <input
           className="vocs_SearchDialog_searchInput w-full"

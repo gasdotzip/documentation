@@ -551,4 +551,174 @@ export const inboundChains: InboundChain[] = [
       name: "Nibiscan"
     }
   },
+  {
+    name: "Monad Testnet",
+    chainId: 10143,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0xBA98a2792e64732B14Ad9AF168766d410046C16a",
+    explorer: {
+      url: "https://testnet.monadexplorer.com/",
+      name: "MonadScan"
+    }
+  },
+  {
+    name: "Sepolia Testnet",
+    chainId: 11155111,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x208C2039EF8b2753bB6d9A9b96FD8654e6Ee5569",
+    explorer: {
+      url: "https://sepolia.etherscan.io/",
+      name: "Sepolia Etherscan"
+    }
+  },
+  {
+    name: "Aurora",
+    chainId: 1313161554,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://aurorascan.dev",
+      name: "AuroraScan"
+    }
+  },
+  {
+    name: "Boba",
+    chainId: 288,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://bobascan.com",
+      name: "BobaScan"
+    }
+  },
+  {
+    name: "Fuse",
+    chainId: 122,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://explorer.fuse.io",
+      name: "FuseExplorer"
+    }
+  },
+  {
+    name: "Immutable zkEVM",
+    chainId: 13371,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://explorer.immutable.com",
+      name: "ImmutableExplorer"
+    }
+  },
+  {
+    name: "Kaia",
+    chainId: 8217,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://kaiascan.io",
+      name: "KaiaScan"
+    }
+  },
+  {
+    name: "Moonbeam",
+    chainId: 1284,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://moonbase.moonscan.io",
+      name: "Moonscan"
+    }
+  },
+  {
+    name: "Moonriver",
+    chainId: 1285,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://moonriver.moonscan.io",
+      name: "Moonscan"
+    }
+  },
+  {
+    name: "opBNB",
+    chainId: 204,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://opbnbscan.com",
+      name: "opBNBScan"
+    }
+  },
+  {
+    name: "Polygon zkEVM",
+    chainId: 1101,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://zkevm.polygonscan.com",
+      name: "PolygonScan"
+    }
+  },
+  {
+    name: "Converge",
+    chainId: 432,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://explorer-converge-mainnet.t.conduit.xyz",
+      name: "Converge"
+    }
+  },
+  {
+    name: "Sophon",
+    chainId: 50104,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x6CbC57A6162839d782B2B4a1BD18554135e4Fafa",
+    explorer: {
+      url: "https://explorer.sophon.xyz",
+      name: "Sophon"
+    }
+  },
+  {
+    name: "CAMP",
+    chainId: 484,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://camp.cloud.blockscout.com",
+      name: "CAMP"
+    }
+  },
+  {
+    name: "Mitosis",
+    chainId: 124816,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://mitoscan.io",
+      name: "Mitosis"
+    }
+  },
+  {
+    name: "Plasma",
+    chainId: 9745,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://plasmascan.to",
+      name: "PlasmaScan"
+    }
+  },
+  {
+    name: "Flow",
+    chainId: 747,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://evm.flowscan.io",
+      name: "Flowscan"
+    }
+  },
 ]

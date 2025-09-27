@@ -1,0 +1,40 @@
+import { Callout } from 'vocs/components'
+
+`0x773fC66C488589379F72793f343f6329d10028Bf` is the alternate deposit address that will trigger a `Base USDC` send to the address that sent to it.
+
+<Callout type="warning" className="note">
+For ERC20 tokens, transfer using any method tokens to the deposit address. The sender will be the recipient of the Base USDC.
+
+For Native tokens, transfers MUST be a top-level EOA->EOA transfer between the desired recipient, and the deposit address
+</Callout>
+
+Deposit Flow:
+
+1. Use the [Quote Token API](/gas/api/quote-token) to receive live output quote amount and to ensure sufficient liquidity
+2. Send transaction to deposit address using given method
+3. Poll [Deposit API](/gas/api/deposit) using transaction hash
+4. Wait until Deposit 'status' response is CONFIRMED
+
+Supported chains and tokens:
+| Chain        | Address           | Token  |
+| ------------- |:-------------:| -----:|
+| Ethereum      | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | USDC |
+| Ethereum      | 0xdAC17F958D2ee523a2206206994597C13D831ec7      |   USDT |
+| Ethereum | 0x0000000000000000000000000000000000000000     |    ETH |
+| OP | 0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85 | USDC |
+| OP | 0x94b008aA00579c1307B0EF2c499aD98a8ce58e58 | USDT |
+| OP | 0x0000000000000000000000000000000000000000 | ETH |
+| Arbitrum | 0xaf88d065e77c8cC2239327C5EDb3A432268e5831 | USDC |
+| Arbitrum | 0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9 | USDT |
+| Arbitrum | 0x0000000000000000000000000000000000000000 | ETH |
+| Base | 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 | USDC |
+| Base | 0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2 | USDT |
+| Base | 0x0000000000000000000000000000000000000000 | ETH |
+| Polygon | 0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359 | USDC |
+| Polygon | 0xc2132D05D31c914a87C6611C10748AEb04B58e8F | USDT |
+| Polygon | 0x0000000000000000000000000000000000000000 | POL |
+| BSC | 0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d | USDC |
+| BSC | 0x55d398326f99059fF775485246999027B3197955 | BSC-USD |
+| BSC | 0x0000000000000000000000000000000000000000 | BNB |
+| Ink | 0x0200C29006150606B650577BBE7B6248F58470c1 | Stargate USDC |
+| Ink | 0x0000000000000000000000000000000000000000 | ETH |

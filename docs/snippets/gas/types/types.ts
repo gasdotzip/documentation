@@ -91,6 +91,30 @@ interface Quote {
 }
 // [!endregion quote]
 
+// [!region quoteTokenParams]
+interface QuoteTokenParams {
+  srcChain: number
+  srcToken: string
+  dstChain: number
+  dstToken: string
+  srcAmount: number
+}
+// [!endregion quoteTokenParams]
+
+// [!region quoteTokenResponse]
+interface QuoteTokenResponse {
+  error: string,
+  quote: {
+    chain: number,
+    chainInternal: number // The identifier for the dst chain/token combo
+    srcUsd: number
+    dstUsd: number
+    dstAmount: number // Expected destination amount in token decimals
+    dstAmountWei: number // Expected destination amount scaled to 18 decimals
+  }
+}
+// [!endregion quoteTokenResponse]
+
 // [!region calldataQuoteResponse]
 interface CalldataQuoteResponse {
   calldata: string

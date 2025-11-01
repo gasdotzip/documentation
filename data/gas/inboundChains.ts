@@ -172,16 +172,6 @@ export const inboundChains: InboundChain[] = [
     },
   },
   {
-    name: 'Fantom',
-    chainId: 250,
-    directAddress: '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
-    contractAddress: '0xA60768b03eB14d940F6c9a8553329B7F9037C91b',
-    explorer: {
-      url: 'https://ftmscan.com',
-      name: 'FTMScan',
-    },
-  },
-  {
     name: 'Gravity',
     chainId: 1625,
     directAddress: '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
@@ -472,6 +462,16 @@ export const inboundChains: InboundChain[] = [
     }
   },
   {
+    name: "XDC",
+    chainId: 50,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
+    explorer: {
+      url: "https://xdcscan.com",
+      name: "XDC Explorer"
+    }
+  },
+  {
     name: "Viction",
     chainId: 88,
     directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
@@ -552,26 +552,6 @@ export const inboundChains: InboundChain[] = [
     }
   },
   {
-    name: "Monad Testnet",
-    chainId: 10143,
-    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
-    contractAddress: "0xBA98a2792e64732B14Ad9AF168766d410046C16a",
-    explorer: {
-      url: "https://testnet.monadexplorer.com/",
-      name: "MonadScan"
-    }
-  },
-  {
-    name: "Sepolia Testnet",
-    chainId: 11155111,
-    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
-    contractAddress: "0x208C2039EF8b2753bB6d9A9b96FD8654e6Ee5569",
-    explorer: {
-      url: "https://sepolia.etherscan.io/",
-      name: "Sepolia Etherscan"
-    }
-  },
-  {
     name: "Aurora",
     chainId: 1313161554,
     directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
@@ -579,16 +559,6 @@ export const inboundChains: InboundChain[] = [
     explorer: {
       url: "https://aurorascan.dev",
       name: "AuroraScan"
-    }
-  },
-  {
-    name: "Boba",
-    chainId: 288,
-    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
-    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
-    explorer: {
-      url: "https://bobascan.com",
-      name: "BobaScan"
     }
   },
   {
@@ -719,6 +689,16 @@ export const inboundChains: InboundChain[] = [
     explorer: {
       url: "https://evm.flowscan.io",
       name: "Flowscan"
+    }
+  },
+  {
+    name: "Botanix",
+    chainId: 3637,
+    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://botanixscan.io/",
+      name: "Botanixscan"
     }
   },
 ]

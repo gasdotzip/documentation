@@ -1,0 +1,21 @@
+import { Callout } from 'vocs/components'
+
+## Quote Token
+
+> This route gives a live quote returning the amount received in the requested token.
+
+```
+https://backend.gas.zip/v2/quoteToken
+```
+
+### Request Schema
+
+```ts
+// [!include ~/snippets/gas/types/types.ts:quoteTokenParams]
+```
+
+### Response Schema
+
+```ts
+// [!include ~/snippets/gas/types/types.ts:quoteTokenResponse]
+```

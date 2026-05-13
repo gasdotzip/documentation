@@ -452,16 +452,6 @@ export const inboundChains: InboundChain[] = [
     }
   },
   {
-    name: "Mint",
-    chainId: 185,
-    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
-    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
-    explorer: {
-      url: "https://explorer.mintchain.io",
-      name: "Mintscan"
-    }
-  },
-  {
     name: "XDC",
     chainId: 50,
     directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
@@ -622,26 +612,6 @@ export const inboundChains: InboundChain[] = [
     }
   },
   {
-    name: "Polygon zkEVM",
-    chainId: 1101,
-    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
-    contractAddress: "0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762",
-    explorer: {
-      url: "https://zkevm.polygonscan.com",
-      name: "PolygonScan"
-    }
-  },
-  {
-    name: "Converge",
-    chainId: 432,
-    directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
-    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
-    explorer: {
-      url: "https://explorer-converge-mainnet.t.conduit.xyz",
-      name: "Converge"
-    }
-  },
-  {
     name: "Sophon",
     chainId: 50104,
     directAddress: "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
@@ -699,6 +669,96 @@ export const inboundChains: InboundChain[] = [
     explorer: {
       url: "https://botanixscan.io/",
       name: "Botanixscan"
+    }
+  },
+  {
+    name: "0G",
+    chainId: 16661,
+    directAddress: "0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://chainscan.0g.ai",
+      name: "0G Explorer"
+    }
+  },
+  {
+    name: "Jovay",
+    chainId: 5734951,
+    directAddress: "0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://explorer.jovay.io",
+      name: "Jovay Explorer"
+    }
+  },
+  {
+    name: "Monad",
+    chainId: 143,
+    directAddress: "0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://monadvision.com",
+      name: "Monad Explorer"
+    }
+  },
+  {
+    name: "Stable",
+    chainId: 988,
+    directAddress: "0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://stablescan.xyz",
+      name: "Stable Explorer"
+    }
+  },
+  {
+    name: "MegaETH",
+    chainId: 4326,
+    directAddress: "0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://mega.etherscan.io",
+      name: "MegaETH Explorer"
+    }
+  },
+  {
+    name: "Telos",
+    chainId: 40,
+    directAddress: "0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa",
+    contractAddress: "0xb46013468775959dF96352195d2B8275B625EbC8",
+    explorer: {
+      url: "https://www.teloscan.io",
+      name: "Telos Explorer"
+    }
+  },
+  {
+    name: "Arbitrum Nova",
+    chainId: 42170,
+    directAddress: "0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa",
+    contractAddress: "0x5D5a72859b8EBAFcf459164F64400012F5A3C5E0",
+    explorer: {
+      url: "https://nova.arbiscan.io",
+      name: "Arbitrum Nova Explorer"
+    }
+  },
+  {
+    name: "Pharos",
+    chainId: 1672,
+    directAddress: "0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa",
+    contractAddress: "0x9e22ebec84c7e4c4bd6d4ae7ff6f4d436d6d8390",
+    explorer: {
+      url: "https://pharos.socialscan.io",
+      name: "Pharos Explorer"
+    }
+  },
+  {
+    name: "Somnia",
+    chainId: 5031,
+    directAddress: "0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa",
+    contractAddress: "0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390",
+    explorer: {
+      url: "https://explorer.somnia.network/",
+      name: "Somnia Explorer"
     }
   },
 ]

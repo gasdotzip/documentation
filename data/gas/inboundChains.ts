@@ -761,4 +761,14 @@ export const inboundChains: InboundChain[] = [
       name: "Somnia Explorer"
     }
   },
+  {
+    name: "Arc",
+    chainId: 5042,
+    directAddress: "0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa",
+    contractAddress: "0x9e22ebec84c7e4c4bd6d4ae7ff6f4d436d6d8390",
+    explorer: {
+      url: "explorer.arc.io",
+      name: "Arc Explorer"
+    }
+  },
 ]
